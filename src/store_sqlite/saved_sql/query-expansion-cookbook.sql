@@ -1,0 +1,4 @@
+-- name: query-expansion-cookbook
+-- params: 
+SELECT d.id AS id, d.title AS title, CASE WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'aqe-local') THEN 'aqe-local' WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'aqe-global') THEN 'aqe-global' WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'aqe-external') THEN 'aqe-external' WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'llm-era-query-rewriting') THEN 'llm-era' WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'vocabulary-mismatch') THEN 'vocabulary-mismatch-survey' ELSE 'other' END AS subfamily_label FROM Doc d
+WHERE EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'research') AND EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'query-expansion') ORDER BY subfamily_label, d.id LIMIT 25;

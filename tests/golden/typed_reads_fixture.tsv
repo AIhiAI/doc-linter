@@ -1,0 +1,144 @@
+cluster_edges	251270f1acf0ec8edf5caa0150a387d2c1750837c9458aeeb0b5eb09577c00c5	(Doc, Doc, "doc-a", "doc-b") (Doc, Doc, "doc-b", "doc-a") (Doc, Doc, "
+cluster_nodes Doc	dd81b392c614dbffa6ff125242ef7be69c283c0c9fb220e6707d7396904fac2b	("axis-role", "docs/ontology/axes/role.md") ("crate-a", "crates/a/READ
+cluster_nodes Entity	b08cb8ad19a175cfeb51428e2132b75eef6cc101703323ab9cab5f5f663520ce	("checkout", "") ("pricing", "")
+cluster_nodes Function	d7e9ee08e116b8283ffd2e22a603dcce71a773b84e88115e2ead30144757b7cb	("rust-analyzer cargo a 0.1.0 Widget#render().", "crates/a/src/lib.rs"
+cluster_nodes Module	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+cluster_nodes Type	e8d6abc4d3852add250a64b6baa551d566488eda6dbbc10b4bb6fd6becbfc85b	("rust-analyzer cargo a 0.1.0 Widget#", "crates/a/src/lib.rs")
+coverage_gaps 0.5	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+coverage_gaps 1	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+coverage_gaps 5	f5e55df32bd997a88550b4c1f46d741f7d611488f48bd589325c7657c76b564a	EntityGapRow { entity: "checkout", doc_count: 1, func_count: 1, ratio:
+covers_inbound axis-role	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+covers_inbound crate-a	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+covers_inbound doc-a	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+covers_inbound doc-b	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+covers_inbound entity-checkout	55c4e43400b67ef010ec0082e60e4996f9ff27affcbd7d6bc7a227f7dd7ce393	LinkRow { id: "doc-b", title: "Beta", role: "doc", line: 0, edge_type:
+covers_inbound entity-pricing	e0779695cea5b44dc8a1ea8f974a1bdf18441824accc24685d7db0a435328ea7	LinkRow { id: "doc-a", title: "Alpha", role: "doc", line: 0, edge_type
+covers_inbound no-such-doc	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+covers_inbound value-role-doc	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+covers_inbound value-role-index	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+dark_functions_in_crate a	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+dark_functions_in_crate b	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+dark_functions_in_crate my-crate	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+dark_functions_in_crate none	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+design_doc_summaries	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+docs_covering_entities	bae1a7f4fcd182409c9f8f3bf26789cc8827365985b8925dd4d790c0ec892d7e	CoveringDocRow { id: "doc-a", title: "Alpha", kind: None } CoveringDoc
+ego checkout d1	4e9b1f87a47d288a2330068fc4a72a6925a6d4bca37026718ee6109c934e659c	{"centre":"checkout","depth":1,"nodes":[{"kind":"entity","id":"checkou
+ego checkout d2	c1fdf88d91fb62a8793e3d10cb060e9c9fa47c0123742c6c0677d3932ac953af	{"centre":"checkout","depth":2,"nodes":[{"kind":"entity","id":"checkou
+ego no-such-entity d1	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+ego no-such-entity d2	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+ego pricing d1	58503bc5cf6a65a373b8c38ea036fd5c9ec5b1eea1e433bfb01de24e0e70f2a6	{"centre":"pricing","depth":1,"nodes":[{"kind":"entity","id":"checkout
+ego pricing d2	12cbc565958b670dca7a8577f45db34b1b99d8a6042794cae3df8068b028f3cb	{"centre":"pricing","depth":2,"nodes":[{"kind":"entity","id":"checkout
+endpoint_reach_by_kind	d86356eb99ecef7fab107b4a449368e4bcd705013037a003422cb079a302abc7	(Axum, 0, 0) (Clap, 0, 0) (Mcp, 0, 0) (Fastapi, 0, 0) (Flask, 0, 0) (E
+file_import_counts	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+function_context rust-analyzer cargo a 0.1.0 Widget#render().	78d73fdd9621ab6b3fbc7b50abfce558fc2d4ac8517fdba5060147454a4af747	FunctionContext { function: FunctionFull { symbol: "rust-analyzer carg
+function_context rust-analyzer cargo a 0.1.0 orchestrate().	89cdd81624fd0f8961e067067b1d5366e5cb380c9426b8fef83f5de34ce51b40	FunctionContext { function: FunctionFull { symbol: "rust-analyzer carg
+function_context rust-analyzer cargo b 0.1.0 compute().	cc7992254ef3ac8f7113c140dddfe3a52e27c98d6a26a212471f3743131d0871	FunctionContext { function: FunctionFull { symbol: "rust-analyzer carg
+function_context rust-analyzer cargo b 0.1.0 list_items().	3b31c855f66401950783e2a3ab8de12358bd54783b73a035cfb39782f71b5ca1	FunctionContext { function: FunctionFull { symbol: "rust-analyzer carg
+function_mentions rust-analyzer cargo a 0.1.0 Widget#render().	758ae6288ae71bf3910b9a8d8b69c0afea5f3e763e8c5ea8bc3dce321865d885	FunctionMentionRow { entity_id: "pricing", display: "pricing", confide
+function_mentions rust-analyzer cargo a 0.1.0 orchestrate().	758ae6288ae71bf3910b9a8d8b69c0afea5f3e763e8c5ea8bc3dce321865d885	FunctionMentionRow { entity_id: "pricing", display: "pricing", confide
+function_mentions rust-analyzer cargo b 0.1.0 compute().	1e1789644bc93173890d6d7304a985933a1294c18b963976b6f8f22bd8cdeb4c	FunctionMentionRow { entity_id: "checkout", display: "checkout", confi
+function_mentions rust-analyzer cargo b 0.1.0 list_items().	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+function_siblings rust-analyzer cargo a 0.1.0 Widget#render().	316a5bc629434c6e4ab0fb25d2283e01c74b56e5a1db24f4d94e24253fce6eb6	SiblingRow { symbol: "rust-analyzer cargo a 0.1.0 orchestrate().", sha
+function_siblings rust-analyzer cargo a 0.1.0 orchestrate().	afe006183496d883896275c787d10bb28fd2ff5786c854914fbf19a99df2d099	SiblingRow { symbol: "rust-analyzer cargo a 0.1.0 Widget#render().", s
+function_siblings rust-analyzer cargo b 0.1.0 compute().	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+function_siblings rust-analyzer cargo b 0.1.0 list_items().	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+functions_mentioning checkout	c3add345e4d2fc40d93fa95e047e9ca857ab4806ef05a01a6b6f50c424920946	FunctionRow { symbol: "rust-analyzer cargo b 0.1.0 compute().", crate_
+functions_mentioning no-such-entity	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+functions_mentioning pricing	ddde43bb637f64d8a29217524e51eb8665b6001661bd72e5c8b7b6b3f9795f92	FunctionRow { symbol: "rust-analyzer cargo a 0.1.0 Widget#render().", 
+get_doc axis-role	d90f66a6afc56d21159d7700f9fad7efa3ebd122f5bebf384104a0a2d553285f	DocRow { id: "axis-role", path: "docs/ontology/axes/role.md", role: "o
+get_doc crate-a	d8addc875c0e51adbf2accb6db7fbcfe2953d493d2969c36b965804ce89c1bdb	DocRow { id: "crate-a", path: "crates/a/README.md", role: "doc", kind:
+get_doc doc-a	49b15a1910dd1956626ddc1e8be9ceb253a49d128e11767136568954ff6cfadb	DocRow { id: "doc-a", path: "docs/a.md", role: "doc", kind: None, life
+get_doc doc-b	3d6b04ae4d5bea13997a896a4539ee9126ebb62170452cd08394ea0969f4c993	DocRow { id: "doc-b", path: "docs/b.md", role: "doc", kind: None, life
+get_doc entity-checkout	d8dd6ec38c7450cdefec36f09eed375ce84b277485a921fbbba08803069640e0	DocRow { id: "entity-checkout", path: "docs/ontology/entities/checkout
+get_doc entity-pricing	481d9afc67bed187b010fe4ebad962ac76d0eec56a0175855b11377e87156839	DocRow { id: "entity-pricing", path: "docs/ontology/entities/pricing.m
+get_doc no-such-doc	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+get_doc value-role-doc	83bca26f61b4ec21b466119a6ece72f72366f53244d336faba2003dcdd162b05	DocRow { id: "value-role-doc", path: "docs/ontology/values/role/doc.md
+get_doc value-role-index	5769bc39434a81ce5bbc5a9cc07df0d4639ebafa860fbd4c8704cb518cd3dbfc	DocRow { id: "value-role-index", path: "docs/ontology/values/role/inde
+get_entity checkout	1f0ad8e1dfcf766693c1c2b032db7df745adb14a791769dda1b435471e9d5ad1	EntityRow { id: "checkout", display: "checkout", description: "e" }
+get_entity no-such-entity	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+get_entity pricing	09b2e8aa018a376566eaec4bd99895d4bed761cbaa5acb287932e94741f09954	EntityRow { id: "pricing", display: "pricing", description: "e" }
+global_function_reach	c688d5c83da062a32cd23ee0730a57edb2026aed28f56015e1797b5d78aad326	(4, 3, 0)
+inbound axis-role	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+inbound crate-a	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+inbound doc-a	dfa1bd77d9f17f6ab2f1afcac44ff628069766541e2be3d7c111072bd32c6c5e	LinkRow { id: "doc-b", title: "Beta", role: "doc", line: 14, edge_type
+inbound doc-b	30526ca1ec63a76a736d106974de797053f83610fb1fd214226576c0bba7aa7f	LinkRow { id: "doc-a", title: "Alpha", role: "doc", line: 14, edge_typ
+inbound entity-checkout	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+inbound entity-pricing	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+inbound no-such-doc	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+inbound value-role-doc	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+inbound value-role-index	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+list_all_dark_public_functions	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+list_all_docs	ab830553fed068c693170625b590a1554ca6f2540c32a7a828f3fc727395148b	DocRow { id: "axis-role", path: "docs/ontology/axes/role.md", role: "o
+list_dark_endpoints	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+list_dark_public_functions	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+list_dead_code	7604576ecf77273a815c413b37a80d59b87c3d183198f0d541e8999eb15fd074	DeadCodeRow { symbol: "rust-analyzer cargo a 0.1.0 Widget#render().", 
+list_endpoints None false	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+list_endpoints None true	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+list_endpoints Some("axum") false	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+list_endpoints Some("clap") true	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+outbound axis-role	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+outbound crate-a	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+outbound doc-a	58c86788c2863acbac8a306b6ae52e3ee7133fbe93c620149fa999226af93fea	LinkRow { id: "doc-b", title: "Beta", role: "doc", line: 14, edge_type
+outbound doc-b	a3c5735bca75ed4179be7bcd739107326514293c6c272559bbc91ffa2086b346	LinkRow { id: "doc-a", title: "Alpha", role: "doc", line: 14, edge_typ
+outbound entity-checkout	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+outbound entity-pricing	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+outbound no-such-doc	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+outbound value-role-doc	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+outbound value-role-index	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+query_at crates/a/src/lib.rs:0	8dc30102c7f73facd72ce5456369c78af54449733c3f8f8d9d6daaf37387840f	{"file":{"path":"crates/a/src/lib.rs","language":"rust","loc":3,"last_
+query_at crates/a/src/lib.rs:1	e4e042bd0c4d9df964779c1cf2cdbd3b6fbaa7a927f66d2950de69bdf39608a0	{"function":{"symbol":"rust-analyzer cargo a 0.1.0 orchestrate().","cr
+query_at crates/a/src/lib.rs:100	23cb54b5cb1278957e972fa01f6f4885632128ac7db0c781f977895acc4010d1	{"function":{"symbol":"rust-analyzer cargo a 0.1.0 Widget#render().","
+query_at crates/a/src/lib.rs:2	e4e042bd0c4d9df964779c1cf2cdbd3b6fbaa7a927f66d2950de69bdf39608a0	{"function":{"symbol":"rust-analyzer cargo a 0.1.0 orchestrate().","cr
+query_at crates/a/src/lib.rs:3	e4e042bd0c4d9df964779c1cf2cdbd3b6fbaa7a927f66d2950de69bdf39608a0	{"function":{"symbol":"rust-analyzer cargo a 0.1.0 orchestrate().","cr
+query_at crates/b/src/lib.rs:0	8dcde00fbe6e35942f19e32971f36920b4dffd6310e3a3809c2c93312b34287f	{"file":{"path":"crates/b/src/lib.rs","language":"rust","loc":5,"last_
+query_at crates/b/src/lib.rs:1	8dcde00fbe6e35942f19e32971f36920b4dffd6310e3a3809c2c93312b34287f	{"file":{"path":"crates/b/src/lib.rs","language":"rust","loc":5,"last_
+query_at crates/b/src/lib.rs:100	ff4a004cb1a3429ddd805e735330bcb7bbe70b39839d10d55c228ec6b78e7c14	{"function":{"symbol":"rust-analyzer cargo b 0.1.0 list_items().","cra
+query_at crates/b/src/lib.rs:2	0d96bc79beab430fa1cb7508239f68d734c0ecc3e7609f09eb6136ec1c5b4946	{"function":{"symbol":"rust-analyzer cargo b 0.1.0 compute().","crate"
+query_at crates/b/src/lib.rs:3	ff4a004cb1a3429ddd805e735330bcb7bbe70b39839d10d55c228ec6b78e7c14	{"function":{"symbol":"rust-analyzer cargo b 0.1.0 list_items().","cra
+query_at math.py:0	d3204faa729897c12db1782cc2ac5c0f384229ce4e1063fbb7f13557e872cc51	{"file":{"path":"math.py","language":"python","loc":2,"last_touched":"
+query_at math.py:1	d3204faa729897c12db1782cc2ac5c0f384229ce4e1063fbb7f13557e872cc51	{"file":{"path":"math.py","language":"python","loc":2,"last_touched":"
+query_at math.py:100	d3204faa729897c12db1782cc2ac5c0f384229ce4e1063fbb7f13557e872cc51	{"file":{"path":"math.py","language":"python","loc":2,"last_touched":"
+query_at math.py:2	d3204faa729897c12db1782cc2ac5c0f384229ce4e1063fbb7f13557e872cc51	{"file":{"path":"math.py","language":"python","loc":2,"last_touched":"
+query_at math.py:3	d3204faa729897c12db1782cc2ac5c0f384229ce4e1063fbb7f13557e872cc51	{"file":{"path":"math.py","language":"python","loc":2,"last_touched":"
+query_at none.rs:0	50a992a0e1dcd5849d451638365defbdca1b531f9071fa96592a6d4972bf214f	{"entities":[],"covering_docs":[],"nearby_endpoints":[]}
+query_at none.rs:1	50a992a0e1dcd5849d451638365defbdca1b531f9071fa96592a6d4972bf214f	{"entities":[],"covering_docs":[],"nearby_endpoints":[]}
+query_at none.rs:100	50a992a0e1dcd5849d451638365defbdca1b531f9071fa96592a6d4972bf214f	{"entities":[],"covering_docs":[],"nearby_endpoints":[]}
+query_at none.rs:2	50a992a0e1dcd5849d451638365defbdca1b531f9071fa96592a6d4972bf214f	{"entities":[],"covering_docs":[],"nearby_endpoints":[]}
+query_at none.rs:3	50a992a0e1dcd5849d451638365defbdca1b531f9071fa96592a6d4972bf214f	{"entities":[],"covering_docs":[],"nearby_endpoints":[]}
+query_impact missing	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+query_impact rust-analyzer cargo a 0.1.0 Widget#render(). d1	c12f49b6030555fd6928bcccc4db83cc4cb4191a4af35226ffcc151911111dfc	{"target":{"symbol":"rust-analyzer cargo a 0.1.0 Widget#render().","cr
+query_impact rust-analyzer cargo a 0.1.0 Widget#render(). d3	c12f49b6030555fd6928bcccc4db83cc4cb4191a4af35226ffcc151911111dfc	{"target":{"symbol":"rust-analyzer cargo a 0.1.0 Widget#render().","cr
+query_impact rust-analyzer cargo a 0.1.0 orchestrate(). d1	8f4e7c839db061ef444157af81ca9d92078aa04d2b65e63ad9c8e8e96c9899fb	{"target":{"symbol":"rust-analyzer cargo a 0.1.0 orchestrate().","crat
+query_impact rust-analyzer cargo a 0.1.0 orchestrate(). d3	8f4e7c839db061ef444157af81ca9d92078aa04d2b65e63ad9c8e8e96c9899fb	{"target":{"symbol":"rust-analyzer cargo a 0.1.0 orchestrate().","crat
+query_impact rust-analyzer cargo b 0.1.0 compute(). d1	a4b13e72a0e8abadeb6973a3b9758ace89f2551e1223f985888b895176fee169	{"target":{"symbol":"rust-analyzer cargo b 0.1.0 compute().","crate":"
+query_impact rust-analyzer cargo b 0.1.0 compute(). d3	a4b13e72a0e8abadeb6973a3b9758ace89f2551e1223f985888b895176fee169	{"target":{"symbol":"rust-analyzer cargo b 0.1.0 compute().","crate":"
+query_impact rust-analyzer cargo b 0.1.0 list_items(). d1	78a364d97e148e65c75420ede0244cd6512f5f8f4d2deb2c4a609dee31b5bb7a	{"target":{"symbol":"rust-analyzer cargo b 0.1.0 list_items().","crate
+query_impact rust-analyzer cargo b 0.1.0 list_items(). d3	78a364d97e148e65c75420ede0244cd6512f5f8f4d2deb2c4a609dee31b5bb7a	{"target":{"symbol":"rust-analyzer cargo b 0.1.0 list_items().","crate
+ranked_entities	eb8a1bfebe44e3ff8847222262072616428abb4dda24e2fd86e598a172ceda39	RankedEntityRow { rank: 1, id: "pricing", display: "pricing", mentions
+search_functions	3f3811b3c3da1341ba88de03dc9a8819e0956ba9ec68d9b64f4b7c607e3198bc	FunctionFull { symbol: "rust-analyzer cargo a 0.1.0 Widget#render().",
+shortest_path axis-role->crate-a any	1fc5d5714017a335d5912ddd5520d31eaa9df8e212023adeebd21f53713a3645	0 hops, None..None
+shortest_path axis-role->crate-a covers	1fc5d5714017a335d5912ddd5520d31eaa9df8e212023adeebd21f53713a3645	0 hops, None..None
+shortest_path axis-role->crate-a wiki	1fc5d5714017a335d5912ddd5520d31eaa9df8e212023adeebd21f53713a3645	0 hops, None..None
+shortest_path axis-role->value-role-doc any	1fc5d5714017a335d5912ddd5520d31eaa9df8e212023adeebd21f53713a3645	0 hops, None..None
+shortest_path axis-role->value-role-doc covers	1fc5d5714017a335d5912ddd5520d31eaa9df8e212023adeebd21f53713a3645	0 hops, None..None
+shortest_path axis-role->value-role-doc wiki	1fc5d5714017a335d5912ddd5520d31eaa9df8e212023adeebd21f53713a3645	0 hops, None..None
+shortest_path doc-b->entity-checkout any	1fc5d5714017a335d5912ddd5520d31eaa9df8e212023adeebd21f53713a3645	0 hops, None..None
+shortest_path doc-b->entity-checkout covers	1fc5d5714017a335d5912ddd5520d31eaa9df8e212023adeebd21f53713a3645	0 hops, None..None
+shortest_path doc-b->entity-checkout wiki	1fc5d5714017a335d5912ddd5520d31eaa9df8e212023adeebd21f53713a3645	0 hops, None..None
+shortest_path value-role-doc->value-role-index any	1fc5d5714017a335d5912ddd5520d31eaa9df8e212023adeebd21f53713a3645	0 hops, None..None
+shortest_path value-role-doc->value-role-index covers	1fc5d5714017a335d5912ddd5520d31eaa9df8e212023adeebd21f53713a3645	0 hops, None..None
+shortest_path value-role-doc->value-role-index wiki	1fc5d5714017a335d5912ddd5520d31eaa9df8e212023adeebd21f53713a3645	0 hops, None..None
+subgraph checkout d1	7044780c0fe2476a4980141e5027cd07a7fbc3170bef7544089044587003fc37	{"centre":"checkout","depth":1,"nodes":[{"id":"checkout","display":"ch
+subgraph checkout d2	99064482cf2f304925a426a463f7b1dc0336efd2aed9c652d0327c1b3b2a0cca	{"centre":"checkout","depth":2,"nodes":[{"id":"checkout","display":"ch
+subgraph no-such-entity d1	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+subgraph no-such-entity d2	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+subgraph pricing d1	f00786b012c21727b7052f6b49253421b597d7c8059a15a76d422a568a36d860	{"centre":"pricing","depth":1,"nodes":[{"id":"pricing","display":"pric
+subgraph pricing d2	17d06482613a12c01c585f938759f1582c79365e9d98423a94d11a6873e88d40	{"centre":"pricing","depth":2,"nodes":[{"id":"pricing","display":"pric
+top_entities_in_crate a	1e2ea6d9b72e685b53e26f41837abfc797c38cb6a7ad7b750ed3cac269fcc062	pricing
+top_entities_in_crate b	c7761e58969f7edd498186641b2021e8477e1bcd230de4cf3435242da4a40d14	checkout
+top_entities_in_crate my-crate	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+top_entities_in_crate none	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855	
+typed counts	42b8e788645db2be191c0bb60fd5c7c233decaf125978ce7fd8db48e0b8a1b15	3 4 4
+typed crate counts	0f83be1b1be7c02dad3b983a73e9eab3c685024264b4d973980567486c8170ed	{"a": 2, "b": 1} {"a": 2, "b": 2}
+typed dark symbols	b401c7dfce2c580dc6cc47c8ed5adc9af6a79503c3083fcd783cba44ffd1764e	("b", "rust-analyzer cargo b 0.1.0 list_items().")
+typed entity counts	f0020f9886920bccd1e364d21af855a035639275d290bc498728c74c6953677b	{"checkout": 1, "pricing": 2} {"checkout": 1, "pricing": 2}

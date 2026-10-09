@@ -1,0 +1,4 @@
+-- name: retrieval-pipeline-cookbook
+-- params: 
+SELECT * FROM (SELECT d.id AS id, d.title AS title, CASE WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'llm-era-query-rewriting') THEN '1-query-rewriting' WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'chunking') THEN '2-chunking' WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'deployment-model') THEN '3-embedding' WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'reranking') THEN '4-reranking' WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'rag-evaluation') THEN '5-evaluation' ELSE 'NA' END AS stage_label FROM Doc d WHERE EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'research'))
+WHERE stage_label <> 'NA' ORDER BY stage_label, id LIMIT 25;

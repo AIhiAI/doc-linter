@@ -1,0 +1,187 @@
+{
+  "count": 13,
+  "docs": [
+    {
+      "id": "axis-role",
+      "path": "docs/ontology/axes/role.md",
+      "role": "ontology-axis",
+      "title": "Axis: role",
+      "summary": "t",
+      "status": "stable",
+      "updated": "2026-04-30",
+      "tags": []
+    },
+    {
+      "id": "crate-a",
+      "path": "crates/a/README.md",
+      "role": "doc",
+      "title": "Crate a",
+      "summary": "pricing crate",
+      "status": "draft",
+      "updated": "2026-05-01",
+      "tags": []
+    },
+    {
+      "id": "doc-a",
+      "path": "docs/a.md",
+      "role": "doc",
+      "title": "Alpha",
+      "summary": "pricing rules overview",
+      "status": "draft",
+      "updated": "2026-05-01",
+      "tags": [
+        "one",
+        "two"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "doc-b",
+      "path": "docs/b.md",
+      "role": "doc",
+      "title": "Beta",
+      "summary": "checkout flow",
+      "status": "stable",
+      "updated": "2026-05-02",
+      "tags": [
+        "two"
+      ],
+      "covers": [
+        "checkout",
+        "pricing"
+      ]
+    },
+    {
+      "id": "entity-checkout",
+      "path": "docs/ontology/entities/checkout.md",
+      "role": "ontology-entity",
+      "title": "Entity: checkout",
+      "summary": "t",
+      "status": "stable",
+      "updated": "2026-04-30",
+      "tags": []
+    },
+    {
+      "id": "entity-pricing",
+      "path": "docs/ontology/entities/pricing.md",
+      "role": "ontology-entity",
+      "title": "Entity: pricing",
+      "summary": "t",
+      "status": "stable",
+      "updated": "2026-04-30",
+      "tags": []
+    },
+    {
+      "id": "r1",
+      "path": "docs/research/r1.md",
+      "role": "doc",
+      "title": "Research r1",
+      "summary": "chunking dense-retrieval",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "chunking",
+        "dense-retrieval",
+        "graph-rag"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "r2",
+      "path": "docs/research/r2.md",
+      "role": "doc",
+      "title": "Research r2",
+      "summary": "reranking",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "reranking",
+        "dense-retrieval",
+        "query-expansion"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "r3",
+      "path": "docs/research/r3.md",
+      "role": "doc",
+      "title": "Research r3",
+      "summary": "rewriting",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "llm-era-query-rewriting",
+        "query-expansion",
+        "rag-evaluation"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "r4",
+      "path": "docs/research/r4.md",
+      "role": "doc",
+      "title": "Research r4",
+      "summary": "embedding graph-rag",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "deployment-model",
+        "graph-rag",
+        "graph-similarity"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "r5",
+      "path": "docs/research/r5.md",
+      "role": "doc",
+      "title": "Research r5",
+      "summary": "evaluation",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "rag-evaluation",
+        "singleton-topic",
+        "iter-7"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "value-role-doc",
+      "path": "docs/ontology/values/role/doc.md",
+      "role": "ontology-value",
+      "title": "Role: doc",
+      "summary": "t",
+      "status": "stable",
+      "updated": "2026-04-30",
+      "tags": []
+    },
+    {
+      "id": "value-role-index",
+      "path": "docs/ontology/values/role/index.md",
+      "role": "ontology-value",
+      "title": "Role: index",
+      "summary": "t",
+      "status": "stable",
+      "updated": "2026-04-30",
+      "tags": []
+    }
+  ]
+}

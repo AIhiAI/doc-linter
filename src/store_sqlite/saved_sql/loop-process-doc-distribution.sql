@@ -1,0 +1,10 @@
+-- name: loop-process-doc-distribution
+-- params: 
+WITH cat AS (SELECT category, count(*) AS doc_count FROM (SELECT CASE WHEN substr(d.id, 1, length('research-')) = 'research-' THEN 'research' WHEN substr(d.id, 1, length('interrogation-')) = 'interrogation-' THEN 'interrogation' WHEN substr(d.id, 1, length('user-probe-')) = 'user-probe-' THEN 'user-probe' WHEN substr(d.id, 1, length('audit-run-')) = 'audit-run-' THEN 'audit-run' WHEN substr(d.id, 1, length('entity-')) = 'entity-' THEN 'ontology' WHEN substr(d.id, 1, length('feature-')) = 'feature-' THEN 'feature' WHEN substr(d.id, 1, length('gap-')) = 'gap-' THEN 'gap' WHEN d.role = 'doc' THEN 'other-narrative' WHEN d.role IN ('ontology-value', 'ontology-axis', 'ontology-entity', 'ontology-migration') THEN 'ontology' ELSE 'other' END AS category FROM Doc d) GROUP BY category),
+s AS (SELECT coalesce(sum(CASE WHEN category = 'research' THEN doc_count ELSE 0 END), 0) AS research_count, coalesce(sum(CASE WHEN category = 'interrogation' THEN doc_count ELSE 0 END), 0) AS interrogation_count, coalesce(sum(CASE WHEN category = 'user-probe' THEN doc_count ELSE 0 END), 0) AS user_probe_count,
+  coalesce(sum(CASE WHEN category = 'audit-run' THEN doc_count ELSE 0 END), 0) AS audit_run_count, coalesce(sum(CASE WHEN category = 'ontology' THEN doc_count ELSE 0 END), 0) AS ontology_count, coalesce(sum(CASE WHEN category = 'feature' THEN doc_count ELSE 0 END), 0) AS feature_count, coalesce(sum(CASE WHEN category = 'gap' THEN doc_count ELSE 0 END), 0) AS gap_count,
+  coalesce(sum(CASE WHEN category = 'other-narrative' THEN doc_count ELSE 0 END), 0) AS other_narrative_count FROM cat)
+SELECT research_count, interrogation_count, user_probe_count, audit_run_count, ontology_count, feature_count, gap_count, other_narrative_count,
+  CASE WHEN research_count = 0 THEN 0.0 ELSE 1.0 * (interrogation_count + user_probe_count + audit_run_count) / research_count END AS meta_to_research_ratio,
+  CASE WHEN user_probe_count = 0 THEN 0.0 ELSE 1.0 * interrogation_count / user_probe_count END AS interrogation_to_user_probe_ratio
+FROM s;

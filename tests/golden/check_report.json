@@ -1,0 +1,70 @@
+exit 1
+{
+  "report": [
+    {
+      "codes": [
+        "orphan-doc"
+      ],
+      "file": "crates/a/README.md",
+      "issues": [
+        "orphan doc — no inbound or outbound edges; link it from a `## Related` section or frontmatter typed edge, or mark status: archived"
+      ]
+    },
+    {
+      "codes": [
+        "id-mismatch"
+      ],
+      "file": "docs/a.md",
+      "issues": [
+        "id 'doc-a' does not match filename stem 'a' — rename file or update id"
+      ]
+    },
+    {
+      "codes": [
+        "id-mismatch"
+      ],
+      "file": "docs/b.md",
+      "issues": [
+        "id 'doc-b' does not match filename stem 'b' — rename file or update id"
+      ]
+    },
+    {
+      "codes": [
+        "orphan-doc"
+      ],
+      "file": "docs/ontology/axes/role.md",
+      "issues": [
+        "orphan doc — no inbound or outbound edges; link it from a `## Related` section or frontmatter typed edge, or mark status: archived"
+      ]
+    },
+    {
+      "codes": [
+        "orphan-doc"
+      ],
+      "file": "docs/ontology/values/role/doc.md",
+      "issues": [
+        "orphan doc — no inbound or outbound edges; link it from a `## Related` section or frontmatter typed edge, or mark status: archived"
+      ]
+    },
+    {
+      "codes": [
+        "orphan-doc"
+      ],
+      "file": "docs/ontology/values/role/index.md",
+      "issues": [
+        "orphan doc — no inbound or outbound edges; link it from a `## Related` section or frontmatter typed edge, or mark status: archived"
+      ]
+    },
+    {
+      "codes": [
+        "entity-coverage-gap",
+        "entity-coverage-gap"
+      ],
+      "file": "",
+      "issues": [
+        "entity 'checkout' has 1 doc(s) covering it and 1 function(s) mentioning it (ratio 1.0000) — under the configured threshold 5.0000. Add more docs that cover 'checkout', expand its `synonyms:` list, or add 'checkout' to `coverage_entity_exempt` if this gap is intentional.",
+        "entity 'pricing' has 7 doc(s) covering it and 2 function(s) mentioning it (ratio 3.5000) — under the configured threshold 5.0000. Add more docs that cover 'pricing', expand its `synonyms:` list, or add 'pricing' to `coverage_entity_exempt` if this gap is intentional."
+      ]
+    }
+  ]
+}

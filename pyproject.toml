@@ -1,0 +1,16 @@
+# Wheels that just carry the prebuilt Rust binary (maturin `bindings = "bin"`),
+# so `uv tool install doc-linter` / `pipx install doc-linter` work.
+# Built by .github/workflows/release.yml. Not published to PyPI yet.
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "doc-linter" # PyPI name unclaimed/unchecked; human decision, see docs/install.md
+dynamic = ["version", "license"] # from Cargo.toml
+description = "Documentation linter and code/doc knowledge graph with an MCP server for AI agents"
+readme = "README.md"
+requires-python = ">=3.8"
+
+[tool.maturin]
+bindings = "bin"

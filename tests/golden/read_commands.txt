@@ -1,0 +1,1155 @@
+### ["query", "list"]
+exit 0
+{
+  "count": 13,
+  "docs": [
+    {
+      "id": "axis-role",
+      "path": "docs/ontology/axes/role.md",
+      "role": "ontology-axis",
+      "title": "Axis: role",
+      "summary": "t",
+      "status": "stable",
+      "updated": "2026-04-30",
+      "tags": [],
+      "attributes": [
+        "axis_id=role"
+      ]
+    },
+    {
+      "id": "crate-a",
+      "path": "crates/a/README.md",
+      "role": "doc",
+      "title": "Crate a",
+      "summary": "pricing crate",
+      "status": "draft",
+      "updated": "2026-05-01",
+      "tags": []
+    },
+    {
+      "id": "doc-a",
+      "path": "docs/a.md",
+      "role": "doc",
+      "title": "Alpha",
+      "summary": "pricing rules overview",
+      "status": "draft",
+      "updated": "2026-05-01",
+      "tags": [
+        "one",
+        "two"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "doc-b",
+      "path": "docs/b.md",
+      "role": "doc",
+      "title": "Beta",
+      "summary": "checkout flow",
+      "status": "stable",
+      "updated": "2026-05-02",
+      "tags": [
+        "two"
+      ],
+      "covers": [
+        "checkout",
+        "pricing"
+      ]
+    },
+    {
+      "id": "entity-checkout",
+      "path": "docs/ontology/entities/checkout.md",
+      "role": "ontology-entity",
+      "title": "Entity: checkout",
+      "summary": "t",
+      "status": "stable",
+      "updated": "2026-04-30",
+      "tags": [],
+      "attributes": [
+        "axis_id=covers",
+        "description=e",
+        "display=checkout",
+        "source_modules=crates/b/**",
+        "synonyms=checkouts",
+        "value_id=checkout"
+      ]
+    },
+    {
+      "id": "entity-pricing",
+      "path": "docs/ontology/entities/pricing.md",
+      "role": "ontology-entity",
+      "title": "Entity: pricing",
+      "summary": "t",
+      "status": "stable",
+      "updated": "2026-04-30",
+      "tags": [],
+      "attributes": [
+        "axis_id=covers",
+        "description=e",
+        "display=pricing",
+        "source_modules=crates/a/**",
+        "synonyms=pricings",
+        "value_id=pricing"
+      ]
+    },
+    {
+      "id": "r1",
+      "path": "docs/research/r1.md",
+      "role": "doc",
+      "title": "Research r1",
+      "summary": "chunking dense-retrieval",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "chunking",
+        "dense-retrieval",
+        "graph-rag"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "r2",
+      "path": "docs/research/r2.md",
+      "role": "doc",
+      "title": "Research r2",
+      "summary": "reranking",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "reranking",
+        "dense-retrieval",
+        "query-expansion"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "r3",
+      "path": "docs/research/r3.md",
+      "role": "doc",
+      "title": "Research r3",
+      "summary": "rewriting",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "llm-era-query-rewriting",
+        "query-expansion",
+        "rag-evaluation"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "r4",
+      "path": "docs/research/r4.md",
+      "role": "doc",
+      "title": "Research r4",
+      "summary": "embedding graph-rag",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "deployment-model",
+        "graph-rag",
+        "graph-similarity"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "r5",
+      "path": "docs/research/r5.md",
+      "role": "doc",
+      "title": "Research r5",
+      "summary": "evaluation",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "rag-evaluation",
+        "singleton-topic",
+        "iter-7"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "value-role-doc",
+      "path": "docs/ontology/values/role/doc.md",
+      "role": "ontology-value",
+      "title": "Role: doc",
+      "summary": "t",
+      "status": "stable",
+      "updated": "2026-04-30",
+      "tags": [],
+      "attributes": [
+        "axis_id=role",
+        "description=t",
+        "display=doc",
+        "value_id=doc"
+      ]
+    },
+    {
+      "id": "value-role-index",
+      "path": "docs/ontology/values/role/index.md",
+      "role": "ontology-value",
+      "title": "Role: index",
+      "summary": "t",
+      "status": "stable",
+      "updated": "2026-04-30",
+      "tags": [],
+      "attributes": [
+        "axis_id=role",
+        "description=t",
+        "display=index",
+        "value_id=index"
+      ]
+    }
+  ]
+}
+
+### ["query", "backlinks", "doc-a"]
+exit 0
+{
+  "node": {
+    "id": "doc-a",
+    "path": "docs/a.md",
+    "role": "doc",
+    "title": "Alpha",
+    "summary": "pricing rules overview",
+    "status": "draft",
+    "updated": "2026-05-01",
+    "tags": [
+      "one",
+      "two"
+    ],
+    "covers": [
+      "pricing"
+    ]
+  },
+  "inbound": [
+    {
+      "id": "doc-b",
+      "title": "Beta",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "md-link"
+    },
+    {
+      "id": "doc-b",
+      "title": "Beta",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "id": "r1",
+      "title": "Research r1",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "id": "r2",
+      "title": "Research r2",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "id": "r3",
+      "title": "Research r3",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "id": "r4",
+      "title": "Research r4",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "id": "r5",
+      "title": "Research r5",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    }
+  ]
+}
+
+### ["query", "neighbors", "doc-a"]
+exit 0
+{
+  "node": {
+    "id": "doc-a",
+    "path": "docs/a.md",
+    "role": "doc",
+    "title": "Alpha",
+    "summary": "pricing rules overview",
+    "status": "draft",
+    "updated": "2026-05-01",
+    "tags": [
+      "one",
+      "two"
+    ],
+    "covers": [
+      "pricing"
+    ]
+  },
+  "outbound": [
+    {
+      "id": "doc-b",
+      "title": "Beta",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "id": "entity-pricing",
+      "title": "pricing",
+      "role": "ontology-entity",
+      "line": 0,
+      "edge_type": "covers"
+    }
+  ]
+}
+
+### ["query", "context", "doc-a"]
+exit 0
+{
+  "node": {
+    "id": "doc-a",
+    "path": "docs/a.md",
+    "role": "doc",
+    "title": "Alpha",
+    "summary": "pricing rules overview",
+    "status": "draft",
+    "updated": "2026-05-01",
+    "tags": [
+      "one",
+      "two"
+    ],
+    "covers": [
+      "pricing"
+    ]
+  },
+  "outbound": [
+    {
+      "id": "doc-b",
+      "title": "Beta",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "id": "entity-pricing",
+      "title": "pricing",
+      "role": "ontology-entity",
+      "line": 0,
+      "edge_type": "covers"
+    }
+  ],
+  "inbound": [
+    {
+      "id": "doc-b",
+      "title": "Beta",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "md-link"
+    },
+    {
+      "id": "doc-b",
+      "title": "Beta",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "id": "r1",
+      "title": "Research r1",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "id": "r2",
+      "title": "Research r2",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "id": "r3",
+      "title": "Research r3",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "id": "r4",
+      "title": "Research r4",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "id": "r5",
+      "title": "Research r5",
+      "role": "doc",
+      "line": 14,
+      "edge_type": "wikilink"
+    }
+  ]
+}
+
+### ["query", "path", "doc-a", "r1"]
+exit 0
+{
+  "from": "doc-a",
+  "to": "r1",
+  "found": true,
+  "hops": [
+    {
+      "id": "doc-a",
+      "title": "Alpha"
+    },
+    {
+      "id": "r1",
+      "title": "Research r1",
+      "via_line": 14,
+      "via_edge_type": "wikilink"
+    }
+  ]
+}
+
+### ["query", "subgraph", "doc-a"]
+exit 0
+{
+  "root": {
+    "id": "doc-a",
+    "path": "docs/a.md",
+    "role": "doc",
+    "title": "Alpha",
+    "summary": "pricing rules overview",
+    "status": "draft",
+    "updated": "2026-05-01",
+    "tags": [
+      "one",
+      "two"
+    ],
+    "covers": [
+      "pricing"
+    ]
+  },
+  "depth": 2,
+  "nodes": [
+    {
+      "id": "doc-a",
+      "path": "docs/a.md",
+      "role": "doc",
+      "title": "Alpha",
+      "summary": "pricing rules overview",
+      "status": "draft",
+      "updated": "2026-05-01",
+      "tags": [
+        "one",
+        "two"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "doc-b",
+      "path": "docs/b.md",
+      "role": "doc",
+      "title": "Beta",
+      "summary": "checkout flow",
+      "status": "stable",
+      "updated": "2026-05-02",
+      "tags": [
+        "two"
+      ],
+      "covers": [
+        "checkout",
+        "pricing"
+      ]
+    },
+    {
+      "id": "entity-checkout",
+      "path": "docs/ontology/entities/checkout.md",
+      "role": "ontology-entity",
+      "title": "Entity: checkout",
+      "summary": "t",
+      "status": "stable",
+      "updated": "2026-04-30",
+      "tags": [],
+      "attributes": [
+        "axis_id=covers",
+        "description=e",
+        "display=checkout",
+        "source_modules=crates/b/**",
+        "synonyms=checkouts",
+        "value_id=checkout"
+      ]
+    },
+    {
+      "id": "entity-pricing",
+      "path": "docs/ontology/entities/pricing.md",
+      "role": "ontology-entity",
+      "title": "Entity: pricing",
+      "summary": "t",
+      "status": "stable",
+      "updated": "2026-04-30",
+      "tags": [],
+      "attributes": [
+        "axis_id=covers",
+        "description=e",
+        "display=pricing",
+        "source_modules=crates/a/**",
+        "synonyms=pricings",
+        "value_id=pricing"
+      ]
+    },
+    {
+      "id": "r1",
+      "path": "docs/research/r1.md",
+      "role": "doc",
+      "title": "Research r1",
+      "summary": "chunking dense-retrieval",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "chunking",
+        "dense-retrieval",
+        "graph-rag"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "r2",
+      "path": "docs/research/r2.md",
+      "role": "doc",
+      "title": "Research r2",
+      "summary": "reranking",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "reranking",
+        "dense-retrieval",
+        "query-expansion"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "r3",
+      "path": "docs/research/r3.md",
+      "role": "doc",
+      "title": "Research r3",
+      "summary": "rewriting",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "llm-era-query-rewriting",
+        "query-expansion",
+        "rag-evaluation"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "r4",
+      "path": "docs/research/r4.md",
+      "role": "doc",
+      "title": "Research r4",
+      "summary": "embedding graph-rag",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "deployment-model",
+        "graph-rag",
+        "graph-similarity"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    },
+    {
+      "id": "r5",
+      "path": "docs/research/r5.md",
+      "role": "doc",
+      "title": "Research r5",
+      "summary": "evaluation",
+      "status": "stable",
+      "updated": "2026-05-03",
+      "tags": [
+        "research",
+        "rag-evaluation",
+        "singleton-topic",
+        "iter-7"
+      ],
+      "covers": [
+        "pricing"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "doc-a",
+      "to": "doc-b",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "from": "doc-a",
+      "to": "entity-pricing",
+      "line": 0,
+      "edge_type": "covers"
+    },
+    {
+      "from": "doc-b",
+      "to": "doc-a",
+      "line": 14,
+      "edge_type": "md-link"
+    },
+    {
+      "from": "doc-b",
+      "to": "doc-a",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "from": "doc-b",
+      "to": "entity-checkout",
+      "line": 0,
+      "edge_type": "covers"
+    },
+    {
+      "from": "doc-b",
+      "to": "entity-pricing",
+      "line": 0,
+      "edge_type": "covers"
+    },
+    {
+      "from": "r1",
+      "to": "doc-a",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "from": "r1",
+      "to": "doc-b",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "from": "r1",
+      "to": "entity-pricing",
+      "line": 0,
+      "edge_type": "covers"
+    },
+    {
+      "from": "r2",
+      "to": "doc-a",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "from": "r2",
+      "to": "doc-b",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "from": "r2",
+      "to": "entity-pricing",
+      "line": 0,
+      "edge_type": "covers"
+    },
+    {
+      "from": "r3",
+      "to": "doc-a",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "from": "r3",
+      "to": "doc-b",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "from": "r3",
+      "to": "entity-pricing",
+      "line": 0,
+      "edge_type": "covers"
+    },
+    {
+      "from": "r4",
+      "to": "doc-a",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "from": "r4",
+      "to": "doc-b",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "from": "r4",
+      "to": "entity-pricing",
+      "line": 0,
+      "edge_type": "covers"
+    },
+    {
+      "from": "r5",
+      "to": "doc-a",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "from": "r5",
+      "to": "doc-b",
+      "line": 14,
+      "edge_type": "wikilink"
+    },
+    {
+      "from": "r5",
+      "to": "entity-pricing",
+      "line": 0,
+      "edge_type": "covers"
+    }
+  ]
+}
+
+### ["query", "functions-mentioning", "pricing"]
+exit 0
+{
+  "entity": "pricing",
+  "count": 2,
+  "functions": [
+    {
+      "symbol": "rust-analyzer cargo a 0.1.0 Widget#render().",
+      "crate": "a",
+      "file": "crates/a/src/lib.rs",
+      "line": 25
+    },
+    {
+      "symbol": "rust-analyzer cargo a 0.1.0 orchestrate().",
+      "crate": "a",
+      "file": "crates/a/src/lib.rs",
+      "line": 1
+    }
+  ]
+}
+
+### ["query", "function-context", "rust-analyzer cargo b 0.1.0 compute()."]
+exit 0
+{
+  "function": {
+    "symbol": "rust-analyzer cargo b 0.1.0 compute().",
+    "crate": "b",
+    "file": "crates/b/src/lib.rs",
+    "line": 2,
+    "doc_comment": "Computes checkout totals."
+  },
+  "links": [
+    {
+      "kind": "entity",
+      "id": "checkout",
+      "title": "checkout",
+      "edge": "function-mentions"
+    }
+  ]
+}
+
+### ["query", "coverage-report"]
+exit 0
+{
+  "global": {
+    "total_functions": 4,
+    "functions_reaching_entity": 3,
+    "global_pct": 75.0,
+    "dark_functions": 1,
+    "documented_functions": 4,
+    "documented_pct": 100.0,
+    "exempt_functions": 0
+  },
+  "by_entity": [
+    {
+      "entity": "checkout",
+      "doc_count": 1,
+      "func_count": 1,
+      "ratio": "1:1",
+      "ratio_value": 1.0,
+      "verdict": "balanced",
+      "god_node": true
+    },
+    {
+      "entity": "pricing",
+      "doc_count": 7,
+      "func_count": 2,
+      "ratio": "7:2",
+      "ratio_value": 3.5,
+      "verdict": "balanced",
+      "god_node": true
+    }
+  ],
+  "by_crate": [
+    {
+      "crate": "b",
+      "total_functions": 2,
+      "dark_functions": 1,
+      "reach_pct": 50.0,
+      "verdict": "tracked",
+      "exempt_functions": 0
+    },
+    {
+      "crate": "a",
+      "total_functions": 2,
+      "dark_functions": 0,
+      "reach_pct": 100.0,
+      "verdict": "tracked",
+      "exempt_functions": 0
+    }
+  ],
+  "by_endpoint_class": [
+    {
+      "kind": "axum",
+      "total": 2,
+      "reach_entity": 2,
+      "reach_pct": 100.0
+    },
+    {
+      "kind": "clap",
+      "total": 0,
+      "reach_entity": 0,
+      "reach_pct": 0.0
+    },
+    {
+      "kind": "mcp",
+      "total": 0,
+      "reach_entity": 0,
+      "reach_pct": 0.0
+    },
+    {
+      "kind": "fastapi",
+      "total": 0,
+      "reach_entity": 0,
+      "reach_pct": 0.0
+    },
+    {
+      "kind": "flask",
+      "total": 0,
+      "reach_entity": 0,
+      "reach_pct": 0.0
+    },
+    {
+      "kind": "express",
+      "total": 0,
+      "reach_entity": 0,
+      "reach_pct": 0.0
+    },
+    {
+      "kind": "jaxrs",
+      "total": 0,
+      "reach_entity": 0,
+      "reach_pct": 0.0
+    }
+  ]
+}
+
+### ["query", "endpoints"]
+exit 0
+[
+  {
+    "id": "axum:GET:/totals",
+    "kind": "axum",
+    "method": "GET",
+    "path": "/totals",
+    "handler_symbol": "rust-analyzer cargo b 0.1.0 compute().",
+    "entities": [
+      "checkout"
+    ],
+    "source_file": "crates/b/src/lib.rs",
+    "source_line": 3
+  },
+  {
+    "id": "axum:POST:/items",
+    "kind": "axum",
+    "method": "POST",
+    "path": "/items",
+    "handler_symbol": "rust-analyzer cargo b 0.1.0 list_items().",
+    "entities": [
+      "checkout"
+    ],
+    "source_file": "crates/b/src/lib.rs",
+    "source_line": 5
+  }
+]
+
+### ["query", "at", "crates/b/src/lib.rs:4"]
+exit 0
+{
+  "function": {
+    "symbol": "rust-analyzer cargo b 0.1.0 list_items().",
+    "crate": "b",
+    "file": "crates/b/src/lib.rs",
+    "line": 3,
+    "doc_comment": "Lists items."
+  },
+  "file": {
+    "path": "crates/b/src/lib.rs",
+    "language": "rust",
+    "loc": 7,
+    "last_touched": "<T>"
+  },
+  "entities": [
+    {
+      "id": "checkout",
+      "display": "checkout",
+      "edge": "function-belongs-to"
+    }
+  ],
+  "covering_docs": [
+    {
+      "id": "doc-b",
+      "title": "Beta"
+    }
+  ],
+  "nearby_endpoints": [
+    {
+      "id": "axum:POST:/items",
+      "kind": "axum",
+      "method": "POST",
+      "path": "/items"
+    }
+  ]
+}
+
+### ["query", "impact", "rust-analyzer cargo b 0.1.0 compute()."]
+exit 0
+{
+  "target": {
+    "symbol": "rust-analyzer cargo b 0.1.0 compute().",
+    "crate": "b",
+    "file": "crates/b/src/lib.rs",
+    "line": 2,
+    "doc_comment": "Computes checkout totals."
+  },
+  "depths": [
+    {
+      "depth": 1,
+      "callers": [
+        {
+          "symbol": "rust-analyzer cargo a 0.1.0 orchestrate().",
+          "crate": "a",
+          "file": "crates/a/src/lib.rs",
+          "line": 1,
+          "doc_comment": "Orchestrates pricing."
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "id": "checkout",
+      "display": "checkout",
+      "god_node": false
+    },
+    {
+      "id": "pricing",
+      "display": "pricing",
+      "god_node": false
+    }
+  ],
+  "endpoints": [
+    {
+      "id": "axum:GET:/totals",
+      "kind": "axum",
+      "method": "GET",
+      "path": "/totals"
+    }
+  ],
+  "tests": []
+}
+
+### ["query", "dead-code"]
+exit 0
+{
+  "count": 2,
+  "functions": [
+    {
+      "symbol": "rust-analyzer cargo a 0.1.0 orchestrate().",
+      "crate": "a",
+      "file": "crates/a/src/lib.rs",
+      "line": 1,
+      "doc_summary": "Orchestrates pricing.",
+      "entity": "pricing"
+    },
+    {
+      "symbol": "rust-analyzer cargo a 0.1.0 Widget#render().",
+      "crate": "a",
+      "file": "crates/a/src/lib.rs",
+      "line": 25,
+      "doc_summary": "Renders pricing.",
+      "entity": "pricing"
+    }
+  ]
+}
+
+### ["query", "saved", "orphan-entities"]
+exit 0
+{
+  "columns": [
+    "e.id",
+    "e.display"
+  ],
+  "row_count": 0,
+  "rows": []
+}
+
+### ["query", "saved", "entity-callers", "--param", "entity=checkout"]
+exit 0
+{
+  "columns": [
+    "caller.symbol",
+    "caller.file",
+    "caller.line"
+  ],
+  "row_count": 1,
+  "rows": [
+    {
+      "caller.file": "crates/a/src/lib.rs",
+      "caller.line": 1,
+      "caller.symbol": "rust-analyzer cargo a 0.1.0 orchestrate()."
+    }
+  ]
+}
+
+### ["query", "saved", "--list"]
+exit 0
+272 queries: entity-relations orphan-entities hub-functions endpoint-darkness coverage-by-entity entity-callers dead-files type-distribution field-references types-by-symbol-pattern types-by-file-pattern untested-functions callers-density-hub-test-coverage untested-by-file-aggregated function-backward-slice function-forward-slice function-blast-radius-by-file function-callees-by-file function-shape-summary functions-of-shape function-shape-distribution function-shape-by-file file-shape-profile test-coverage-baseline findings-by-file language-distribution mcp-handlers tag-axis-loose-ends singleton-tags docs-without-family-tag docs-via-shared-entity-coverage discriminative-entities entities-via-shared-doc-coverage entities-coupled-to-tag research-pairs-without-shared-family-tag research-docs-with-all-singleton-meaningful-tags established-research-families cross-family-concept-tags family-tag-absorption-depth lessons-for-research-family family-tags-by-code-domain audits-mentioning-family-tag audits-by-iter-tag family-tag-audit-counts-summary family-maturity-2d doc-connectivity-ranking feature-doc-connectivity doc-hub-tier-classifier tier1-architectural-hubs family-to-feature-bridges feature-incoming-from-research retrieval-pipeline-cookbook pipeline-stage-coverage graph-similarity-cookbook graph-similarity-subfamily-coverage query-expansion-cookbook query-expansion-subfamily-coverage mature-topic-shape-distribution mature-topic-shape-census cross-family-bridge-papers cross-family-bridge-density shared-layer-source-files resource-file-cluster resource-shape-classifier app-route-files family-top-bridges family-rich-cotags generated-files hand-written-source-files architectural-layers-by-path imports-edge-count-by-language pytest-prod-test-pairs python-untested-files corpus-shape-classifier narrative-doc-count corpus-ingest-state-classifier ingest-pass-status tight-vs-loose-coupling-hubs cold-start-overview corpus-routing-recommendation corpus-axis-saturation corpus-update-span corpus-top-entities-by-mention corpus-top-doc-tags corpus-tag-axis-shape corpus-entity-promotion-state cluster-derived-entities entities-by-id-pattern entities-by-description-substring entities-by-id-or-description-substring entity-singular-plural-pairs corpus-singular-plural-pair-summary entity-to-implementation-files entity-implementation-summary files-containing-entity-id-in-path entity-organizational-shape entity-pair-comparison entities-by-display-substring entity-card-summary entity-card-with-file-axis mirrored-private-functions-by-suffix protocol-module-functions protocol-module-class-methods abstract-base-private-hooks abstract-base-private-hooks-non-test entity-fact-vs-pattern-classifier entity-fact-vs-pattern-classifier-v2 low-density-entities-as-likely-fact axis-routing-card-for-vocabulary cli-subcommand-pattern-entities axis-routing-card-for-vocabulary-v2 function-axis-symbol-search utility-cluster-pattern-entities multi-file-extension-target-candidates error-type-catalog types-by-name-substring failure-mode-class-catalog signal-class-by-substring god-node-entities function-entity-touch-card corpus-calls-coverage-ratio function-direct-callers-count corpus-purpose-classifier non-ontology-docs onboarding-doc-shortlist session-context-docs ontology-doc-shortlist ontology-vs-narrative-doc-ratio narrative-doc-list cli-subcommand-pattern-entities-v2 functions-in-cli-module corpus-cold-start-summary corpus-entity-shape-summary files-under-folder-path methods-on-class-by-substring test-entity-anchors test-files-for-domain functions-mentioning-test-entity test-functions-by-stem test-files-by-stem test-writing-card test-fixture-helpers-by-stem test-private-function-helpers-by-stem test-inner-class-helpers-by-stem test-fixture-idiom-classifier corpus-test-shape-summary unified-corpus-diagnostic function-axis-token-distribution-for-stem corpus-test-coverage-ratio corpus-entities-per-doc-ratio corpus-functions-per-file-ratio corpus-doc-coverage-ratio promoted-entities promoted-with-pointer-entities promoted-entity-pointer-breakdown corpus-entity-axis-shape recent-research-by-update stale-docs-with-impact freshness-by-kind stale-narrative-docs docs-by-update-recency loc-pair-clone-candidates same-name-cross-dir-clones function-count-by-language public-api-functions public-api-hub-functions function-signature-population-by-language function-mentions-by-language workflow-validations cross-corpus-validated-patterns doc-fanin leaf-docs storyline-leaf-detector recent-leaf-docs files-by-recency-desc files-by-recency-asc tests-in-file functions-in-directory functions-in-file types-in-file files-by-path-substring function-files-by-pattern path-axis-completeness-fingerprint path-axis-fingerprint-cython-aware cython-presence-by-pattern files-by-path-pattern-with-coupling files-by-pattern-language-split functions-by-symbol-pattern module-cohesion-classifier file-language-by-path function-call-count-between-files corpus-workflow-viability-classifier docs-by-summary-substring file-language-distribution cython-file-count files-by-path-prefix-impl-count-desc files-by-path-prefix-impl-count-asc files-by-basename-and-path-prefix-count files-by-basename-and-path-prefix files-by-basename files-by-basename-count per-file-cohesion-by-path-prefix per-file-cohesion-by-path-prefix-asc files-by-path-prefix template-directory-survey leaf-with-deps-count-by-basename leaf-with-deps-files-by-basename leaf-with-deps-files-by-path-prefix leaf-with-deps-files module-external-callees-by-pattern function-callers-of-symbol-pattern function-callees-of-symbol-pattern cython-files-by-pattern files-coupled-to docs-by-tag roles-using-tag tag-axis-coverage-summary storyline-siblings tag-cooccurrence entity-cooccurrence architectural-patterns docs-by-kind doc-role-distribution loop-process-doc-distribution latest-by-loop-process loop-process-balance-metric corpus-doc-starter-ratio authored-docs-sample corpus-narrative-doc-roles-distribution corpus-narrative-doc-kinds-distribution authored-docs-by-kind corpus-narrative-doc-lifecycles-distribution hub-functions-by-caller-breadth hub-spread-distribution retrieval-failure-modes retrieval-mitigation-modes endpoint-by-kind callgraph-roots import-fan-out coupled-files coupled-files-without-scaffold coupled-files-by-jaccard-range feature-evolution-coupling-hybrid coupling-density-stats rust-test-files-by-pattern rust-production-source-files hub-types-by-caller-breadth type-spread-distribution function-hub-files type-hub-files findings-by-attachment-mode unstubbed-concepts-by-doc entity-mention-ratio entity-flavor-distribution entity-belongs-vs-mentions-ratio entity-lifecycle-distribution entity-state-grid entity-cluster-distribution file-coupling-degree language-loc-distribution feature-evolution-coupling feature-evolution-coupling-hubs feature-evolution-coupling-by-commits unstubbed-concepts roadmap-unmet-deps competitive-tools phasing node-context-function node-context-doc node-context-entity decisions-to-prior-art concept-work-list
+### ["query", "map", "--scope", "entity", "--name", "pricing"]
+exit 0
+graph LR
+  pricing["pricing"]
+
+
+### ["explain", "compute"]
+exit 0
+== Function ==
+symbol: rust-analyzer cargo b 0.1.0 compute().
+file: crates/b/src/lib.rs:2
+crate: b
+doc-comment: Computes checkout totals.
+
+== Entities (from FUNCTION_MENTIONS) ==
+- entity-checkout (high confidence)
+  display: checkout
+  summary: e
+
+== Narrative docs covering these entities ==
+- doc-b (kind=?)
+  Beta
+
+== Sibling functions in b (same entities, ranked by overlap) ==
+(none — no other function in the crate shares an entity)
+
+### ["explain", "compute", "--json"]
+exit 0
+{
+  "symbol": "rust-analyzer cargo b 0.1.0 compute().",
+  "crate": "b",
+  "file": "crates/b/src/lib.rs",
+  "line": 2,
+  "doc_comment": "Computes checkout totals.",
+  "entities": [
+    {
+      "id": "checkout",
+      "display": "checkout",
+      "summary": "e",
+      "confidence": "high"
+    }
+  ],
+  "narrative_docs": [
+    {
+      "id": "doc-b",
+      "title": "Beta"
+    }
+  ],
+  "siblings": []
+}
+
+### ["scaffold-coverage", "a"]
+exit 0
+doc-linter scaffold-coverage: no dark functions in the target crate.
+
+### ["cluster"]
+exit 0
+{
+  "algorithm": "lpa",
+  "order_by": "member-count",
+  "iterations": 3,
+  "total_communities": 6,
+  "candidates": [
+    {
+      "suggested_id": "pricing",
+      "god_node_symbol": "pricing",
+      "god_node_file": "",
+      "god_node_kind": "entity",
+      "member_count": 15,
+      "kind_counts": {
+        "function": 4,
+        "doc": 8,
+        "entity": 2,
+        "type": 1
+      },
+      "density": 0.2761904761904762,
+      "top_members": [
+        "pricing",
+        "doc-a",
+        "doc-b",
+        "checkout",
+        "crate-a"
+      ],
+      "source_files": [
+        "crates/a/README.md",
+        "crates/a/src/lib.rs",
+        "crates/b/src/lib.rs",
+        "docs/a.md",
+        "docs/b.md",
+        "docs/research/r1.md",
+        "docs/research/r2.md",
+        "docs/research/r3.md",
+        "docs/research/r4.md",
+        "docs/research/r5.md"
+      ]
+    }
+  ]
+}
+

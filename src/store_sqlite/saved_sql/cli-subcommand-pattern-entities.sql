@@ -1,0 +1,4 @@
+-- name: cli-subcommand-pattern-entities
+-- params: 
+SELECT e.id AS entity_id, e.display AS display, e.mention_count AS mention_count, e.description AS description FROM Entity e
+WHERE substr(e.description, 1, length('Cluster anchored on')) = 'Cluster anchored on' AND (substr(e.id, 1, length('debug-')) = 'debug-' OR substr(e.id, 1, length('init-')) = 'init-' OR substr(e.id, 1, length('train-')) = 'train-' OR substr(e.id, 1, length('validate-')) = 'validate-' OR substr(e.id, 1, length('convert-')) = 'convert-' OR substr(e.id, 1, length('apply-')) = 'apply-' OR substr(e.id, 1, length('package-')) = 'package-' OR substr(e.id, 1, length('assemble-')) = 'assemble-' OR substr(e.id, 1, length('evaluate-')) = 'evaluate-' OR substr(e.id, 1, length('run-')) = 'run-' OR substr(e.id, 1, length('build-')) = 'build-' OR substr(e.id, 1, length('deploy-')) = 'deploy-') ORDER BY e.id LIMIT 40;

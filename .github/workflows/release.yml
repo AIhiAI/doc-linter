@@ -1,0 +1,118 @@
+name: release
+
+# Tag v* -> prebuilt binaries + Python wheels attached to a DRAFT GitHub
+# release. Nothing is published to PyPI or crates.io automatically.
+# UNTESTED until the first tag is pushed; try it with a v0.0.0-rc tag.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      publish_pypi:
+        description: "Upload built wheels to PyPI (manual; needs PYPI_API_TOKEN)"
+        type: boolean
+        default: false
+
+env:
+  CARGO_TERM_COLOR: always
+  # tract and usearch (C++) builds peak around 2 GiB per job; hosted runners
+  # have 4 cores / 16 GiB.
+  CARGO_BUILD_JOBS: 4
+
+jobs:
+  build:
+    name: build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-22.04,     target: x86_64-unknown-linux-gnu,  ext: tar.gz }
+          - { os: ubuntu-22.04-arm, target: aarch64-unknown-linux-gnu, ext: tar.gz }
+          - { os: macos-15-intel,   target: x86_64-apple-darwin,       ext: tar.gz }
+          - { os: macos-latest,     target: aarch64-apple-darwin,      ext: tar.gz }
+          - { os: windows-latest,   target: x86_64-pc-windows-msvc,    ext: zip }
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: dtolnay/rust-toolchain@1.88.0
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: release-${{ matrix.target }}
+
+      # No cmake: usearch's C++ is built by the `cc` crate with the runner's
+      # compiler (g++ on Ubuntu, Xcode CLT on macOS, MSVC on Windows).
+
+      - name: Install maturin
+        run: pip install maturin
+
+      # One cargo build: maturin runs `cargo build --release` (default features,
+      # i.e. embeddings) and leaves target/release/doc-linter for the tarball.
+      - name: Build wheel (and binary)
+        run: maturin build --release --out dist
+
+      - name: Package binary
+        shell: bash
+        run: |
+          name="doc-linter-${GITHUB_REF_NAME}-${{ matrix.target }}"
+          mkdir "$name"
+          cp LICENSE README.md "$name"/
+          if [ "${{ matrix.ext }}" = zip ]; then
+            cp target/release/doc-linter.exe "$name"/
+            7z a "$name.zip" "$name"
+          else
+            cp target/release/doc-linter "$name"/
+            tar czf "$name.tar.gz" "$name"
+          fi
+          if command -v sha256sum >/dev/null; then sha256sum "$name.${{ matrix.ext }}" > "$name.${{ matrix.ext }}.sha256"
+          else shasum -a 256 "$name.${{ matrix.ext }}" > "$name.${{ matrix.ext }}.sha256"; fi
+
+      - name: Smoke test binary
+        shell: bash
+        run: |
+          bin=target/release/doc-linter; [ -f "$bin.exe" ] && bin="$bin.exe"
+          "$bin" --version
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist-${{ matrix.target }}
+          path: |
+            doc-linter-*.tar.gz*
+            doc-linter-*.zip*
+            dist/*.whl
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          path: artifacts
+          merge-multiple: true
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" \
+            --draft --generate-notes artifacts/*
+      # Signing (cosign / GPG / Apple notarization / Authenticode) is not set up; see docs/install.md.
+
+  # Manual, deliberately disabled. Uncomment once the PyPI name is decided
+  # and a PYPI_API_TOKEN secret (or trusted publishing) exists.
+  # publish-pypi:
+  #   needs: build
+  #   if: github.event_name == 'workflow_dispatch' && inputs.publish_pypi
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/download-artifact@v7
+  #       with: { path: artifacts, merge-multiple: true }
+  #     - run: pipx run twine upload artifacts/*.whl
+  #       env:
+  #         TWINE_USERNAME: __token__
+  #         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}

@@ -1,0 +1,57 @@
+# Default `coverage_function_exempt` regex patterns for the
+# [[entity-doc-graph]] dark-public-function rule.
+#
+# Each pattern is anchored to keep the match tight — e.g. `^parse_iso_`
+# deliberately does NOT match `parse_outlet_csv`. Repo authors extend
+# per-tree via `.doc-lint.toml`; see the README's Phase-5c subsection
+# for the tradeoff between exempting vs. authoring a doc-comment.
+#
+# Format: one regex per non-comment line. `#` starts a line comment;
+# blank lines are ignored. Patterns are read by `include_str!` at
+# compile time; editing this file rebuilds the binary.
+
+# Plumbing prefixes — symbols that exist purely to wire the CLI /
+# formatter / discovery surface. They have no domain semantics; faking
+# a [[entity-X]] wikilink on them would be misleading. Wave 5c expanded
+# after the doc-linter backfill batch surfaced these as the
+# 95th-percentile boilerplate.
+^_
+^main$
+^cmd_
+^render_
+^discover_
+^default_
+
+# Serde / serialisation glue — the field shape carries the domain
+# meaning, the trait impl is mechanical.
+^deserialize_
+^serialize_
+
+# Workbook / CSV / date parsing — pure transport, no domain.
+^cell_as_
+^parse_iso_
+^load_csv
+^workbook_path
+
+# Test-fixture builders — every crate's tests follow these idioms
+# (`unique_tmpdir`, `seed_*`, `make_*`, `run_*`, `fake_*`, `codes_for`,
+# `init_git_*`). The convention is strong enough to exempt globally;
+# non-fixture callers like `run_query` legitimately match domain
+# entities elsewhere. Wave 5c: agent-surface from doc-linter's tests/*
+# batch.
+^build_ctx
+^seed_dir
+^seed_
+^unique_tmpdir$
+^tempdir$
+^pg_pool
+^make_fn$
+^make_ontology$
+^doc_linter_bin$
+^run_doc_linter$
+^run_check_json$
+^codes_for$
+^write_synthetic_scip_at$
+^init_git_with_one_commit$
+^fake_
+^extract_axum_only$

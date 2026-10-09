@@ -1,0 +1,4 @@
+-- name: coupled-files-without-scaffold
+-- params: 
+SELECT a.path AS "a.path", b.path AS "b.path", r.commits AS "r.commits", r.jaccard AS "r.jaccard", r.last_co_change_at AS "r.last_co_change_at"
+FROM "COUPLED_WITH" r JOIN File a ON a.path = r.src JOIN File b ON b.path = r.dst WHERE r.jaccard < 1.0 ORDER BY r.jaccard DESC, r.commits DESC LIMIT 50;

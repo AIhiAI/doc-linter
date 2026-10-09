@@ -1,0 +1,4 @@
+-- name: graph-similarity-cookbook
+-- params: 
+SELECT d.id AS id, d.title AS title, CASE WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'graph-kernel') THEN 'graph-kernel' WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'graph-embedding') THEN 'graph-embedding' WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'neural-graph-matching') THEN 'neural-graph-matching' WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'cross-attention') THEN 'cross-attention' WHEN EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'bipartite-matching') THEN 'bipartite-matching' ELSE 'other' END AS subfamily_label FROM Doc d
+WHERE EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'research') AND EXISTS (SELECT 1 FROM doc_tags WHERE doc_id = d.id AND value = 'graph-similarity') ORDER BY subfamily_label, d.id LIMIT 25;

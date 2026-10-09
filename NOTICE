@@ -1,0 +1,53 @@
+doc-linter
+Copyright 2026 the doc-linter authors
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This product bundles or downloads the third-party material listed below.
+
+NOTE: the notices in this file were written from memory of the upstream
+terms, not copied from a verified upstream file. VERIFY WITH COUNSEL (and
+against the upstream sources) before the first public release.
+
+--------------------------------------------------------------------------
+1. data/english-common.txt
+
+A filtered subset (about 74,000 words) of the Debian "american-english"
+(wamerican) word list, which is generated from SCOWL (Spell Checker
+Oriented Word Lists) by Kevin Atkinson. Source: http://wordlist.aspell.net/
+
+SCOWL notice (as understood; UNVERIFIED, verify with counsel):
+
+    Copyright 2000-2018 by Kevin Atkinson
+
+    Permission to use, copy, modify, distribute and sell these word lists,
+    the associated scripts, the output created from the scripts and its
+    documentation for any purpose is hereby granted without fee, provided
+    that the above copyright notice appears in all copies and that both
+    that copyright notice and this permission notice appear in supporting
+    documentation. Kevin Atkinson makes no representations about the
+    suitability of this array for any purpose. It is provided "as is"
+    without express or implied warranty.
+
+SCOWL itself aggregates other sources (for example Ispell, Moby, and
+others), each with its own notice, which are reproduced in the full
+SCOWL "Copyright" file and in /usr/share/doc/wamerican/copyright on
+Debian systems. Those upstream notices have NOT been copied here; they
+must be reviewed and added if the list is shipped as-is. The words in
+the file have also been filtered and extended with project vocabulary
+(tool and product names), which are the project's own additions.
+
+--------------------------------------------------------------------------
+2. bge-small-en-v1.5 (quantized ONNX export) and its tokenizer
+
+Not included in this repository or in the published crate. It is
+downloaded at build time by build.rs from huggingface.co/Xenova/bge-small-en-v1.5
+(SHA-256 pinned).
+
+Upstream model: BAAI/bge-small-en-v1.5, Beijing Academy of Artificial
+Intelligence (BAAI). Licence: MIT, per the upstream model card
+(UNVERIFIED: confirm the card for both BAAI and the Xenova ONNX export
+before release; verify with counsel). The MIT licence text requires that
+the copyright notice and permission notice be included in copies or
+substantial portions of the model; if a binary distribution embeds the
+model, include the upstream MIT text here.

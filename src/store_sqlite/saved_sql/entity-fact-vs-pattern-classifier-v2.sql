@@ -1,0 +1,6 @@
+-- name: entity-fact-vs-pattern-classifier-v2
+-- params: entity_id
+SELECT e.id AS entity_id, e.display AS display, e.mention_count AS mention_count, e.description AS description,
+  CASE WHEN NOT substr(e.description, 1, length('Cluster anchored on')) = 'Cluster anchored on' THEN 'unclassified-promoted'
+       WHEN (instr(e.description, 'density 0.00') > 0 OR instr(e.description, 'density 0.01') > 0 OR instr(e.description, 'density 0.02') > 0 OR instr(e.description, 'density 0.03') > 0 OR instr(e.description, 'density 0.04') > 0 OR instr(e.description, 'density 0.05') > 0 OR instr(e.description, 'density 0.06') > 0 OR instr(e.description, 'density 0.07') > 0 OR instr(e.description, 'density 0.08') > 0 OR instr(e.description, 'density 0.09') > 0) THEN 'FACT' WHEN (instr(e.description, 'density 0.10') > 0 OR instr(e.description, 'density 0.11') > 0 OR instr(e.description, 'density 0.12') > 0 OR instr(e.description, 'density 0.13') > 0 OR instr(e.description, 'density 0.14') > 0 OR instr(e.description, 'density 0.15') > 0 OR instr(e.description, 'density 0.16') > 0 OR instr(e.description, 'density 0.17') > 0 OR instr(e.description, 'density 0.18') > 0 OR instr(e.description, 'density 0.19') > 0) THEN 'MID' ELSE 'PATTERN' END AS role_label
+FROM Entity e WHERE e.id = $entity_id;

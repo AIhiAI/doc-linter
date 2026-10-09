@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "proposals": [
+    {
+      "name": "export",
+      "alt_names": [
+        "report",
+        "footer",
+        "header"
+      ],
+      "confidence": 1.0,
+      "member_count": 6,
+      "namer": "tfidf",
+      "description": "Code cluster of 6 symbols across 1 file(s), centred on export, report, csv, footer.",
+      "synonyms": [
+        "report",
+        "footer",
+        "header"
+      ],
+      "top_files": [
+        {
+          "file": "src/report/export.rs",
+          "count": 6
+        }
+      ],
+      "sample_doc_comment": "",
+      "source_files": [
+        "src/report/export.rs"
+      ],
+      "members": [
+        "rust-analyzer cargo fixture 0.1.0 src/report/export.rs/build_report_header().",
+        "rust-analyzer cargo fixture 0.1.0 src/report/export.rs/export_report_csv().",
+        "rust-analyzer cargo fixture 0.1.0 src/report/export.rs/export_report_pdf().",
+        "rust-analyzer cargo fixture 0.1.0 src/report/export.rs/render_report_rows().",
+        "rust-analyzer cargo fixture 0.1.0 src/report/export.rs/schedule_report_export().",
+        "rust-analyzer cargo fixture 0.1.0 src/report/export.rs/write_report_footer()."
+      ]
+    },
+    {
+      "name": "invoice",
+      "alt_names": [
+        "billing",
+        "date",
+        "discount"
+      ],
+      "confidence": 1.0,
+      "member_count": 6,
+      "namer": "tfidf",
+      "description": "Code cluster of 6 symbols across 1 file(s), centred on invoice, billing, date, discount.",
+      "synonyms": [
+        "billing",
+        "date",
+        "discount"
+      ],
+      "top_files": [
+        {
+          "file": "src/billing/invoice.rs",
+          "count": 6
+        }
+      ],
+      "sample_doc_comment": "Sums the invoice line items and tax into one total.",
+      "source_files": [
+        "src/billing/invoice.rs"
+      ],
+      "members": [
+        "rust-analyzer cargo fixture 0.1.0 src/billing/invoice.rs/apply_invoice_discount().",
+        "rust-analyzer cargo fixture 0.1.0 src/billing/invoice.rs/compute_invoice_total().",
+        "rust-analyzer cargo fixture 0.1.0 src/billing/invoice.rs/create_invoice().",
+        "rust-analyzer cargo fixture 0.1.0 src/billing/invoice.rs/invoice_due_date().",
+        "rust-analyzer cargo fixture 0.1.0 src/billing/invoice.rs/render_invoice_pdf().",
+        "rust-analyzer cargo fixture 0.1.0 src/billing/invoice.rs/void_invoice()."
+      ]
+    },
+    {
+      "name": "session",
+      "alt_names": [
+        "token",
+        "store",
+        "activity"
+      ],
+      "confidence": 1.0,
+      "member_count": 6,
+      "namer": "tfidf",
+      "description": "Code cluster of 6 symbols across 1 file(s), centred on session, token, store, activity.",
+      "synonyms": [
+        "token",
+        "store",
+        "activity"
+      ],
+      "top_files": [
+        {
+          "file": "src/session/store.rs",
+          "count": 6
+        }
+      ],
+      "sample_doc_comment": "Records activity so the session stays alive.",
+      "source_files": [
+        "src/session/store.rs"
+      ],
+      "members": [
+        "rust-analyzer cargo fixture 0.1.0 src/session/store.rs/create_session().",
+        "rust-analyzer cargo fixture 0.1.0 src/session/store.rs/expire_session().",
+        "rust-analyzer cargo fixture 0.1.0 src/session/store.rs/lookup_session().",
+        "rust-analyzer cargo fixture 0.1.0 src/session/store.rs/refresh_session_token().",
+        "rust-analyzer cargo fixture 0.1.0 src/session/store.rs/revoke_session().",
+        "rust-analyzer cargo fixture 0.1.0 src/session/store.rs/touch_session()."
+      ]
+    },
+    {
+      "name": "legacy",
+      "alt_names": [
+        "zebra",
+        "alpha",
+        "beta"
+      ],
+      "confidence": 1.0,
+      "member_count": 3,
+      "namer": "tfidf",
+      "description": "Code cluster of 3 symbols across 1 file(s), centred on legacy, zebra, alpha, beta.",
+      "synonyms": [
+        "zebra",
+        "alpha",
+        "beta"
+      ],
+      "top_files": [
+        {
+          "file": "src/legacy/zebra.rs",
+          "count": 3
+        }
+      ],
+      "sample_doc_comment": "",
+      "source_files": [
+        "src/legacy/zebra.rs"
+      ],
+      "members": [
+        "rust-analyzer cargo fixture 0.1.0 src/legacy/zebra.rs/zebra_alpha().",
+        "rust-analyzer cargo fixture 0.1.0 src/legacy/zebra.rs/zebra_beta().",
+        "rust-analyzer cargo fixture 0.1.0 src/legacy/zebra.rs/zebra_gamma()."
+      ]
+    }
+  ]
+}

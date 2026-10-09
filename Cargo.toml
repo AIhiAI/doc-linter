@@ -1,0 +1,264 @@
+[package]
+name = "doc-linter"
+version = "0.3.1"
+edition = "2021"
+rust-version = "1.88"
+license = "Apache-2.0"
+repository = "https://github.com/AIhiAI/doc-linter"
+description = "Lint, validate, and graph-query your docs + code as a unified knowledge base"
+keywords = ["docs", "lint", "ontology", "knowledge-graph", "lsp"]
+categories = ["development-tools", "command-line-utilities"]
+readme = "README.md"
+homepage = "https://github.com/AIhiAI/doc-linter"
+documentation = "https://github.com/AIhiAI/doc-linter"
+# Static templates (.doc-lint.toml + docs/ontology/ scaffold) embedded by
+# `cargo install doc-linter && doc-linter init` to bootstrap a target repo.
+include = [
+    "src/**/*.rs",
+    "src/**/*.txt",
+    "templates/init/**/*",
+    "data/**/*",
+    "scripts/install.sh",
+    "Cargo.toml",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "build.rs",
+]
+
+[[bin]]
+name = "doc-linter"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["arbitrary_precision"] }
+chrono = { version = "0.4", features = ["serde"] }
+serde_yaml = "0.9"
+toml = "0.8"
+walkdir = "2.5"
+globset = "0.4"
+regex = "1.10"
+clap = { version = "4.5", features = ["derive"] }
+petgraph = "0.6"
+pulldown-cmark = "0.13"
+which = "6"
+# Round 3A: Rust source-comment lint. Used to extract `///` / `//!` doc
+# comments from .rs files and run them through the same vocab-closure
+# pipeline that markdown docs go through. Requires a C compiler at build
+# time (the C grammar from tree-sitter-rust is compiled via cc).
+tree-sitter = "0.22"
+tree-sitter-rust = "0.21"
+# Phase 5c follow-up (roadmap-45 phase 1 hook-slice): TypeScript / TSX
+# doc-comment lint. The tree-sitter-typescript crate exposes both
+# `language_typescript()` and `language_tsx()` from the same C build,
+# so we get .ts / .cts / .mts AND .tsx coverage in one dep. Pinned to
+# 0.21 to match the tree-sitter ABI that tree-sitter-rust 0.21 expects.
+tree-sitter-typescript = "0.21"
+# Python doc-comment lint — `"""docstring"""` blocks attached to
+# module / function / class / async-function / decorated definitions.
+# Same 0.21 ABI pin as the Rust and TS grammars.
+tree-sitter-python = "0.21"
+# Round 3B: SCIP (Sourcegraph Code Intelligence Protocol) ingest. The
+# `scip` crate ships protobuf-generated types for the SCIP file format
+# produced by `rust-analyzer scip` (and other indexers). We pull
+# `protobuf` directly so we can call `protobuf::Message::parse_from_bytes`
+# on the on-disk bytes.
+scip = "0.7"
+protobuf = "3"
+# Round 4A: LSP server. tower-lsp implements the LSP protocol on top of
+# tower's service abstraction; we spawn a tokio runtime for the `lsp`
+# subcommand and serve over stdio. `tower-lsp 0.20` re-exports the
+# `lsp-types` crate it was built against — we use that re-export
+# (`tower_lsp::lsp_types`) so the version pin is automatic.
+tower-lsp = "0.20"
+tokio = { version = "1", features = ["full"] }
+# Safe POSIX wrappers — used by lsp.rs to redirect stderr into a log
+# file at boot without an `unsafe` block (LSP speaks over stdio, so
+# stray stderr writes corrupt the protocol). Already pulled in
+# transitively by `which`; the direct entry just enables the `stdio`
+# feature for `rustix::stdio::dup2_stderr`.
+rustix = { version = "0.38", features = ["stdio"] }
+# v0.4.0 issue #33: SHA-256 over the SCIP bytes feeds the ingest cache
+# alongside mtime+len so a same-second, same-length edit still invalidates
+# the cache (the corner case the mtime-only cache acknowledged in v0.3.0).
+sha2 = "0.10"
+# Roadmap issue #28 v3 follow-up (perf): rayon drives the parallel
+# fan-out of `embed_batch` calls in `populate_embeddings`. Already
+# pulled in transitively by `tokenizers` for tokenizer-side parallel
+# encode_batch; the direct entry just makes the `par_chunks` import
+# explicit.
+rayon = "1"
+
+# Roadmap issue #28 (v0.4.0): semantic-search backend. **On by
+# default** — every install gets working semantic search via the
+# bundled bge-small-en-v1.5 model that `build.rs` (#28 v6)
+# downloads on first build.
+#
+# Opt out with `cargo install doc-linter --no-default-features`
+# when the ~34 MB model download or the tract/tokenizers compile
+# cost isn't acceptable (e.g. air-gapped CI for the BM25-only
+# use case). The runtime then transparently degrades to
+# `NoOpEmbedder` and `query similar --backend embedding` errors
+# with a clear "rebuild with default features" hint.
+#
+# Why tract over `ort`: tract is pure-Rust ONNX inference — no
+# C++ toolchain, no auto-downloaded ONNX Runtime binaries.
+# Slower per inference, but the build is hermetic and a default
+# `cargo install doc-linter` works on every host with a Rust
+# toolchain. Swap to `ort` is a follow-up for users who need GPU
+# or peak throughput.
+[features]
+default = ["embeddings", "vector-usearch"]
+embeddings = ["dep:tract-onnx", "dep:tokenizers"]
+# Gap-005: real LLM Judge backend (Anthropic) for audit_doc_region
+# rerank + contradiction detection. Default builds keep the NoOp
+# Judge so this feature is opt-in. Requires ANTHROPIC_API_KEY at
+# runtime to activate; otherwise falls back to NoOp with a stderr
+# warning per the default_embedder precedent.
+llm = ["dep:reqwest"]
+# HNSW vector index for the SQLite store (C++ build via cxx). On by default;
+# without it the store falls back to an exact brute-force index.
+vector-usearch = ["dep:usearch"]
+
+[dependencies.rusqlite]
+version = "0.32"
+features = ["bundled", "functions"] # bundled SQLite has FTS5; `functions` registers regexp()
+
+[dependencies.usearch]
+version = "2"
+optional = true
+# Default features: bundled simsimd (SIMD distance kernels) and fp16lib.
+
+[dependencies.reqwest]
+version = "0.12"
+optional = true
+default-features = false
+# Pin rustls + json; explicitly avoid the openssl backend per
+# the audit-run-009 build-system-risk note.
+features = ["blocking", "json", "rustls-tls"]
+
+[dependencies.tract-onnx]
+version = "0.22"
+optional = true
+
+[dependencies.tokenizers]
+version = "0.20"
+optional = true
+default-features = false
+# Pure Rust tokenization. `unstable_wasm` despite the name is the
+# upstream-blessed knob that drops `onig` (a C Oniguruma binding)
+# while keeping the JSON config loader + Encode/Decode paths
+# intact. Without this feature `tokenizers` always compiles the
+# onig-based regex pre-tokenizer and the build fails with an
+# unresolved `onig::Regex` import. Sentence-transformer
+# tokenizers (BPE / WordPiece / Unigram) don't need the
+# onig-backed Split pre-tokenizer at runtime; they ship a
+# `tokenizer.json` describing the configured normalizers and
+# pre-tokenizers in pure Rust form.
+features = ["unstable_wasm"]
+
+[dev-dependencies]
+# Property-based testing (#56). Used inside `proptest!` blocks under
+# `#[cfg(test)]` in the typed-surface modules (graph, endpoint_extract,
+# store::projections, ids, parser) to assert algebraic invariants
+# — string-to-enum-to-string round-trips, newtype identity, etc. —
+# across hundreds of generated inputs instead of a handful of
+# table-driven cases.
+proptest = "1"
+
+[lints.rust]
+unsafe_code = "forbid"
+unused_must_use = "deny"
+# Off for now — every internal struct doesn't need Debug, and the few
+# that benefit are easier to opt in per-type than to silence per-type.
+missing_debug_implementations = "allow"
+rust_2018_idioms = { level = "warn", priority = -1 }
+# Subset of rust_2018_idioms — flags `Foo` where `Foo<'_>` could be
+# written. Cosmetic, and the suggested fix often hurts readability.
+elided_lifetimes_in_paths = "allow"
+unreachable_pub = "warn"
+
+[lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+nursery = { level = "warn", priority = -1 }
+
+# Carved-out allows. The intent of [lints] is to catch real bugs, not
+# style nits or unfinished cleanups. Each rule below has a one-line
+# reason — re-evaluate when the corresponding cleanup issue lands.
+module_name_repetitions = "allow"
+missing_errors_doc = "allow"
+similar_names = "allow"
+# Conflicts with rust's `unreachable_pub` lint. In a binary crate's
+# internal `cmd/` tree, `pub(crate)` items live inside private modules
+# — clippy says "use plain `pub` for simplicity", rust says "pub items
+# in private modules are unreachable, mark them `pub(crate)`". We side
+# with `pub(crate)` so the visibility is honest about the binary-only
+# surface; this allow silences the clippy half of the conflict.
+redundant_pub_crate = "allow"
+# Noisy pedantic-style lints that fire on every other doc comment / cast
+# / format string — keeping them on would drown out higher-signal warnings.
+doc_markdown = "allow"
+too_long_first_doc_paragraph = "allow"
+must_use_candidate = "allow"
+format_push_string = "allow"
+use_self = "allow"
+option_if_let_else = "allow"
+missing_const_for_fn = "allow"
+cast_sign_loss = "allow"
+cast_possible_truncation = "allow"
+cast_possible_wrap = "allow"
+cast_precision_loss = "allow"
+cast_lossless = "allow"
+match_same_arms = "allow"
+items_after_statements = "allow"
+needless_pass_by_value = "allow"
+struct_excessive_bools = "allow"
+fn_params_excessive_bools = "allow"
+too_many_lines = "allow"             # to be revisited after the module splits in #47–#50
+significant_drop_tightening = "allow"
+significant_drop_in_scrutinee = "allow"
+# Style/perf-pedantic that fires on intentional patterns (fixture builders,
+# Option chains, etc.). Re-enable individually after a deliberate audit.
+field_reassign_with_default = "allow" # protobuf / SCIP fixture builders
+missing_panics_doc = "allow"          # `# Panics` sections add noise on every helper
+cognitive_complexity = "allow"        # case-by-case judgement; not amenable to a blanket rule
+implicit_hasher = "allow"             # we only ever build with the default hasher
+manual_let_else = "allow"             # both styles are clear; pick per-site, not globally
+or_fun_call = "allow"                 # cheap closures vs. function calls — situational
+needless_collect = "allow"            # collect is sometimes load-bearing for ownership
+naive_bytecount = "allow"             # bytecount crate is overkill for the few sites
+unnecessary_wraps = "allow"           # Result-returning helpers stay forward-compatible
+branches_sharing_code = "allow"       # fires on intentional symmetry between match arms
+manual_unwrap_or_default = "allow"    # explicit match is often more readable
+manual_pattern_char_comparison = "allow"
+manual_contains = "allow"
+assigning_clones = "allow"
+needless_continue = "allow"
+case_sensitive_file_extension_comparisons = "allow"
+ref_option = "allow"                  # `&Option<T>` shows up at trait boundaries
+pub_underscore_fields = "allow"
+# Cosmetic markdown nits inside `///` comments. Fixing them often hurts
+# readability (forcing artificial indentation to satisfy CommonMark).
+doc_lazy_continuation = "allow"
+doc_overindented_list_items = "allow"
+# Audit complete in #52: every remaining call site is either:
+#   - inside `#[cfg(test)]` (production-code panics on test-only
+#     invariants are fine — a failing test panicking is the point), or
+#   - has a per-site `#[allow(clippy::unwrap_used, reason = "...")]`
+#     with a one-line rationale (regex from a literal, mutex poison
+#     means the world is already on fire, etc.).
+# Promoting these to `deny` keeps new code from regressing the baseline.
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+unimplemented = "warn"
+todo = "warn"
+# Indexing / string-slicing are correct in many places (post-validated
+# parsing, known-lengths). Audited in #52 alongside unwrap.
+indexing_slicing = "allow"
+string_slice = "allow"
+
+dbg_macro = "deny"
+mem_forget = "deny"

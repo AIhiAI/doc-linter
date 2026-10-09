@@ -1,0 +1,60 @@
+{
+  "_comment": "Symbol tables of three small domains (invoice billing, user session, report export) plus noise and one thin cluster. tests/concepts_proposer.rs turns this into a SCIP index: the ingest takes symbols, doc comments, signatures and call sites from SCIP, so no source trees are needed. report export has no doc comments on purpose; legacy/zebra has neither doc comments nor signatures.",
+  "files": [
+    {
+      "path": "src/billing/invoice.rs",
+      "symbols": [
+        {"name": "create_invoice", "sig": "pub fn create_invoice(order: &Order) -> Invoice", "doc": "Creates an invoice for a confirmed order.", "calls": ["compute_invoice_total", "apply_invoice_discount"]},
+        {"name": "compute_invoice_total", "sig": "pub fn compute_invoice_total(invoice: &Invoice) -> Money", "doc": "Sums the invoice line items and tax into one total.", "calls": []},
+        {"name": "apply_invoice_discount", "sig": "pub fn apply_invoice_discount(invoice: &mut Invoice, pct: u8)", "doc": "Applies a percentage discount to an open invoice.", "calls": ["compute_invoice_total"]},
+        {"name": "render_invoice_pdf", "sig": "pub fn render_invoice_pdf(invoice: &Invoice) -> Vec<u8>", "doc": "Renders the invoice as a printable document.", "calls": ["compute_invoice_total"]},
+        {"name": "invoice_due_date", "sig": "pub fn invoice_due_date(invoice: &Invoice) -> Date", "doc": "Returns the date the invoice falls due.", "calls": []},
+        {"name": "void_invoice", "sig": "pub fn void_invoice(invoice: &mut Invoice)", "doc": "Cancels an invoice that was issued in error.", "calls": []}
+      ]
+    },
+    {
+      "path": "src/session/store.rs",
+      "symbols": [
+        {"name": "create_session", "sig": "pub fn create_session(user: &User) -> Session", "doc": "Starts a session for a signed-in user.", "calls": ["touch_session"]},
+        {"name": "expire_session", "sig": "pub fn expire_session(session: &mut Session)", "doc": "Ends a session once its idle timeout passes.", "calls": []},
+        {"name": "refresh_session_token", "sig": "pub fn refresh_session_token(session: &mut Session) -> Token", "doc": "Issues a fresh token for a live session.", "calls": ["touch_session"]},
+        {"name": "lookup_session", "sig": "pub fn lookup_session(token: &Token) -> Option<Session>", "doc": "Finds the session that owns a token.", "calls": []},
+        {"name": "revoke_session", "sig": "pub fn revoke_session(session: &Session)", "doc": "Revokes a session on sign-out.", "calls": []},
+        {"name": "touch_session", "sig": "pub fn touch_session(session: &mut Session)", "doc": "Records activity so the session stays alive.", "calls": []}
+      ]
+    },
+    {
+      "path": "src/report/export.rs",
+      "symbols": [
+        {"name": "export_report_csv", "sig": "pub fn export_report_csv(report: &Report) -> String", "doc": "", "calls": ["render_report_rows"]},
+        {"name": "export_report_pdf", "sig": "pub fn export_report_pdf(report: &Report) -> Vec<u8>", "doc": "", "calls": ["build_report_header", "render_report_rows"]},
+        {"name": "build_report_header", "sig": "fn build_report_header(report: &Report) -> Header", "doc": "", "calls": []},
+        {"name": "render_report_rows", "sig": "fn render_report_rows(report: &Report) -> Vec<Row>", "doc": "", "calls": []},
+        {"name": "write_report_footer", "sig": "fn write_report_footer(report: &Report) -> Footer", "doc": "", "calls": []},
+        {"name": "schedule_report_export", "sig": "pub fn schedule_report_export(report: &Report, cron: &str)", "doc": "", "calls": ["export_report_csv"]}
+      ]
+    },
+    {
+      "path": "src/util.rs",
+      "symbols": [
+        {"name": "new", "sig": "", "doc": "", "calls": []},
+        {"name": "get", "sig": "", "doc": "", "calls": []}
+      ]
+    },
+    {
+      "path": "src/main.rs",
+      "symbols": [
+        {"name": "helper", "sig": "", "doc": "", "calls": []},
+        {"name": "new", "sig": "", "doc": "", "calls": []}
+      ]
+    },
+    {
+      "path": "src/legacy/zebra.rs",
+      "symbols": [
+        {"name": "zebra_alpha", "sig": "", "doc": "", "calls": []},
+        {"name": "zebra_beta", "sig": "", "doc": "", "calls": []},
+        {"name": "zebra_gamma", "sig": "", "doc": "", "calls": []}
+      ]
+    }
+  ]
+}

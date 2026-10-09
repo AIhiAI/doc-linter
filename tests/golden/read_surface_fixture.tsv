@@ -1,0 +1,437 @@
+cli-graph-summary edges	d98e5fe8fcf9be02e4ba0e34a55b60d0542a994a0692c7ee01d5d4fcda0c1b45	[{"count":4,"label":"DEFINED_IN_FILE"},{"count":4,"label":"FUNCTION_BE
+cli-graph-summary nodes	83c78dfddf23bd99d393e12e7a71f82d5512d629c39ad988c1898465fc332197	[{"count":8,"label":"Doc"},{"count":5,"label":"File"},{"count":4,"labe
+cli-graph-summary totals	c6f3ac57944a531490cd39902d0f777715fd005efac9a30622d5f5205e7f6894	33
+cli-schema edges	fbe2859bfd786d71731ba75ba64d098568f5646ba000cd9901447cad454ba9dd	[{"columns":[{"name":"dispatch"},{"name":"source_file"},{"name":"sourc
+cli-schema nodes	d9026a1b088148e06579397f94c3746a3bbc64525027530640448b8f2f44e8ea	[{"columns":[{"name":"attributes"},{"name":"bounded_context"},{"name":
+cli-similar ["query", "similar", "cache", "--type", "all", "--min-score", "0.5"]	94c0311cedd2297e3afaf1e78a68d72ac7a9019e7553c80a1ed308181f4b4e47	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "all", "--top", "2"]	94c0311cedd2297e3afaf1e78a68d72ac7a9019e7553c80a1ed308181f4b4e47	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "all"]	94c0311cedd2297e3afaf1e78a68d72ac7a9019e7553c80a1ed308181f4b4e47	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "doc", "--min-score", "0.5"]	67e04fb5c8b943367ae3211735b74c49cd9cafefdd680c9fb64a9ca676766511	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "doc", "--top", "2"]	67e04fb5c8b943367ae3211735b74c49cd9cafefdd680c9fb64a9ca676766511	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "doc"]	67e04fb5c8b943367ae3211735b74c49cd9cafefdd680c9fb64a9ca676766511	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "entity", "--min-score", "0.5"]	468424dcb0901800ef127b9c4cc1806120e3a7a57ed7fde4b515b39e125704fc	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "entity", "--top", "2"]	468424dcb0901800ef127b9c4cc1806120e3a7a57ed7fde4b515b39e125704fc	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "entity"]	468424dcb0901800ef127b9c4cc1806120e3a7a57ed7fde4b515b39e125704fc	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "function", "--min-score", "0.5"]	f31045ea70fe9c1ff902744465e2e8179a51665022e6981afbcec34a67686fb1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "function", "--top", "2"]	f31045ea70fe9c1ff902744465e2e8179a51665022e6981afbcec34a67686fb1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "function"]	f31045ea70fe9c1ff902744465e2e8179a51665022e6981afbcec34a67686fb1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "section", "--min-score", "0.5"]	a4316c3153e1bace32b3d40e5ccdc0bba188e231231c5d018b4e4a115b676296	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "section", "--top", "2"]	a4316c3153e1bace32b3d40e5ccdc0bba188e231231c5d018b4e4a115b676296	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "section"]	a4316c3153e1bace32b3d40e5ccdc0bba188e231231c5d018b4e4a115b676296	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "type", "--min-score", "0.5"]	76c0331208a6d5fd27c53afd4e20b7cb6721ecb28e6876d0118eb5a57fb0e187	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "type", "--top", "2"]	76c0331208a6d5fd27c53afd4e20b7cb6721ecb28e6876d0118eb5a57fb0e187	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "cache", "--type", "type"]	76c0331208a6d5fd27c53afd4e20b7cb6721ecb28e6876d0118eb5a57fb0e187	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "all", "--min-score", "0.5"]	4f827c47306f715e7ac4d68cce3651cc746c7648b4c0ab5fab2e57e2d1f18ba1	{"algorithm":"bm25","confidence":"medium","confidence_signals":{"sprea
+cli-similar ["query", "similar", "checkout totals compute", "--type", "all", "--top", "2"]	fe016ff305ffa349747032e60dbeefbcd5e254b07826e6b4b18e5e3143924ceb	{"algorithm":"bm25","confidence":"medium","confidence_signals":{"sprea
+cli-similar ["query", "similar", "checkout totals compute", "--type", "all"]	4f827c47306f715e7ac4d68cce3651cc746c7648b4c0ab5fab2e57e2d1f18ba1	{"algorithm":"bm25","confidence":"medium","confidence_signals":{"sprea
+cli-similar ["query", "similar", "checkout totals compute", "--type", "doc", "--min-score", "0.5"]	ef845926b2d7a5792cd4517a0400d271a3148db968c5bd41d548fd2a1b76ead3	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "doc", "--top", "2"]	ef845926b2d7a5792cd4517a0400d271a3148db968c5bd41d548fd2a1b76ead3	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "doc"]	ef845926b2d7a5792cd4517a0400d271a3148db968c5bd41d548fd2a1b76ead3	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "entity", "--min-score", "0.5"]	9e3171c8ad9fa91ed813824df221046fb8f609d6d4b28f4700c68af1d9198e0f	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "entity", "--top", "2"]	9e3171c8ad9fa91ed813824df221046fb8f609d6d4b28f4700c68af1d9198e0f	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "entity"]	9e3171c8ad9fa91ed813824df221046fb8f609d6d4b28f4700c68af1d9198e0f	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "function", "--min-score", "0.5"]	54dc4e4be9074573d63b7734258268be9776a85125bed3ddbf180dd831795697	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "function", "--top", "2"]	54dc4e4be9074573d63b7734258268be9776a85125bed3ddbf180dd831795697	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "function"]	54dc4e4be9074573d63b7734258268be9776a85125bed3ddbf180dd831795697	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "section", "--min-score", "0.5"]	07f2a92c3481a98055779a9966b92135dfbf597fe8b9778a0252a4a079a25da8	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "section", "--top", "2"]	07f2a92c3481a98055779a9966b92135dfbf597fe8b9778a0252a4a079a25da8	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "section"]	07f2a92c3481a98055779a9966b92135dfbf597fe8b9778a0252a4a079a25da8	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "type", "--min-score", "0.5"]	5749699de90d3fe267dc392b64d1a6ffc209d9d597d49f4d7dbb6a950152a6a1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "type", "--top", "2"]	5749699de90d3fe267dc392b64d1a6ffc209d9d597d49f4d7dbb6a950152a6a1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "checkout totals compute", "--type", "type"]	5749699de90d3fe267dc392b64d1a6ffc209d9d597d49f4d7dbb6a950152a6a1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "all", "--min-score", "0.5"]	eb67dbaedd1dd1b8ec4374be9eca3d08e04dfec9c59fe7134dbea02b19f46eaf	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "all", "--top", "2"]	77b54e53e59f21ec787289bb14a70c57e3f541d0946cc4e372eed4092e74239e	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "all"]	eb67dbaedd1dd1b8ec4374be9eca3d08e04dfec9c59fe7134dbea02b19f46eaf	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "doc", "--min-score", "0.5"]	2bf61f6db9dc621fafc81f5174c4c55545bff1613fbcbcfa2bb21fbbe0e90fac	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "doc", "--top", "2"]	2bf61f6db9dc621fafc81f5174c4c55545bff1613fbcbcfa2bb21fbbe0e90fac	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "doc"]	2bf61f6db9dc621fafc81f5174c4c55545bff1613fbcbcfa2bb21fbbe0e90fac	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "entity", "--min-score", "0.5"]	dce48b6a5224fd215ce0a9b631640e3eaa45c76505df434e5d469b01becec1c1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "entity", "--top", "2"]	dce48b6a5224fd215ce0a9b631640e3eaa45c76505df434e5d469b01becec1c1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "entity"]	dce48b6a5224fd215ce0a9b631640e3eaa45c76505df434e5d469b01becec1c1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "function", "--min-score", "0.5"]	bf565bfb807c880608b1db4110170bbb9fb4f0b4553b12a18c151a4d9d76cbb5	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "function", "--top", "2"]	bf565bfb807c880608b1db4110170bbb9fb4f0b4553b12a18c151a4d9d76cbb5	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "function"]	bf565bfb807c880608b1db4110170bbb9fb4f0b4553b12a18c151a4d9d76cbb5	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "section", "--min-score", "0.5"]	ad9347d446fc03c15add6a55d7e68ed4999845812acc086c971ecdd3b40e8126	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "section", "--top", "2"]	ad9347d446fc03c15add6a55d7e68ed4999845812acc086c971ecdd3b40e8126	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "section"]	ad9347d446fc03c15add6a55d7e68ed4999845812acc086c971ecdd3b40e8126	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "type", "--min-score", "0.5"]	dcb2826918a7df1592632895042b2d793f71547e3fb525bf3421557fac74247a	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "type", "--top", "2"]	dcb2826918a7df1592632895042b2d793f71547e3fb525bf3421557fac74247a	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "doc", "--type", "type"]	dcb2826918a7df1592632895042b2d793f71547e3fb525bf3421557fac74247a	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "all", "--min-score", "0.5"]	4629391dbbca47ad3704bdbaa6332f2f72899c15014a89fe1ac81bdd6eed1efa	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "all", "--top", "2"]	471945a4005397bc02eb87af97d0084643754cbb7f8382d539839091f45367af	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "all"]	4629391dbbca47ad3704bdbaa6332f2f72899c15014a89fe1ac81bdd6eed1efa	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "doc", "--min-score", "0.5"]	e6c96f1668e2a233cca9254f79f7dcfc45a46d9397d013f81da34d50c82fcf7d	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "doc", "--top", "2"]	8cdc3f7d7dd895c97ee7a49feded9a36780a3ed538f4ef94f71f6ae59381aab8	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "doc"]	e6c96f1668e2a233cca9254f79f7dcfc45a46d9397d013f81da34d50c82fcf7d	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "entity", "--min-score", "0.5"]	2be47b480f50307cad27b1fb4352112bba9c9188fce4e4c5e193a5d467c7032a	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "entity", "--top", "2"]	2be47b480f50307cad27b1fb4352112bba9c9188fce4e4c5e193a5d467c7032a	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "entity"]	2be47b480f50307cad27b1fb4352112bba9c9188fce4e4c5e193a5d467c7032a	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "function", "--min-score", "0.5"]	7ef8cf4744570630296db08a15c73125973a7fbaa506744b753995624c029033	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "function", "--top", "2"]	7ef8cf4744570630296db08a15c73125973a7fbaa506744b753995624c029033	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "function"]	7ef8cf4744570630296db08a15c73125973a7fbaa506744b753995624c029033	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "section", "--min-score", "0.5"]	dc6201054da0f721d719008f3fa7911962d09f41540d0276ce7e0cf8fa37c687	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "section", "--top", "2"]	dc6201054da0f721d719008f3fa7911962d09f41540d0276ce7e0cf8fa37c687	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "section"]	dc6201054da0f721d719008f3fa7911962d09f41540d0276ce7e0cf8fa37c687	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "type", "--min-score", "0.5"]	d8bd9591a7ac3afb993dc0f5c589db28e162ba42ec469b420fc6c04a7e0f9e90	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "type", "--top", "2"]	ebc7e2cc9275e0ce33b79337303d6537db50a2f13e65d0892fc561b8a1ef80eb	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "pricing rules", "--type", "type"]	ebc7e2cc9275e0ce33b79337303d6537db50a2f13e65d0892fc561b8a1ef80eb	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "all", "--min-score", "0.5"]	af36aadb92dd734d2d6ac21ef02e00616b938ffeef0e6cf5779b4630037ad066	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "all", "--top", "2"]	af36aadb92dd734d2d6ac21ef02e00616b938ffeef0e6cf5779b4630037ad066	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "all"]	af36aadb92dd734d2d6ac21ef02e00616b938ffeef0e6cf5779b4630037ad066	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "doc", "--min-score", "0.5"]	1931f723ac87afe368df318129bc4a3828931d11a9278c8a66916b2dbac465e4	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "doc", "--top", "2"]	1931f723ac87afe368df318129bc4a3828931d11a9278c8a66916b2dbac465e4	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "doc"]	1931f723ac87afe368df318129bc4a3828931d11a9278c8a66916b2dbac465e4	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "entity", "--min-score", "0.5"]	76d8074cacf2677b0163bf8be27e666f89fe062467c15217f8447da2fefd98de	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "entity", "--top", "2"]	76d8074cacf2677b0163bf8be27e666f89fe062467c15217f8447da2fefd98de	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "entity"]	76d8074cacf2677b0163bf8be27e666f89fe062467c15217f8447da2fefd98de	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "function", "--min-score", "0.5"]	c9705c0d418ad745fca109a65c4d82cad217bc35d8214ec93210249ec71b262e	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "function", "--top", "2"]	c9705c0d418ad745fca109a65c4d82cad217bc35d8214ec93210249ec71b262e	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "function"]	c9705c0d418ad745fca109a65c4d82cad217bc35d8214ec93210249ec71b262e	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "section", "--min-score", "0.5"]	76f7a0eb9d7a07d5125a5558ccafa0e80f26748849029c0ac9649d58f893c50b	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "section", "--top", "2"]	76f7a0eb9d7a07d5125a5558ccafa0e80f26748849029c0ac9649d58f893c50b	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "section"]	76f7a0eb9d7a07d5125a5558ccafa0e80f26748849029c0ac9649d58f893c50b	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "type", "--min-score", "0.5"]	7f121d598a65f4caf17d0b335c094869d0881215acc2340511e670b7e4248a92	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "type", "--top", "2"]	7f121d598a65f4caf17d0b335c094869d0881215acc2340511e670b7e4248a92	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar ["query", "similar", "xyzzy", "--type", "type"]	7f121d598a65f4caf17d0b335c094869d0881215acc2340511e670b7e4248a92	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar-filter ["query", "similar", "pricing", "--type", "all", "--without-tag", "two"]	c91f646405d9ced210a10b0f89986f647df437a4a1532a4b3ecd9e0c9a3af4e4	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar-filter ["query", "similar", "pricing", "--type", "doc", "--with-tag", "one"]	26b031294462d96db6986ac27e358a607020b5ffa75cc1437fcd6db1f7cab26f	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar-filter ["query", "similar", "pricing", "--type", "doc", "--without-tag", "one"]	12d4fecf8b8f2e188742990ea8b0337738c3591ec1930d4abb1e11b1f0b718a3	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-similar-filter ["query", "similar", "pricing", "--type", "section", "--with-tag", "two"]	339757abd56581bf5c1c5f93a39dcf871b6be06563333a710a952ffccfe9bfb7	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+cli-sql-twin SELECT count(*) AS n FROM Doc	1157a76df80976e73bd450cbed7d209244af83dcddbac0daacaf9a258e640bd9	{"columns":["n"],"row_count":1,"rows":[{"n":8}]}
+cli-sql-twin SELECT id FROM Doc WHERE id REGEXP 'doc' ORDER BY id	6a23fa9b49de86228102c3e986c907a2403fd011b0453af5937cb505c7f02f7f	{"columns":["id"],"row_count":0,"rows":[]}
+cli-sql-twin SELECT id FROM Doc WHERE id REGEXP 'doc-.*' ORDER BY id	4aeac181b41efda1adf2b0db6cc50ae4131bcf6f9850129d0e1b00fde4de92bd	{"columns":["id"],"row_count":2,"rows":[{"id":"doc-a"},{"id":"doc-b"}]
+cli-sql-twin SELECT id FROM Doc WHERE title REGEXP '(?i)al.*' ORDER BY id	8e994761e230cca09f991783855a92031f8bd748d0a7609da3774b26663e1fea	{"columns":["id"],"row_count":1,"rows":[{"id":"doc-a"}]}
+cli-sql-twin SELECT id, role FROM Doc ORDER BY id	c90729c05c3f47ddad3457abc3a168d3a928575324d21ee6b30f55fa636434ac	{"columns":["id","role"],"row_count":8,"rows":[{"id":"axis-role","role
+cli-sql-twin SELECT path AS p FROM File WHERE path REGEXP '.*\.rs' ORDER BY p	01a9636107a196b67ad5fa88f3c63b87006fa1770f76a189d535fa588a9b90ca	{"columns":["p"],"row_count":2,"rows":[{"p":"crates/a/src/lib.rs"},{"p
+cli-sql-twin SELECT src AS doc, dst AS ent FROM COVERS ORDER BY doc, ent	847f427c415f9fa10e15884f0b8608629c7e73001bdd461801ab2d84dda711a5	{"columns":["doc","ent"],"row_count":3,"rows":[{"doc":"doc-a","ent":"p
+cli-sql-twin SELECT symbol AS s FROM Function WHERE symbol REGEXP '.*compute.*' ORDER BY s	4d67cc58f0c8c5154ac94a9723b586b057e6fe762ca95cb267f995f12768dd57	{"columns":["s"],"row_count":1,"rows":[{"s":"rust-analyzer cargo b 0.1
+cli-types ["query", "types", "--crate", "a"]	8883ab44b15c6f84c1c488facb4d62669d3a2120a17959a123f9300da77b34ae	{"count":1,"crate":"a","types":[{"crate":"a","file":"crates/a/src/lib.
+cli-types ["query", "types", "--kind", "struct"]	34e08da28899de56022512b6fb750bbf82a629adc39da7d330b39dda957d406d	{"count":1,"kind":"struct","types":[{"crate":"a","file":"crates/a/src/
+cli-types ["query", "types", "--substring", "i"]	7033c1aee9530bd71c6aeb4d06347c3bb5ab803476e3aca3c4afe30e2af28892	{"count":1,"substring":"i","types":[{"crate":"a","file":"crates/a/src/
+cli-types ["query", "types", "--top", "1"]	c8725fa40f45477278ebb41e43bbef8bd2436079e8e7a9636c936a7880ed92f0	{"count":1,"types":[{"crate":"a","file":"crates/a/src/lib.rs","kind":"
+cli-types ["query", "types"]	c8725fa40f45477278ebb41e43bbef8bd2436079e8e7a9636c936a7880ed92f0	{"count":1,"types":[{"crate":"a","file":"crates/a/src/lib.rs","kind":"
+embedding all "alpha" filter#0 repo=false	343e491c8b21e2f3998345c6783747df99c111d7cf0b36733348bbfe7e3e0811	18 doc-a#alpha=500 doc-b#beta=302
+embedding all "alpha" filter#0 repo=true	343e491c8b21e2f3998345c6783747df99c111d7cf0b36733348bbfe7e3e0811	18 doc-a#alpha=500 doc-b#beta=302
+embedding all "alpha" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding all "alpha" filter#1 repo=true	343e491c8b21e2f3998345c6783747df99c111d7cf0b36733348bbfe7e3e0811	18 doc-a#alpha=500 doc-b#beta=302
+embedding all "alpha" filter#2 repo=false	efdb1e4d316576dcf053bc1b5f85e89f479372e0de5a83af3e0bb8e9164f9c8d	12 doc-a#alpha=500 doc-b#beta=302
+embedding all "alpha" filter#2 repo=true	efdb1e4d316576dcf053bc1b5f85e89f479372e0de5a83af3e0bb8e9164f9c8d	12 doc-a#alpha=500 doc-b#beta=302
+embedding all "alpha" filter#3 repo=false	8a4a5a650a878dfc74840ecdc7080d5fb9539ccf85956b6e7631130ee8ac5bef	15 doc-b#beta=302
+embedding all "alpha" filter#3 repo=true	8a4a5a650a878dfc74840ecdc7080d5fb9539ccf85956b6e7631130ee8ac5bef	15 doc-b#beta=302
+embedding all "checkout flow" filter#0 repo=false	04b9b108707ccc43a0663e903692176ce831e905c3cf221c96c74ad1b5c4b3f4	18 checkout=707 doc-b#flow=707 doc-b=1000 rust-analyzer cargo b 0.1.0 
+embedding all "checkout flow" filter#0 repo=true	04b9b108707ccc43a0663e903692176ce831e905c3cf221c96c74ad1b5c4b3f4	18 checkout=707 doc-b#flow=707 doc-b=1000 rust-analyzer cargo b 0.1.0 
+embedding all "checkout flow" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding all "checkout flow" filter#1 repo=true	04b9b108707ccc43a0663e903692176ce831e905c3cf221c96c74ad1b5c4b3f4	18 checkout=707 doc-b#flow=707 doc-b=1000 rust-analyzer cargo b 0.1.0 
+embedding all "checkout flow" filter#2 repo=false	7258bf117a02078563da79a53a333b97fe5a0ec7476fdbbd78bb913362ab0252	12 checkout=707 doc-b#flow=707 doc-b=1000 rust-analyzer cargo b 0.1.0 
+embedding all "checkout flow" filter#2 repo=true	7258bf117a02078563da79a53a333b97fe5a0ec7476fdbbd78bb913362ab0252	12 checkout=707 doc-b#flow=707 doc-b=1000 rust-analyzer cargo b 0.1.0 
+embedding all "checkout flow" filter#3 repo=false	22f3318563b376943117a176273c66e37bf34aa8327f0eab4b42d0f4ea4c68e8	15 checkout=707 doc-b#flow=707 doc-b=1000 rust-analyzer cargo b 0.1.0 
+embedding all "checkout flow" filter#3 repo=true	22f3318563b376943117a176273c66e37bf34aa8327f0eab4b42d0f4ea4c68e8	15 checkout=707 doc-b#flow=707 doc-b=1000 rust-analyzer cargo b 0.1.0 
+embedding all "compute totals" filter#0 repo=false	52bbe708b19bba789ddf4e5a9efc66b16536df257a2a9f7cbcdefebe2ceecebb	18 doc-a#rules=289 rust-analyzer cargo b 0.1.0 compute().=408
+embedding all "compute totals" filter#0 repo=true	52bbe708b19bba789ddf4e5a9efc66b16536df257a2a9f7cbcdefebe2ceecebb	18 doc-a#rules=289 rust-analyzer cargo b 0.1.0 compute().=408
+embedding all "compute totals" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding all "compute totals" filter#1 repo=true	52bbe708b19bba789ddf4e5a9efc66b16536df257a2a9f7cbcdefebe2ceecebb	18 doc-a#rules=289 rust-analyzer cargo b 0.1.0 compute().=408
+embedding all "compute totals" filter#2 repo=false	1e9b8a8f39c0e3d8a03b2b8687811e2b4e48486b2a03eda9c1ec2643be4e8b16	12 doc-a#rules=289 rust-analyzer cargo b 0.1.0 compute().=408
+embedding all "compute totals" filter#2 repo=true	1e9b8a8f39c0e3d8a03b2b8687811e2b4e48486b2a03eda9c1ec2643be4e8b16	12 doc-a#rules=289 rust-analyzer cargo b 0.1.0 compute().=408
+embedding all "compute totals" filter#3 repo=false	506d31ce46dfcee8496514b97547a8162f83ee123005acf1a0988c1402035a78	15 rust-analyzer cargo b 0.1.0 compute().=408
+embedding all "compute totals" filter#3 repo=true	506d31ce46dfcee8496514b97547a8162f83ee123005acf1a0988c1402035a78	15 rust-analyzer cargo b 0.1.0 compute().=408
+embedding all "pricing rules overview" filter#0 repo=false	14f13aa5c0a56ab531fff0996b4cc5ecf2d9d496bb5ba1be43d90d82d6f99745	18 crate-a=408 doc-a#rules=471 doc-a=1000 pricing=577 rust-analyzer ca
+embedding all "pricing rules overview" filter#0 repo=true	14f13aa5c0a56ab531fff0996b4cc5ecf2d9d496bb5ba1be43d90d82d6f99745	18 crate-a=408 doc-a#rules=471 doc-a=1000 pricing=577 rust-analyzer ca
+embedding all "pricing rules overview" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding all "pricing rules overview" filter#1 repo=true	14f13aa5c0a56ab531fff0996b4cc5ecf2d9d496bb5ba1be43d90d82d6f99745	18 crate-a=408 doc-a#rules=471 doc-a=1000 pricing=577 rust-analyzer ca
+embedding all "pricing rules overview" filter#2 repo=false	9c2aca87fbc30170a259f8a5bd303ab69b19dee2312fd9a7d81756426b5deec5	12 doc-a#rules=471 doc-a=1000 pricing=577 rust-analyzer cargo a 0.1.0 
+embedding all "pricing rules overview" filter#2 repo=true	9c2aca87fbc30170a259f8a5bd303ab69b19dee2312fd9a7d81756426b5deec5	12 doc-a#rules=471 doc-a=1000 pricing=577 rust-analyzer cargo a 0.1.0 
+embedding all "pricing rules overview" filter#3 repo=false	1a80c5ee235529816d495cb3c03191097fc96be20fbf2ec1774b84d288166a15	15 crate-a=408 doc-b#flow=289 pricing=577 rust-analyzer cargo a 0.1.0 
+embedding all "pricing rules overview" filter#3 repo=true	1a80c5ee235529816d495cb3c03191097fc96be20fbf2ec1774b84d288166a15	15 crate-a=408 doc-b#flow=289 pricing=577 rust-analyzer cargo a 0.1.0 
+embedding all "zzz" filter#0 repo=false	f46168a58f2b2bc2f1a790b7e293870874b24ebcecfcfab2f3d5fb8b568c6198	18 
+embedding all "zzz" filter#0 repo=true	f46168a58f2b2bc2f1a790b7e293870874b24ebcecfcfab2f3d5fb8b568c6198	18 
+embedding all "zzz" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding all "zzz" filter#1 repo=true	f46168a58f2b2bc2f1a790b7e293870874b24ebcecfcfab2f3d5fb8b568c6198	18 
+embedding all "zzz" filter#2 repo=false	a50eab9333a59d648039f387b1ab3d3d5e1ed7e330f5df1875834d27f3e346c6	12 
+embedding all "zzz" filter#2 repo=true	a50eab9333a59d648039f387b1ab3d3d5e1ed7e330f5df1875834d27f3e346c6	12 
+embedding all "zzz" filter#3 repo=false	cf0eb12f371a790871ed93abd79781ab182f16f5a36d38895a19458fb7a71c8e	15 
+embedding all "zzz" filter#3 repo=true	cf0eb12f371a790871ed93abd79781ab182f16f5a36d38895a19458fb7a71c8e	15 
+embedding doc "alpha" filter#0 repo=false	671a02117af87c2371462f800d856f15866183e8797afbb80272ad296808f4ae	8 
+embedding doc "alpha" filter#0 repo=true	671a02117af87c2371462f800d856f15866183e8797afbb80272ad296808f4ae	8 
+embedding doc "alpha" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding doc "alpha" filter#1 repo=true	671a02117af87c2371462f800d856f15866183e8797afbb80272ad296808f4ae	8 
+embedding doc "alpha" filter#2 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding doc "alpha" filter#2 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding doc "alpha" filter#3 repo=false	c69b33366ea0bcfb6c30799a4100c6a040ae9073c5f5a9f3c0b2950fa5dd8558	7 
+embedding doc "alpha" filter#3 repo=true	c69b33366ea0bcfb6c30799a4100c6a040ae9073c5f5a9f3c0b2950fa5dd8558	7 
+embedding doc "checkout flow" filter#0 repo=false	78d7174e73f25ab1b19465f6623cf92d8c817088b5854b5c3ede345455afc9cb	8 doc-b=1000
+embedding doc "checkout flow" filter#0 repo=true	78d7174e73f25ab1b19465f6623cf92d8c817088b5854b5c3ede345455afc9cb	8 doc-b=1000
+embedding doc "checkout flow" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding doc "checkout flow" filter#1 repo=true	78d7174e73f25ab1b19465f6623cf92d8c817088b5854b5c3ede345455afc9cb	8 doc-b=1000
+embedding doc "checkout flow" filter#2 repo=false	ea6687b58d15e779c615902d2f195e562c06ebc1b6f129bffab8684fdd9c38bc	2 doc-b=1000
+embedding doc "checkout flow" filter#2 repo=true	ea6687b58d15e779c615902d2f195e562c06ebc1b6f129bffab8684fdd9c38bc	2 doc-b=1000
+embedding doc "checkout flow" filter#3 repo=false	d875da969841cf5c0c5b38dc01d8087edcb26def48ed9580af7be878fa2591c5	7 doc-b=1000
+embedding doc "checkout flow" filter#3 repo=true	d875da969841cf5c0c5b38dc01d8087edcb26def48ed9580af7be878fa2591c5	7 doc-b=1000
+embedding doc "compute totals" filter#0 repo=false	671a02117af87c2371462f800d856f15866183e8797afbb80272ad296808f4ae	8 
+embedding doc "compute totals" filter#0 repo=true	671a02117af87c2371462f800d856f15866183e8797afbb80272ad296808f4ae	8 
+embedding doc "compute totals" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding doc "compute totals" filter#1 repo=true	671a02117af87c2371462f800d856f15866183e8797afbb80272ad296808f4ae	8 
+embedding doc "compute totals" filter#2 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding doc "compute totals" filter#2 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding doc "compute totals" filter#3 repo=false	c69b33366ea0bcfb6c30799a4100c6a040ae9073c5f5a9f3c0b2950fa5dd8558	7 
+embedding doc "compute totals" filter#3 repo=true	c69b33366ea0bcfb6c30799a4100c6a040ae9073c5f5a9f3c0b2950fa5dd8558	7 
+embedding doc "pricing rules overview" filter#0 repo=false	b1b0cd2de1575976a32c21d22fdc9797a5aa682c5634235acad2bc0a9ede6407	8 crate-a=408 doc-a=1000
+embedding doc "pricing rules overview" filter#0 repo=true	b1b0cd2de1575976a32c21d22fdc9797a5aa682c5634235acad2bc0a9ede6407	8 crate-a=408 doc-a=1000
+embedding doc "pricing rules overview" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding doc "pricing rules overview" filter#1 repo=true	b1b0cd2de1575976a32c21d22fdc9797a5aa682c5634235acad2bc0a9ede6407	8 crate-a=408 doc-a=1000
+embedding doc "pricing rules overview" filter#2 repo=false	fe5e7f5da2e21d0bdac097a26377344b554428653984dfab28716b77812cbe65	2 doc-a=1000
+embedding doc "pricing rules overview" filter#2 repo=true	fe5e7f5da2e21d0bdac097a26377344b554428653984dfab28716b77812cbe65	2 doc-a=1000
+embedding doc "pricing rules overview" filter#3 repo=false	769e9ad3ea9f317c1587b77ee68b183b67910b3058061d1392376231edc3e6d7	7 crate-a=408
+embedding doc "pricing rules overview" filter#3 repo=true	769e9ad3ea9f317c1587b77ee68b183b67910b3058061d1392376231edc3e6d7	7 crate-a=408
+embedding doc "zzz" filter#0 repo=false	671a02117af87c2371462f800d856f15866183e8797afbb80272ad296808f4ae	8 
+embedding doc "zzz" filter#0 repo=true	671a02117af87c2371462f800d856f15866183e8797afbb80272ad296808f4ae	8 
+embedding doc "zzz" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding doc "zzz" filter#1 repo=true	671a02117af87c2371462f800d856f15866183e8797afbb80272ad296808f4ae	8 
+embedding doc "zzz" filter#2 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding doc "zzz" filter#2 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding doc "zzz" filter#3 repo=false	c69b33366ea0bcfb6c30799a4100c6a040ae9073c5f5a9f3c0b2950fa5dd8558	7 
+embedding doc "zzz" filter#3 repo=true	c69b33366ea0bcfb6c30799a4100c6a040ae9073c5f5a9f3c0b2950fa5dd8558	7 
+embedding entity "alpha" filter#0 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "alpha" filter#0 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "alpha" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding entity "alpha" filter#1 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "alpha" filter#2 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "alpha" filter#2 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "alpha" filter#3 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "alpha" filter#3 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "checkout flow" filter#0 repo=false	0431ff980a68cd0a2adc2c342a2d3b1e5b87b37d98c0c173373c9449d9df73fe	2 checkout=707
+embedding entity "checkout flow" filter#0 repo=true	0431ff980a68cd0a2adc2c342a2d3b1e5b87b37d98c0c173373c9449d9df73fe	2 checkout=707
+embedding entity "checkout flow" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding entity "checkout flow" filter#1 repo=true	0431ff980a68cd0a2adc2c342a2d3b1e5b87b37d98c0c173373c9449d9df73fe	2 checkout=707
+embedding entity "checkout flow" filter#2 repo=false	0431ff980a68cd0a2adc2c342a2d3b1e5b87b37d98c0c173373c9449d9df73fe	2 checkout=707
+embedding entity "checkout flow" filter#2 repo=true	0431ff980a68cd0a2adc2c342a2d3b1e5b87b37d98c0c173373c9449d9df73fe	2 checkout=707
+embedding entity "checkout flow" filter#3 repo=false	0431ff980a68cd0a2adc2c342a2d3b1e5b87b37d98c0c173373c9449d9df73fe	2 checkout=707
+embedding entity "checkout flow" filter#3 repo=true	0431ff980a68cd0a2adc2c342a2d3b1e5b87b37d98c0c173373c9449d9df73fe	2 checkout=707
+embedding entity "compute totals" filter#0 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "compute totals" filter#0 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "compute totals" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding entity "compute totals" filter#1 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "compute totals" filter#2 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "compute totals" filter#2 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "compute totals" filter#3 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "compute totals" filter#3 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "pricing rules overview" filter#0 repo=false	ddd08b1f5915e1571ab70abe947f8ab8144cb97b09388504112f6a6da8e839c9	2 pricing=577
+embedding entity "pricing rules overview" filter#0 repo=true	ddd08b1f5915e1571ab70abe947f8ab8144cb97b09388504112f6a6da8e839c9	2 pricing=577
+embedding entity "pricing rules overview" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding entity "pricing rules overview" filter#1 repo=true	ddd08b1f5915e1571ab70abe947f8ab8144cb97b09388504112f6a6da8e839c9	2 pricing=577
+embedding entity "pricing rules overview" filter#2 repo=false	ddd08b1f5915e1571ab70abe947f8ab8144cb97b09388504112f6a6da8e839c9	2 pricing=577
+embedding entity "pricing rules overview" filter#2 repo=true	ddd08b1f5915e1571ab70abe947f8ab8144cb97b09388504112f6a6da8e839c9	2 pricing=577
+embedding entity "pricing rules overview" filter#3 repo=false	ddd08b1f5915e1571ab70abe947f8ab8144cb97b09388504112f6a6da8e839c9	2 pricing=577
+embedding entity "pricing rules overview" filter#3 repo=true	ddd08b1f5915e1571ab70abe947f8ab8144cb97b09388504112f6a6da8e839c9	2 pricing=577
+embedding entity "zzz" filter#0 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "zzz" filter#0 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "zzz" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding entity "zzz" filter#1 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "zzz" filter#2 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "zzz" filter#2 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "zzz" filter#3 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding entity "zzz" filter#3 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding function "alpha" filter#0 repo=false	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "alpha" filter#0 repo=true	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "alpha" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding function "alpha" filter#1 repo=true	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "alpha" filter#2 repo=false	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "alpha" filter#2 repo=true	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "alpha" filter#3 repo=false	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "alpha" filter#3 repo=true	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "checkout flow" filter#0 repo=false	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "checkout flow" filter#0 repo=true	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "checkout flow" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding function "checkout flow" filter#1 repo=true	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "checkout flow" filter#2 repo=false	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "checkout flow" filter#2 repo=true	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "checkout flow" filter#3 repo=false	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "checkout flow" filter#3 repo=true	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "compute totals" filter#0 repo=false	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "compute totals" filter#0 repo=true	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "compute totals" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding function "compute totals" filter#1 repo=true	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "compute totals" filter#2 repo=false	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "compute totals" filter#2 repo=true	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "compute totals" filter#3 repo=false	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "compute totals" filter#3 repo=true	947ca1c048c7a519307c5d9eb85a92d67c9dfe8e79e25d9562609fbe34e4e204	4 rust-analyzer cargo b 0.1.0 compute().=408
+embedding function "pricing rules overview" filter#0 repo=false	099e417d1da22174da7240444c0da7c5926a09f46f2277756e757d530f1e65e5	4 rust-analyzer cargo a 0.1.0 Widget#render().=408 rust-analyzer cargo
+embedding function "pricing rules overview" filter#0 repo=true	099e417d1da22174da7240444c0da7c5926a09f46f2277756e757d530f1e65e5	4 rust-analyzer cargo a 0.1.0 Widget#render().=408 rust-analyzer cargo
+embedding function "pricing rules overview" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding function "pricing rules overview" filter#1 repo=true	099e417d1da22174da7240444c0da7c5926a09f46f2277756e757d530f1e65e5	4 rust-analyzer cargo a 0.1.0 Widget#render().=408 rust-analyzer cargo
+embedding function "pricing rules overview" filter#2 repo=false	099e417d1da22174da7240444c0da7c5926a09f46f2277756e757d530f1e65e5	4 rust-analyzer cargo a 0.1.0 Widget#render().=408 rust-analyzer cargo
+embedding function "pricing rules overview" filter#2 repo=true	099e417d1da22174da7240444c0da7c5926a09f46f2277756e757d530f1e65e5	4 rust-analyzer cargo a 0.1.0 Widget#render().=408 rust-analyzer cargo
+embedding function "pricing rules overview" filter#3 repo=false	099e417d1da22174da7240444c0da7c5926a09f46f2277756e757d530f1e65e5	4 rust-analyzer cargo a 0.1.0 Widget#render().=408 rust-analyzer cargo
+embedding function "pricing rules overview" filter#3 repo=true	099e417d1da22174da7240444c0da7c5926a09f46f2277756e757d530f1e65e5	4 rust-analyzer cargo a 0.1.0 Widget#render().=408 rust-analyzer cargo
+embedding function "zzz" filter#0 repo=false	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "zzz" filter#0 repo=true	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "zzz" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding function "zzz" filter#1 repo=true	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "zzz" filter#2 repo=false	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "zzz" filter#2 repo=true	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "zzz" filter#3 repo=false	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding function "zzz" filter#3 repo=true	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding section "alpha" filter#0 repo=false	69709e2fd6fac85ee925f0595a7c370af318cc94ed99a0278b38a126d3023668	4 doc-a#alpha=500 doc-b#beta=302
+embedding section "alpha" filter#0 repo=true	69709e2fd6fac85ee925f0595a7c370af318cc94ed99a0278b38a126d3023668	4 doc-a#alpha=500 doc-b#beta=302
+embedding section "alpha" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding section "alpha" filter#1 repo=true	69709e2fd6fac85ee925f0595a7c370af318cc94ed99a0278b38a126d3023668	4 doc-a#alpha=500 doc-b#beta=302
+embedding section "alpha" filter#2 repo=false	69709e2fd6fac85ee925f0595a7c370af318cc94ed99a0278b38a126d3023668	4 doc-a#alpha=500 doc-b#beta=302
+embedding section "alpha" filter#2 repo=true	69709e2fd6fac85ee925f0595a7c370af318cc94ed99a0278b38a126d3023668	4 doc-a#alpha=500 doc-b#beta=302
+embedding section "alpha" filter#3 repo=false	55673cda8ef0ef5f8139e4ec3540069feedd0c8d0353587d2ca25bb59162b5bb	2 doc-b#beta=302
+embedding section "alpha" filter#3 repo=true	55673cda8ef0ef5f8139e4ec3540069feedd0c8d0353587d2ca25bb59162b5bb	2 doc-b#beta=302
+embedding section "checkout flow" filter#0 repo=false	e1e9ef45660f1db03366ae054cf8653a9dbe01e981a2ca22d37fc113715fe0ca	4 doc-b#flow=707
+embedding section "checkout flow" filter#0 repo=true	e1e9ef45660f1db03366ae054cf8653a9dbe01e981a2ca22d37fc113715fe0ca	4 doc-b#flow=707
+embedding section "checkout flow" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding section "checkout flow" filter#1 repo=true	e1e9ef45660f1db03366ae054cf8653a9dbe01e981a2ca22d37fc113715fe0ca	4 doc-b#flow=707
+embedding section "checkout flow" filter#2 repo=false	e1e9ef45660f1db03366ae054cf8653a9dbe01e981a2ca22d37fc113715fe0ca	4 doc-b#flow=707
+embedding section "checkout flow" filter#2 repo=true	e1e9ef45660f1db03366ae054cf8653a9dbe01e981a2ca22d37fc113715fe0ca	4 doc-b#flow=707
+embedding section "checkout flow" filter#3 repo=false	9e05e80be2113a0c03f48bc2a75c226daff6ab37bbb6f55f2bbbf7e756cfa161	2 doc-b#flow=707
+embedding section "checkout flow" filter#3 repo=true	9e05e80be2113a0c03f48bc2a75c226daff6ab37bbb6f55f2bbbf7e756cfa161	2 doc-b#flow=707
+embedding section "compute totals" filter#0 repo=false	22a503ae72a1179ada10695b7ffb3c2148bdc19b499896686cd4640b2e163ec5	4 doc-a#rules=289
+embedding section "compute totals" filter#0 repo=true	22a503ae72a1179ada10695b7ffb3c2148bdc19b499896686cd4640b2e163ec5	4 doc-a#rules=289
+embedding section "compute totals" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding section "compute totals" filter#1 repo=true	22a503ae72a1179ada10695b7ffb3c2148bdc19b499896686cd4640b2e163ec5	4 doc-a#rules=289
+embedding section "compute totals" filter#2 repo=false	22a503ae72a1179ada10695b7ffb3c2148bdc19b499896686cd4640b2e163ec5	4 doc-a#rules=289
+embedding section "compute totals" filter#2 repo=true	22a503ae72a1179ada10695b7ffb3c2148bdc19b499896686cd4640b2e163ec5	4 doc-a#rules=289
+embedding section "compute totals" filter#3 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding section "compute totals" filter#3 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding section "pricing rules overview" filter#0 repo=false	0fd6c5e34f02ccb5d51e67e07f80f4b62412af0777fb837cc37353968f331e7c	4 doc-a#rules=471 doc-b#flow=289
+embedding section "pricing rules overview" filter#0 repo=true	0fd6c5e34f02ccb5d51e67e07f80f4b62412af0777fb837cc37353968f331e7c	4 doc-a#rules=471 doc-b#flow=289
+embedding section "pricing rules overview" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding section "pricing rules overview" filter#1 repo=true	0fd6c5e34f02ccb5d51e67e07f80f4b62412af0777fb837cc37353968f331e7c	4 doc-a#rules=471 doc-b#flow=289
+embedding section "pricing rules overview" filter#2 repo=false	0fd6c5e34f02ccb5d51e67e07f80f4b62412af0777fb837cc37353968f331e7c	4 doc-a#rules=471 doc-b#flow=289
+embedding section "pricing rules overview" filter#2 repo=true	0fd6c5e34f02ccb5d51e67e07f80f4b62412af0777fb837cc37353968f331e7c	4 doc-a#rules=471 doc-b#flow=289
+embedding section "pricing rules overview" filter#3 repo=false	8c8a4ce94b73808d39b2cbfd7f18d539724b2210333bfe7ed14e7cd64bb481cc	2 doc-b#flow=289
+embedding section "pricing rules overview" filter#3 repo=true	8c8a4ce94b73808d39b2cbfd7f18d539724b2210333bfe7ed14e7cd64bb481cc	2 doc-b#flow=289
+embedding section "zzz" filter#0 repo=false	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding section "zzz" filter#0 repo=true	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding section "zzz" filter#1 repo=false	7daed43814b633951fa277cd01695574df6e05a9cb10523f1763e842b06be0ff	0 
+embedding section "zzz" filter#1 repo=true	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding section "zzz" filter#2 repo=false	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding section "zzz" filter#2 repo=true	0b0bd7ca2acebad288fe09c9d9595f1f1c8e91de8d0a6762dad9f009f2f8240d	4 
+embedding section "zzz" filter#3 repo=false	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding section "zzz" filter#3 repo=true	5749fdd6b67e4204b3047ba33540bc87f60c84d784a46c6307c78299f8fa67e9	2 
+embedding type "alpha" filter#0 repo=false	0fc5165686190ca845407c03ad4572e801265487ce3d352487f32016af34ed05	1 
+embedding type "alpha" filter#2 repo=false	0fc5165686190ca845407c03ad4572e801265487ce3d352487f32016af34ed05	1 
+embedding type "alpha" filter#3 repo=false	0fc5165686190ca845407c03ad4572e801265487ce3d352487f32016af34ed05	1 
+embedding type "checkout flow" filter#0 repo=false	0fc5165686190ca845407c03ad4572e801265487ce3d352487f32016af34ed05	1 
+embedding type "checkout flow" filter#2 repo=false	0fc5165686190ca845407c03ad4572e801265487ce3d352487f32016af34ed05	1 
+embedding type "checkout flow" filter#3 repo=false	0fc5165686190ca845407c03ad4572e801265487ce3d352487f32016af34ed05	1 
+embedding type "compute totals" filter#0 repo=false	0fc5165686190ca845407c03ad4572e801265487ce3d352487f32016af34ed05	1 
+embedding type "compute totals" filter#2 repo=false	0fc5165686190ca845407c03ad4572e801265487ce3d352487f32016af34ed05	1 
+embedding type "compute totals" filter#3 repo=false	0fc5165686190ca845407c03ad4572e801265487ce3d352487f32016af34ed05	1 
+embedding type "pricing rules overview" filter#0 repo=false	e31545bb750c195a3822f0d985de0a6d4bb57412731f797f46a053a968db4713	1 rust-analyzer cargo a 0.1.0 Widget#=333
+embedding type "pricing rules overview" filter#2 repo=false	e31545bb750c195a3822f0d985de0a6d4bb57412731f797f46a053a968db4713	1 rust-analyzer cargo a 0.1.0 Widget#=333
+embedding type "pricing rules overview" filter#3 repo=false	e31545bb750c195a3822f0d985de0a6d4bb57412731f797f46a053a968db4713	1 rust-analyzer cargo a 0.1.0 Widget#=333
+embedding type "zzz" filter#0 repo=false	0fc5165686190ca845407c03ad4572e801265487ce3d352487f32016af34ed05	1 
+embedding type "zzz" filter#2 repo=false	0fc5165686190ca845407c03ad4572e801265487ce3d352487f32016af34ed05	1 
+embedding type "zzz" filter#3 repo=false	0fc5165686190ca845407c03ad4572e801265487ce3d352487f32016af34ed05	1 
+mcp-audit_doc_region {"against":"corpus","doc_path":"crates/a/README.md"}	3d04743aa825613cad582b597f03029ff1a728b4f2de8969afa577e0eb32e22b	{"confidence":"medium","confidence_signals":{"spread":2.23365490781606
+mcp-audit_doc_region {"against":"corpus","doc_path":"docs/b.md"}	d2437cc15a78d75d496412d83103b83749f036fb811e4ee2503d1a8cefeb2c63	{"confidence":"low","confidence_signals":{"spread":1.4113650819783843,
+mcp-audit_doc_region {"against":"corpus","doc_path":"docs/ontology/entities/checkout.md"}	113734c80a49e3a0408d97439ff36db54ac1f81753d51c4e5471b0465502338f	{"confidence":"low","confidence_signals":{"spread":0.0,"top_score":0.0
+mcp-audit_doc_region {"against":"corpus","doc_path":"docs/ontology/values/role/doc.md"}	389a7a50edbf28e0b4a84fb46b2aa4cf226a72615508f2bc0faf283a3cd8255d	{"confidence":"low","confidence_signals":{"spread":0.0,"top_score":0.0
+mcp-audit_doc_region {"against":"corpus","doc_path":"no/such.md"}	317049e73c43f9bec729afdcf83b0b034fdc1a5fd8c1e36b0aeb322079c95b78	{"error":"audit_doc_region: no Doc found with path or id `no/such.md`.
+mcp-audit_doc_region {"against":"no-such-repo","doc_path":"docs/a.md"}	acff41c611b985b439d5ea09fce27be161f18775cddee0343311692a926b22f5	{"error":"audit_doc_region: unknown `against` repo identifier `no-such
+mcp-classify_file_coupling {"path":".doc-lint.toml"}	7c0fc42d1f2da59323b7dbccf73688f6d739045634bbac17f230bd7ffda89bd6	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
+mcp-classify_file_coupling {"path":"crates/a/src/lib.rs"}	db9769622208866a98d3b86d542d793f0c2d7427ec8928238568b21114114364	{"explanation":"Partial coupling — between the minimal and heavy tiers
+mcp-classify_file_coupling {"path":"crates/a/src/lib.rs"} #2	db9769622208866a98d3b86d542d793f0c2d7427ec8928238568b21114114364	{"explanation":"Partial coupling — between the minimal and heavy tiers
+mcp-classify_file_coupling {"path":"crates/b/src/lib.rs"}	389227e68e98e29f4c4eaf11b8bbf43dc33938dafb2bf05ca294f21e6ab58568	{"explanation":"Partial coupling — between the minimal and heavy tiers
+mcp-classify_file_coupling {"path":"crates/b/src/lib.rs"} #2	389227e68e98e29f4c4eaf11b8bbf43dc33938dafb2bf05ca294f21e6ab58568	{"explanation":"Partial coupling — between the minimal and heavy tiers
+mcp-classify_file_coupling {"path":"math.py"}	acc6af2b9ce7df7ecc261ef87782717253629b13e69598872d41e2e8b8e7b936	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
+mcp-classify_file_coupling {"path":"no/such.rs"}	33d85260441f36bd52a4af4ee61bf542b0cd7a9a0ab2a6707aa3ec3694a158f6	{"error":"classify_file_coupling: unknown path `no/such.rs` — not foun
+mcp-classify_file_coupling {"path":"tests/test_math.py"}	5706a56f48d671d29d0547b4fed9068c27e572bf1dd746e9912c331f915c7d4c	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
+mcp-classify_file_coupling {"path":"widget.py"}	f0392d6f82a2602d10c0427944e04e64f3ed79f3f96e612f4bbf18d9716b0079	{"error":"classify_file_coupling: unknown path `widget.py` — not found
+mcp-context_for {"id":"axis-role"}	e50a654d643ed0801043ed452b4ea87f723acf8ba4530752a30a503487b32afd	{"centre":{"doc_kind":"","id":"axis-role","kind":"doc","path":"docs/on
+mcp-context_for {"id":"checkout"}	755c6374a01a7af50d35b32500340fcba80a569d5b65f1634eab95b3b7408a9e	{"centre":{"entity_class":"","id":"checkout","kind":"entity","summary"
+mcp-context_for {"id":"crate-a"}	c65199e8ea4c46b5dfc4904bfa8de27266ed07228e8fa41013aa7f00469e59c3	{"centre":{"doc_kind":"","id":"crate-a","kind":"doc","path":"crates/a/
+mcp-context_for {"id":"doc-a"}	a723124522973f196684857409d91fda7993495cf7e217acb7041328e12fda10	{"centre":{"doc_kind":"","id":"doc-a","kind":"doc","path":"docs/a.md",
+mcp-context_for {"id":"entity-checkout"}	83a3e7b1cdec7081666921eeed1026a4a953124eaf4a63e5d7dcd7463d24eecf	{"centre":{"doc_kind":"","id":"entity-checkout","kind":"doc","path":"d
+mcp-context_for {"id":"entity-pricing"}	8cf0936dc9b7f03a537b22bcb643ae0b7510e16e7d80eba6f7ad3cc7b5274a06	{"centre":{"doc_kind":"","id":"entity-pricing","kind":"doc","path":"do
+mcp-context_for {"id":"no-such-id"}	3cb1e905a8c3638c6669babb2e133ec3332e5e87b46784a8a6d3e35a8232a153	{"error":"context_for: unknown id `no-such-id` — not found in Doc, Ent
+mcp-context_for {"id":"pricing"}	59763403b19acc4f49184ac5e905358f70c4e0043314039329809d9cfccb1138	{"centre":{"entity_class":"","id":"pricing","kind":"entity","summary":
+mcp-context_for {"id":"rust-analyzer cargo a 0.1.0 Widget#render()."}	8c021ca1ec0beee12290e34d56389ad97d3169d97a7d300f36164f8a7b255e74	{"centre":{"id":"rust-analyzer cargo a 0.1.0 Widget#render().","kind":
+mcp-context_for {"id":"rust-analyzer cargo a 0.1.0 orchestrate()."}	a257c6ed7c34c4d425b6c8c0964560e0a3c44aed2be80309ed0de08d3cc9ef70	{"centre":{"id":"rust-analyzer cargo a 0.1.0 orchestrate().","kind":"f
+mcp-context_for {"id":"rust-analyzer cargo b 0.1.0 compute()."}	bebead8f02eeb40061b032deb09bb5220632daf24ab12915b9231354577a6730	{"centre":{"id":"rust-analyzer cargo b 0.1.0 compute().","kind":"funct
+mcp-context_for {"id":"value-role-doc"}	9bb168d57803dd1b505904f47502f5c0cc42128355393a9137676a8c50c39830	{"centre":{"doc_kind":"","id":"value-role-doc","kind":"doc","path":"do
+mcp-list_files {"language":"rust"}	e4911898d007aeddb95da71191f9f2ec2c2bb6115ac9aa2b13931b108259f5e2	{"files":[{"language":"rust","last_touched":"<T>","loc":3,"path":"crat
+mcp-list_files {"offset":1,"top":2}	2de767c31d3f0e0f3372fd04469257ea29701d3f4b689ea04da7052820cca01e	{"files":[{"language":"rust","last_touched":"<T>","loc":3,"path":"crat
+mcp-list_files {"substring":"lib"}	e4911898d007aeddb95da71191f9f2ec2c2bb6115ac9aa2b13931b108259f5e2	{"files":[{"language":"rust","last_touched":"<T>","loc":3,"path":"crat
+mcp-list_files {}	7dac0ddecacb5b5db2d29702287d0a5965e35df70650cd0a44eb487e4472001a	{"files":[{"language":"toml","last_touched":"<T>","loc":3,"path":".doc
+mcp-list_findings {"kind":"todo"}	aec07e2e332ce4e7049140bdd85feedc813bb73651ff571bb292b8aa61c91812	{"findings":[{"file":"crates/a/src/lib.rs","id":"crates/a/src/lib.rs:1
+mcp-list_findings {"severity":"warning"}	49eaee913b8ed76395b764384090fe67f8b58102636993f884412324016f0efe	{"findings":[{"file":"crates/b/src/lib.rs","id":"crates/b/src/lib.rs:1
+mcp-list_findings {}	a25d2efab08a35f2cac3a208059cb34077244e746a56ab082c235da5ba01efde	{"findings":[{"file":"crates/b/src/lib.rs","id":"crates/b/src/lib.rs:1
+mcp-list_migrations {"since":1}	3e12c9162e7d7ed2c89cb4fa5cfeabc92756156f9110f1ca33b6cfd44d001b38	{"migrations":[],"offset":0,"returned":0,"total":0}
+mcp-list_migrations {}	3e12c9162e7d7ed2c89cb4fa5cfeabc92756156f9110f1ca33b6cfd44d001b38	{"migrations":[],"offset":0,"returned":0,"total":0}
+mcp-list_modules {"kind":"crate"}	7e80ed2c1b13d4f6276d2369f004322c3b12afed220dd0d9312dbf7a21cd988f	{"modules":[],"offset":0,"returned":0,"total":0}
+mcp-list_modules {"substring":"a"}	7e80ed2c1b13d4f6276d2369f004322c3b12afed220dd0d9312dbf7a21cd988f	{"modules":[],"offset":0,"returned":0,"total":0}
+mcp-list_modules {}	7e80ed2c1b13d4f6276d2369f004322c3b12afed220dd0d9312dbf7a21cd988f	{"modules":[],"offset":0,"returned":0,"total":0}
+mcp-list_repos {}	77150c15afeea159a437c3c800d641492ac7ac82d9133514750273f51e97b580	{"offset":0,"repos":[{"id":"<ROOT>","name":"corpus","root_path":"<ROOT
+mcp-list_types {"crate":"a"}	0d8fb3620b4682545618baa3e8e39189636cd329295a68b11677096147fe3ab8	{"offset":0,"returned":1,"total":1,"types":[{"crate":"a","file":"crate
+mcp-list_types {"kind":"struct"}	0d8fb3620b4682545618baa3e8e39189636cd329295a68b11677096147fe3ab8	{"offset":0,"returned":1,"total":1,"types":[{"crate":"a","file":"crate
+mcp-list_types {"substring":"i"}	0d8fb3620b4682545618baa3e8e39189636cd329295a68b11677096147fe3ab8	{"offset":0,"returned":1,"total":1,"types":[{"crate":"a","file":"crate
+mcp-list_types {}	0d8fb3620b4682545618baa3e8e39189636cd329295a68b11677096147fe3ab8	{"offset":0,"returned":1,"total":1,"types":[{"crate":"a","file":"crate
+mcp-query_doc_neighbors {"by":"all","id":"axis-role"}	6fdd5250c14194008dbaea8d62794b8f56a08faaa3139060a86cce2a80ce6847	{"by":"all","neighbors":[],"target_id":"axis-role","total":0}
+mcp-query_doc_neighbors {"by":"all","id":"crate-a"}	f8a4efb2ee95664eaaeb4878a68c281a54e9c8d2d98b519f9ba44398d792216f	{"by":"all","neighbors":[],"target_id":"crate-a","total":0}
+mcp-query_doc_neighbors {"by":"all","id":"doc-a"}	cdc1d0bd85a0b913b8bdf63fb0d07dc65b68a72734aa9947267d091723391395	{"by":"all","neighbors":[{"covers_score":1,"fused_score":2,"id":"doc-b
+mcp-query_doc_neighbors {"by":"all","id":"doc-b"}	dbabd54cb90b8f9cdeb36138c26d4c7261d2290465ad6e612f929513312df85c	{"by":"all","neighbors":[{"covers_score":1,"fused_score":2,"id":"doc-a
+mcp-query_doc_neighbors {"by":"all","id":"entity-checkout"}	e6dc90ae868bceff533089b523665d4b85786cccfdd96125982d33d971cc85d2	{"by":"all","neighbors":[],"target_id":"entity-checkout","total":0}
+mcp-query_doc_neighbors {"by":"all","id":"entity-pricing"}	e6efee2734955cf0b43400852a396a8da01b36527d94782071f4e310ec61ed2a	{"by":"all","neighbors":[],"target_id":"entity-pricing","total":0}
+mcp-query_doc_neighbors {"by":"all","id":"value-role-doc"}	7d93940c33a1b6432f644d2ee5aeb27ba81ce9495ecf1154746c66b08531be0a	{"by":"all","neighbors":[],"target_id":"value-role-doc","total":0}
+mcp-query_doc_neighbors {"by":"all","id":"value-role-index"}	b38af2ac046270b3939e88f996b645ff9ed26648c7b622e2ac7381c4d4fd7230	{"by":"all","neighbors":[],"target_id":"value-role-index","total":0}
+mcp-query_doc_neighbors {"by":"covers","id":"axis-role"}	a32d10a85ab38fd6753a3cea90f4fc31549fbe79ecfbe90b5805a8b23021cdb9	{"by":"covers","neighbors":[],"target_id":"axis-role","total":0}
+mcp-query_doc_neighbors {"by":"covers","id":"crate-a"}	b43eb0b4426244513f8b9fc925e803a80663e4604c75bdf0ffa126a29080b3d2	{"by":"covers","neighbors":[],"target_id":"crate-a","total":0}
+mcp-query_doc_neighbors {"by":"covers","id":"doc-a"}	2fc99ac796c059e31efd162231078befdfc4d8d44c49229db991f805de584797	{"by":"covers","neighbors":[{"id":"doc-b","shared_count":1,"shared_ent
+mcp-query_doc_neighbors {"by":"covers","id":"doc-b"}	ca2eb155101699d86c37b4631ef3360df33263fe698caa2fec0a201a2370c425	{"by":"covers","neighbors":[{"id":"doc-a","shared_count":1,"shared_ent
+mcp-query_doc_neighbors {"by":"covers","id":"entity-checkout"}	199e9621d3e9558592770dc157e64cd505b5ef698db03768732deb9fdbc44ec2	{"by":"covers","neighbors":[],"target_id":"entity-checkout","total":0}
+mcp-query_doc_neighbors {"by":"covers","id":"entity-pricing"}	30a9227a25bd4cd8cf2aaa7ba2a5095a94a39578a40d6d2eb22dc5c597e9e475	{"by":"covers","neighbors":[],"target_id":"entity-pricing","total":0}
+mcp-query_doc_neighbors {"by":"covers","id":"value-role-doc"}	b66d4547c715e3a75b0e326a83f5067c6a768d921a79def114ac20ac67b51864	{"by":"covers","neighbors":[],"target_id":"value-role-doc","total":0}
+mcp-query_doc_neighbors {"by":"covers","id":"value-role-index"}	3b7fd0a9394a567b042811b42baeb25c02cad337abe8cdcd49192ee9020edeed	{"by":"covers","neighbors":[],"target_id":"value-role-index","total":0
+mcp-query_doc_neighbors {"by":"wikilink","id":"axis-role"}	1c22c24cd44c06be6a46cc99756e73e523d70cfcd0aa747abc979ad603cc5525	{"by":"wikilink","neighbors":[],"target_id":"axis-role","total":0}
+mcp-query_doc_neighbors {"by":"wikilink","id":"crate-a"}	ca121ed678dc4f66cbddbda206bd7e54068e33a838ba8b9279e91938a1043903	{"by":"wikilink","neighbors":[],"target_id":"crate-a","total":0}
+mcp-query_doc_neighbors {"by":"wikilink","id":"doc-a"}	9e8bc1fc2ffacce94fec4879cb9ca3359bc6eec927999e9bbd81a22ccfd9e8e7	{"by":"wikilink","neighbors":[{"id":"doc-b","shared_count":1,"shared_e
+mcp-query_doc_neighbors {"by":"wikilink","id":"doc-b"}	5dd226dbb1cb35933fcdc2cd09156da468a0fd80c428d8de4cc27efe5ca909c9	{"by":"wikilink","neighbors":[{"id":"doc-a","shared_count":1,"shared_e
+mcp-query_doc_neighbors {"by":"wikilink","id":"entity-checkout"}	1971db14518556a3e3d1b5471b4937819eeb5b230b15eb770e1993640b0e7b8d	{"by":"wikilink","neighbors":[],"target_id":"entity-checkout","total":
+mcp-query_doc_neighbors {"by":"wikilink","id":"entity-pricing"}	4adb842e66c033324ee4aae249fa705a5489b69544cfd0fe1ac04d077192d386	{"by":"wikilink","neighbors":[],"target_id":"entity-pricing","total":0
+mcp-query_doc_neighbors {"by":"wikilink","id":"value-role-doc"}	d25a22b90d67f15edb6df9bedb23a0f009f3cead299bf25dd4047a64a6e5cc9e	{"by":"wikilink","neighbors":[],"target_id":"value-role-doc","total":0
+mcp-query_doc_neighbors {"by":"wikilink","id":"value-role-index"}	3c8ced131268f963152b7f28c198fef20676fb9b3eefb64094b0bc4ab907bb9a	{"by":"wikilink","neighbors":[],"target_id":"value-role-index","total"
+mcp-query_entity_neighbors {"by":"co-cover","id":"checkout"}	f8442c4a73d801051815513424398d52e2b64b4000d7019e66a36bd662708e71	{"by":"co-cover","neighbors":[{"display":"pricing","id":"pricing","sha
+mcp-query_entity_neighbors {"by":"co-cover","id":"pricing"}	d2ef31ea78ab045a97960622f0fba3f22fe9ec4ff5b2a9cdbe5a8027df5aad55	{"by":"co-cover","neighbors":[{"display":"checkout","id":"checkout","s
+mcp-query_entity_neighbors {"by":"related","id":"checkout"}	170989bcf3752d02d5b6b90581b71bfba9e3011cdf7fffe1e78c1080182434d3	{"by":"related","neighbors":[],"target_id":"checkout","total":0}
+mcp-query_entity_neighbors {"by":"related","id":"pricing"}	d8743b09a742120497a794b1d802b9acffc9f99457b583478a975485075ffd1a	{"by":"related","neighbors":[],"target_id":"pricing","total":0}
+mcp-query_schema {}	45f4529b905384e17a3bdd840e3ad248527dde89a9b884b7f2b972de8da78420	{"freshness":{"hint":"compare max_file_touched against the current git
+mcp-query_similar {"source_repo":"corpus","text":"pricing","type":"doc"}	8c42c1b5d01aceaa5452035d038eadb7780b70072c877b0c96ca505a77b1cc37	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"cache","top":4,"type":"all"}	94c0311cedd2297e3afaf1e78a68d72ac7a9019e7553c80a1ed308181f4b4e47	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"cache","top":4,"type":"doc"}	67e04fb5c8b943367ae3211735b74c49cd9cafefdd680c9fb64a9ca676766511	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"cache","top":4,"type":"entity"}	468424dcb0901800ef127b9c4cc1806120e3a7a57ed7fde4b515b39e125704fc	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"cache","top":4,"type":"function"}	f31045ea70fe9c1ff902744465e2e8179a51665022e6981afbcec34a67686fb1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"cache","top":4,"type":"section"}	a4316c3153e1bace32b3d40e5ccdc0bba188e231231c5d018b4e4a115b676296	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"cache","top":4,"type":"type"}	76c0331208a6d5fd27c53afd4e20b7cb6721ecb28e6876d0118eb5a57fb0e187	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"checkout totals compute","top":4,"type":"all"}	96e3a306e45d067197bfc8330a195974822c70c8b3167afd1c48148ca688fb64	{"algorithm":"bm25","confidence":"medium","confidence_signals":{"sprea
+mcp-query_similar {"text":"checkout totals compute","top":4,"type":"doc"}	ef845926b2d7a5792cd4517a0400d271a3148db968c5bd41d548fd2a1b76ead3	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"checkout totals compute","top":4,"type":"entity"}	9e3171c8ad9fa91ed813824df221046fb8f609d6d4b28f4700c68af1d9198e0f	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"checkout totals compute","top":4,"type":"function"}	54dc4e4be9074573d63b7734258268be9776a85125bed3ddbf180dd831795697	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"checkout totals compute","top":4,"type":"section"}	07f2a92c3481a98055779a9966b92135dfbf597fe8b9778a0252a4a079a25da8	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"checkout totals compute","top":4,"type":"type"}	5749699de90d3fe267dc392b64d1a6ffc209d9d597d49f4d7dbb6a950152a6a1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"pricing rules","top":4,"type":"all"}	b2714c1f0c384af0994bb87172408b31e2ff66bb1bc7ac98419c21b9d90f51e2	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"pricing rules","top":4,"type":"doc"}	e6c96f1668e2a233cca9254f79f7dcfc45a46d9397d013f81da34d50c82fcf7d	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"pricing rules","top":4,"type":"entity"}	2be47b480f50307cad27b1fb4352112bba9c9188fce4e4c5e193a5d467c7032a	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"pricing rules","top":4,"type":"function"}	7ef8cf4744570630296db08a15c73125973a7fbaa506744b753995624c029033	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"pricing rules","top":4,"type":"section"}	dc6201054da0f721d719008f3fa7911962d09f41540d0276ce7e0cf8fa37c687	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"pricing rules","top":4,"type":"type"}	ebc7e2cc9275e0ce33b79337303d6537db50a2f13e65d0892fc561b8a1ef80eb	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-query_similar {"text":"pricing","type":"doc","with_tag":"two"}	3e4df0d7fd7653ad861c0bfaf456c098e43c6b9aed0ff5d11c268e62ceb2bc4c	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
+mcp-suggest_tags_for_doc {"doc_id":"axis-role"}	68c848de670ad7dac9b50f56a25d342751f302c6360deee5575231619859c8c7	{"current_tags":[],"doc_id":"axis-role","family_suggestions":[],"sugge
+mcp-suggest_tags_for_doc {"doc_id":"crate-a"}	65f1fb9d4a0bfaec618e6d3469fb70862a26dc65e86266b16d21493864ede9fb	{"current_tags":[],"doc_id":"crate-a","family_suggestions":[],"suggest
+mcp-suggest_tags_for_doc {"doc_id":"doc-a"}	32ae9e2c7d033c7c3be18d7c72705d6085c735a09f433068e6e2d5cbe90033c9	{"current_tags":["one","two"],"doc_id":"doc-a","family_suggestions":[]
+mcp-suggest_tags_for_doc {"doc_id":"doc-b"}	13ff4b6c980c20906e2bdb3f2046509fbdbb61939d21995c7a522dc7cccf2a44	{"current_tags":["two"],"doc_id":"doc-b","family_suggestions":[],"sugg
+mcp-suggest_tags_for_doc {"doc_id":"entity-checkout"}	7edf88e5fd1f2a8f0ce1f65cc83705bf838085e6dcf95900f3a415ed18094454	{"current_tags":[],"doc_id":"entity-checkout","family_suggestions":[],
+mcp-suggest_tags_for_doc {"doc_id":"entity-pricing"}	922cb17ba1ca6130b00bce6497fe44f5d38eaafbb2d105747a42bc7283c88d9e	{"current_tags":[],"doc_id":"entity-pricing","family_suggestions":[],"
+mcp-suggest_tags_for_doc {"doc_id":"no-such-doc"}	a66d5110d6deadb2ee300034b2280c3b36b38a2c425a0824e2499c56fe94f6aa	{"error":"suggest_tags_for_doc: unknown doc id `no-such-doc`"}
+mcp-suggest_tags_for_doc {"doc_id":"value-role-doc"}	a9f4c41353ca684020f0e9cef7dc7c19ab7afdb00cabd69cbca7dfea67d3c420	{"current_tags":[],"doc_id":"value-role-doc","family_suggestions":[],"
+mcp-suggest_tags_for_doc {"doc_id":"value-role-index"}	da17f6a969fb2fa2bb0f6c9ffab38f65912287c3f950b915004c690cab79d099	{"current_tags":[],"doc_id":"value-role-index","family_suggestions":[]
+mcp-twin SELECT count(*) AS n FROM Doc	5cfb23efb900509a3f00862768729f92b8af4a3893f78533aa3ea5fa074e4073	{"columns":["n"],"row_count":1,"rows":[{"n":8}],"truncated":false}
+mcp-twin SELECT id FROM Doc WHERE id REGEXP 'doc' ORDER BY id	283e33fc3cb40a68241d6fca0e3d75c3eb6b2989e349b2a054304877c5f3d9fd	{"columns":["id"],"row_count":0,"rows":[],"truncated":false}
+mcp-twin SELECT id FROM Doc WHERE id REGEXP 'doc-.*' ORDER BY id	075bda3a5213ab4506b0ecc05187a0b938b31b19aca49264fdde7614f6c09730	{"columns":["id"],"row_count":2,"rows":[{"id":"doc-a"},{"id":"doc-b"}]
+mcp-twin SELECT id FROM Doc WHERE title REGEXP '(?i)al.*' ORDER BY id	1226d8b310da989a3d723bdc12c68a256e258c946839bb971f023fdff1f19046	{"columns":["id"],"row_count":1,"rows":[{"id":"doc-a"}],"truncated":fa
+mcp-twin SELECT id, role FROM Doc ORDER BY id	6c3af3a1c6292ce55ab9fb78e0af02f210a9a23f0d17e47093d9f0aeabf5c83e	{"columns":["id","role"],"row_count":8,"rows":[{"id":"axis-role","role
+mcp-twin SELECT path AS p FROM File WHERE path REGEXP '.*\.rs' ORDER BY p	87bf7e26ea7d342e243d067a97ae2b134b224714b244c46554e7a5e7c6cb9600	{"columns":["p"],"row_count":2,"rows":[{"p":"crates/a/src/lib.rs"},{"p
+mcp-twin SELECT src AS doc, dst AS ent FROM COVERS ORDER BY doc, ent	ceb38df216ba7c37d6401833c9ed7e06551db81cb3fd4d4f9d3c04f884e6f17a	{"columns":["doc","ent"],"row_count":3,"rows":[{"doc":"doc-a","ent":"p
+mcp-twin SELECT symbol AS s FROM Function WHERE symbol REGEXP '.*compute.*' ORDER BY s	e3d0c6084053a52d001ef939444648d19ece8c501ffc3c77dd48ae58885f3f66	{"columns":["s"],"row_count":1,"rows":[{"s":"rust-analyzer cargo b 0.1

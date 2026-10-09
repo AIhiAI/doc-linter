@@ -1,0 +1,9 @@
+-- name: corpus-entity-shape-summary
+-- params: 
+WITH c AS (SELECT (SELECT count(*) FROM Entity) AS total_entities,
+  (SELECT count(*) FROM Entity e2 WHERE substr(e2.description, 1, length('Cluster anchored on')) = 'Cluster anchored on') AS cluster_derived,
+  (SELECT count(*) FROM Entity e3 WHERE NOT (substr(e3.description, 1, length('Cluster anchored on')) = 'Cluster anchored on') AND e3.description IS NOT NULL AND e3.description <> '') AS promoted,
+  (SELECT count(*) FROM Entity e4 WHERE substr(e4.description, 1, length('Cluster anchored on')) = 'Cluster anchored on' AND (instr(e4.description, 'density 0.00') > 0 OR instr(e4.description, 'density 0.01') > 0 OR instr(e4.description, 'density 0.02') > 0 OR instr(e4.description, 'density 0.03') > 0 OR instr(e4.description, 'density 0.04') > 0 OR instr(e4.description, 'density 0.05') > 0 OR instr(e4.description, 'density 0.06') > 0 OR instr(e4.description, 'density 0.07') > 0 OR instr(e4.description, 'density 0.08') > 0 OR instr(e4.description, 'density 0.09') > 0)) AS fact_entities,
+  (SELECT count(*) FROM Entity e5 WHERE substr(e5.description, 1, length('Cluster anchored on')) = 'Cluster anchored on' AND (instr(e5.description, 'density 0.10') > 0 OR instr(e5.description, 'density 0.11') > 0 OR instr(e5.description, 'density 0.12') > 0 OR instr(e5.description, 'density 0.13') > 0 OR instr(e5.description, 'density 0.14') > 0 OR instr(e5.description, 'density 0.15') > 0 OR instr(e5.description, 'density 0.16') > 0 OR instr(e5.description, 'density 0.17') > 0 OR instr(e5.description, 'density 0.18') > 0 OR instr(e5.description, 'density 0.19') > 0)) AS mid_entities)
+SELECT total_entities, cluster_derived, promoted, fact_entities, mid_entities,
+       cluster_derived - fact_entities - mid_entities AS pattern_entities_likely FROM c;
