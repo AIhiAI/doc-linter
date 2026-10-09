@@ -44,4 +44,6 @@ Line numbers refer to the tree at the commit that added this page; re-check afte
 
 ## Not verified
 
-No Java, C# or Dart repository is exercised end to end in this repository's tests; only synthetic SCIP documents are. Plan item C6 still needs one real small repo per language run through `scip-index` then `check`.
+C# and Dart were run end to end by hand on small real projects; see [language-verification](language-verification.md). That run changes two matrix cells in practice: the C# doc comment on a graph function is raw scip-dotnet markup (a signature fence plus an XML member element), not clean text; Dart doc comments are clean. Neither is exercised by this repository's tests or CI, which still use only synthetic SCIP documents.
+
+No Java repository has been run: the test machine had no JDK. Plan item C6 remains open for Java.
