@@ -339,11 +339,8 @@ pub(crate) fn run(root: &Path, config: &LintConfig) -> Result<ExitCode> {
                 None => eprintln!("doc-linter: indexing {} with {} …", ix.lang, ix.bin),
             }
             cmd.current_dir(root);
-            let status = match ix.load_failure {
-                Some(pattern) => run_summarising(&mut cmd, ix.lang, pattern),
-                None => cmd.status(),
-            }
-            .with_context(|| format!("spawn {}", bin.display()))?;
+            let (status, hints) = run_summarising(&mut cmd, ix.lang, ix.load_failure)
+                .with_context(|| format!("spawn {}", bin.display()))?;
             if status.success() && out.is_file() {
                 if let Err(e) = rebase_document_paths(&out, root) {
                     eprintln!("doc-linter: {} index paths left as-is — {e:#}", ix.lang);
@@ -362,6 +359,9 @@ pub(crate) fn run(root: &Path, config: &LintConfig) -> Result<ExitCode> {
                         String::new()
                     }
                 );
+                for hint in hints {
+                    eprintln!("doc-linter: hint: {hint}");
+                }
                 failed.push(ix.lang);
             }
         }
@@ -442,22 +442,55 @@ fn indexer_bin(ix: &Indexer) -> Option<PathBuf> {
         .or_else(|| which::which(ix.bin).ok())
 }
 
+/// Known "prerequisite missing" indexer messages: `(lang, output substring,
+/// one-line hint)`. A hint is printed only when the indexer fails.
+const PREREQ_HINTS: &[(&str, &str, &str)] = &[
+    (
+        "dart",
+        "Unable to locate packageConfig",
+        "run `dart pub get` (or `flutter pub get`) first",
+    ),
+    (
+        "csharp",
+        "NuGet package restore",
+        "run `dotnet restore` first",
+    ),
+    (
+        "typescript",
+        "Cannot find module",
+        "run `npm install` (or yarn/pnpm install) first",
+    ),
+];
+
+fn prereq_hints(lang: &str, lines: &[String]) -> Vec<&'static str> {
+    let mut out: Vec<&'static str> = Vec::new();
+    for (l, pat, hint) in PREREQ_HINTS {
+        if *l == lang && lines.iter().any(|x| x.contains(pat)) && !out.contains(hint) {
+            out.push(hint);
+        }
+    }
+    out
+}
+
 /// Run `cmd`, passing its output through except lines containing
-/// `pattern`, which are counted and summarised once at the end.
+/// `pattern` (if any), which are counted and summarised once at the end.
+/// Also returns the [`PREREQ_HINTS`] matching its output.
 fn run_summarising(
     cmd: &mut Command,
     lang: &str,
-    pattern: &str,
-) -> std::io::Result<std::process::ExitStatus> {
+    pattern: Option<&str>,
+) -> std::io::Result<(std::process::ExitStatus, Vec<&'static str>)> {
     use std::io::{BufRead, BufReader};
     use std::process::Stdio;
     let mut child = cmd.stdout(Stdio::piped()).stderr(Stdio::piped()).spawn()?;
     let filter = move |stream: Box<dyn std::io::Read + Send>, to_stderr: bool| {
-        let pattern = pattern.to_string();
+        let pattern = pattern.map(str::to_string);
         std::thread::spawn(move || {
             let mut hits: Vec<String> = Vec::new();
+            let mut all: Vec<String> = Vec::new();
             for line in BufReader::new(stream).lines().map_while(Result::ok) {
-                if line.contains(&pattern) {
+                all.push(line.clone());
+                if pattern.as_deref().is_some_and(|p| line.contains(p)) {
                     hits.push(line);
                 } else if to_stderr {
                     eprintln!("{line}");
@@ -465,21 +498,22 @@ fn run_summarising(
                     println!("{line}");
                 }
             }
-            hits
+            (hits, all)
         })
     };
     let out = child.stdout.take().map(|s| filter(Box::new(s), false));
     let err = child.stderr.take().map(|s| filter(Box::new(s), true));
     let status = child.wait()?;
-    let hits: Vec<String> = [out, err]
+    let (hits, all): (Vec<Vec<String>>, Vec<Vec<String>>) = [out, err]
         .into_iter()
         .flatten()
-        .flat_map(|h| h.join().unwrap_or_default())
-        .collect();
+        .map(|h| h.join().unwrap_or_default())
+        .unzip();
+    let hits: Vec<String> = hits.concat();
     if let Some(summary) = load_failure_summary(lang, &hits) {
         eprintln!("doc-linter: {summary}");
     }
-    Ok(status)
+    Ok((status, prereq_hints(lang, &all.concat())))
 }
 
 /// "N project(s) failed to load" with the first few project file names,
@@ -924,6 +958,17 @@ mod tests {
         assert_eq!(bin_env_var(ts), "DOC_LINTER_SCIP_TYPESCRIPT");
         let dart = INDEXERS.iter().find(|i| i.lang == "dart").unwrap();
         assert_eq!(bin_env_var(dart), "DOC_LINTER_SCIP_DART");
+    }
+
+    #[test]
+    fn missing_prerequisite_gets_a_hint() {
+        let out = vec!["ERROR: Unable to locate packageConfig".to_string()];
+        assert_eq!(
+            prereq_hints("dart", &out),
+            ["run `dart pub get` (or `flutter pub get`) first"]
+        );
+        assert!(prereq_hints("rust", &out).is_empty());
+        assert!(prereq_hints("dart", &[]).is_empty());
     }
 
     /// Gap 6: one summary line instead of one line per failed project.
