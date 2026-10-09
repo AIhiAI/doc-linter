@@ -61,12 +61,13 @@ doc-linter ontology accept --all [--min-confidence 0.5] [--dry-run]
 
 - `propose` reads the graph (needs a prior `check`; otherwise errors with "run `doc-linter check` first"), prints a table (name, members, confidence, top files, a sample doc comment) and writes the proposals JSON. That file is the only state `accept` reads, so `accept` never re-clusters and is deterministic between the two commands. `propose` writes nothing under `docs/`.
 - `accept` refuses names not in the proposals file and names that already have `docs/ontology/entities/<name>.md` (same rule as `emit_candidate_stubs`). Exit 0 on success, 1 if any name was refused, 2 on internal error.
+- `accept` writes only values the repo's ontology registers: the `doc` role, kind `explanation` (else `reference`, else the first registered), lifecycle `draft` (else `implementing`, else the first the role allows). A repo with no ontology has no `doc` role, so `accept` refuses with "run `doc-linter init` first" and writes nothing.
 - `cluster --write` and `--promote` stay as the low-level path; `ontology accept` is the first-run path and writes `status: stable` directly, keeping `confidence`.
 
 ### What accept writes (two files per concept)
 
 1. `docs/ontology/entities/<name>.md`: the frontmatter of `render_candidate_stub` (`role: ontology-entity`, `axis_id: covers`, `value_id`, `display`, `description`, `synonyms` from the next-ranked tokens, `source_modules`), `status: stable`.
-2. `docs/explanations/<name>.md`: a narrative doc, `role: doc`, `kind: explanation`, `lifecycle: draft`, `status: draft`, `covers: [<name>]`, with real content from the code and no empty placeholders:
+2. `docs/explanations/concept-<name>.md`: a narrative doc, `role: doc`, `kind: explanation`, `lifecycle: draft`, `status: draft`, `covers: [<name>]`, with real content from the code and no empty placeholders:
    - Summary: first sentence of the best member doc comment, else the synthesized description.
    - "What it contains": top 5 functions by in-degree with signature and the first line of their doc comment, plus the cluster's types.
    - "Where it lives": source files and how many functions each contributes.
@@ -82,7 +83,7 @@ check (SCIP + docs) -> graph (Function, Type, CALLS, doc_comment, [embeddings])
   -> ontology propose: edges (calls + token-affinity + [embedding])
        -> discover_clusters -> name (TF-IDF [+ namer_command]) -> proposals.json + table
   -> ontology accept: read proposals.json, read member details from the graph
-       -> write entities/<name>.md + explanations/<name>.md
+       -> write entities/<name>.md + explanations/concept-<name>.md
   -> check (re-run): entity has a covering doc; vocabulary closure picks it up
 ```
 
@@ -104,7 +105,7 @@ Graph and MCP tests no longer need `--test-threads=1` now that Kuzu is gone (the
 ## Decisions taken at build time
 
 1. A single dominant token is an acceptable name (`user`, `invoice`); a stoplist of generic words (get, set, new, handle, helper, util, data, config and similar, plus `vale_ambiguous_words`) rejects the generic ones. `code_comments::COMMENT_STOPWORDS` is not merged: it lists real domain nouns such as Session and Report.
-2. Accepted narrative docs are written directly to `docs/explanations/<name>.md` and the entity to `docs/ontology/entities/<name>.md`; there is no staging directory.
+2. Accepted narrative docs are written directly to `docs/explanations/concept-<name>.md` and the entity to `docs/ontology/entities/<name>.md`; there is no staging directory.
 3. There is no `accept --all`. Every entity comes with a narrative built from real code (top functions with signatures, types, files, verbatim doc comments with file and line). A cluster with fewer than 2 members that have a signature or doc comment to cite is refused and writes nothing.
 4. The proposer reads only through `store::typed` (`concept_symbols`, `concept_calls`, `concept_embeddings`). Stored embeddings live in the vector index and are not readable as a column, so `--embeddings` prints that it found nothing to read and proceeds without those edges.
 5. Languages whose indexer emits no SCIP documentation propose from identifiers alone, as before (see [`docs/launch/language-support.md`](../launch/language-support.md)).

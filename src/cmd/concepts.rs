@@ -59,7 +59,7 @@ const GENERIC: &[&str] = &[
     "should", "would", "could", "may", "might", "return", "returns", "returned", "self", "mut",
     "pub", "crate", "fixture", "internal", "private", "public", "object", "string", "bool", "true",
     "false", "none", "some", "text", "name", "names", "key", "keys", "path", "file", "files",
-    "line", "lines",
+    "line", "lines", "member", "cs",
 ];
 
 fn stop_list(config: &LintConfig) -> HashSet<String> {
@@ -767,6 +767,27 @@ fn fence_for(s: &str) -> String {
     "~".repeat(n)
 }
 
+const NO_DOC_ROLE: &str =
+    "this repo has no ontology (no `doc` role registered): run `doc-linter init` first";
+
+/// First `preferred` value that is registered (and allowed), else the
+/// alphabetically first allowed registered value.
+fn pick_value<'a>(
+    registered: impl Iterator<Item = &'a String>,
+    preferred: &[&str],
+    allowed: Option<&[String]>,
+) -> Option<&'a str> {
+    let mut ok: Vec<&str> = registered
+        .map(String::as_str)
+        .filter(|v| allowed.is_none_or(|a| a.iter().any(|x| x == v)))
+        .collect();
+    ok.sort_unstable();
+    preferred
+        .iter()
+        .find_map(|p| ok.iter().copied().find(|v| v == p))
+        .or_else(|| ok.first().copied())
+}
+
 struct Narrative {
     entity_md: String,
     explanation_md: String,
@@ -824,12 +845,21 @@ fn render_concept(
         .map(|m| first_sentence(&m.doc_comment));
     let summary = best_doc.unwrap_or_else(|| p.description.clone());
 
+    // Only values the repo's ontology registers, else the doc fails lint.
+    let role = ontology.roles.get("doc").ok_or(NO_DOC_ROLE)?;
+    let kind = pick_value(ontology.kinds.keys(), &["explanation", "reference"], None)
+        .ok_or("the ontology registers no kind to give the narrative")?;
+    let lifecycle = pick_value(
+        ontology.lifecycles.keys(),
+        &["draft", "implementing"],
+        role.allowed_lifecycle.as_deref(),
+    )
+    .ok_or("the ontology registers no lifecycle the `doc` role allows")?;
+
     let mut md = String::new();
     md.push_str(&format!(
         "---\nid: concept-{name}\nrole: doc\nkind: {kind}\nlifecycle: {lifecycle}\n\
          title: {title}\nsummary: {summary}\nstatus: draft\nupdated: {today}\ncovers: [{name}]\n---\n\n",
-        kind = if ontology.kinds.contains_key("explanation") { "explanation" } else { "reference" },
-        lifecycle = if ontology.lifecycles.contains_key("draft") { "draft" } else { "implementing" },
         title = yaml_str(&format!("{name}: how it works in the code")),
         summary = yaml_str(&summary),
     ));
@@ -976,7 +1006,7 @@ pub(crate) fn accept(root: &Path, ontology: &Ontology, args: &AcceptArgs) -> Res
             continue;
         }
         let entity_path = root.join(format!("docs/ontology/entities/{name}.md"));
-        let doc_path = root.join(format!("docs/explanations/{name}.md"));
+        let doc_path = root.join(format!("docs/explanations/concept-{name}.md"));
         if existing.contains(name.as_str()) || entity_path.exists() || doc_path.exists() {
             refuse(&format!(
                 "`{name}` already exists (entity or explanation); nothing written"

@@ -152,7 +152,7 @@ fn run_suite() {
     // propose writes nothing under docs/ beyond what init made.
     assert!(!root
         .join("docs/explanations")
-        .join(format!("{billing}.md"))
+        .join(format!("concept-{billing}.md"))
         .exists());
 
     // 5a. Refusals: unknown name, and no --all flag at all.
@@ -174,13 +174,15 @@ fn run_suite() {
     assert!(!root
         .join(format!("docs/ontology/entities/{thin}.md"))
         .exists());
-    assert!(!root.join(format!("docs/explanations/{thin}.md")).exists());
+    assert!(!root
+        .join(format!("docs/explanations/concept-{thin}.md"))
+        .exists());
 
     // 4. Accept billing: both files, real content, lint stays clean.
     let dry = dl(&root, &["ontology", "accept", &billing, "--dry-run"]);
     assert!(dry.status.success());
     assert!(!root
-        .join(format!("docs/explanations/{billing}.md"))
+        .join(format!("docs/explanations/concept-{billing}.md"))
         .exists());
     let out = dl(&root, &["ontology", "accept", &billing]);
     assert!(
@@ -192,7 +194,8 @@ fn run_suite() {
         std::fs::read_to_string(root.join(format!("docs/ontology/entities/{billing}.md"))).unwrap();
     assert!(entity.contains("status: stable") && entity.contains("role: ontology-entity"));
     let narrative =
-        std::fs::read_to_string(root.join(format!("docs/explanations/{billing}.md"))).unwrap();
+        std::fs::read_to_string(root.join(format!("docs/explanations/concept-{billing}.md")))
+            .unwrap();
     assert!(narrative.contains("compute_invoice_total"), "{narrative}");
     assert!(narrative.contains("pub fn compute_invoice_total(invoice: &Invoice) -> Money"));
     assert!(narrative.contains("Sums the invoice line items and tax into one total."));
@@ -201,15 +204,17 @@ fn run_suite() {
     let text = String::from_utf8_lossy(&chk.stdout).to_string();
     let codes = common::diagnostic_codes(&text);
     assert!(
-        !codes
-            .iter()
-            .any(|c| c.contains("orphan") || c.starts_with("unknown") || c.contains("broken")),
+        !codes.iter().any(|c| c.contains("orphan")
+            || c.starts_with("unknown")
+            || c.contains("broken")
+            || c.contains("id-mismatch")),
         "codes after accept: {codes:?}\n{text}"
     );
 
     // 5c. Accepting it again, or onto an existing entity id, refuses and writes nothing new.
     let before =
-        std::fs::read_to_string(root.join(format!("docs/explanations/{billing}.md"))).unwrap();
+        std::fs::read_to_string(root.join(format!("docs/explanations/concept-{billing}.md")))
+            .unwrap();
     let out = dl(&root, &["ontology", "accept", &billing]);
     assert_eq!(out.status.code(), Some(1));
     let out = dl(
@@ -224,11 +229,12 @@ fn run_suite() {
     );
     assert_eq!(out.status.code(), Some(1));
     assert!(!root
-        .join(format!("docs/explanations/{session}.md"))
+        .join(format!("docs/explanations/concept-{session}.md"))
         .exists());
     assert_eq!(
         before,
-        std::fs::read_to_string(root.join(format!("docs/explanations/{billing}.md"))).unwrap()
+        std::fs::read_to_string(root.join(format!("docs/explanations/concept-{billing}.md")))
+            .unwrap()
     );
 
     // Rename at accept time works.
@@ -247,7 +253,7 @@ fn run_suite() {
         "{}",
         String::from_utf8_lossy(&out.stderr)
     );
-    assert!(root.join("docs/explanations/sessions.md").exists());
+    assert!(root.join("docs/explanations/concept-sessions.md").exists());
 
     // 6. Bare `ontology` still prints the JSON dump.
     let out = dl(&root, &["ontology"]);
@@ -263,6 +269,27 @@ fn run_suite() {
     ] {
         assert!(dump.get(key).is_some(), "bare ontology lost `{key}`");
     }
+}
+
+/// Without `init` there is no `doc` role to write: accept refuses with a
+/// one-line instruction and leaves the lint result unchanged.
+#[test]
+fn accept_without_init_refuses_and_adds_no_errors() {
+    let root = unique_tmpdir("concepts-noinit");
+    write_scip(&root.join(".doc-lint/code.scip"));
+    check(&root);
+    let (_, v) = propose_json(&root);
+    let billing = name_with_member(&v, "create_invoice");
+    let codes = |root: &Path| {
+        let chk = dl(root, &["check", "--no-vale", "--format=json"]);
+        common::diagnostic_codes(&String::from_utf8_lossy(&chk.stdout))
+    };
+    let before = codes(&root);
+    let out = dl(&root, &["ontology", "accept", &billing]);
+    assert_eq!(out.status.code(), Some(1));
+    assert!(String::from_utf8_lossy(&out.stderr).contains("run `doc-linter init`"));
+    assert!(!root.join("docs").exists(), "nothing may be written");
+    assert_eq!(codes(&root), before);
 }
 
 #[test]
