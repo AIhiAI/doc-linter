@@ -722,6 +722,10 @@ pub fn run(root: &Path, config: &LintConfig, log_file: Option<PathBuf>) -> Resul
     // file, so `log_handle` is free to drop. If the dup2 fails (rare)
     // stderr keeps pointing at the editor's LSP-output pane, which is
     // still visible to the user.
+    // ponytail: unix only (rustix::stdio does not exist on Windows); there
+    // stderr stays on the editor's output pane. Ceiling: SetStdHandle needs
+    // unsafe/windows-sys, add it if Windows LSP users report protocol noise.
+    #[cfg(unix)]
     let _ = rustix::stdio::dup2_stderr(&log_handle);
     drop(log_handle);
 
