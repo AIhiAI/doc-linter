@@ -512,6 +512,22 @@ pub fn seed_rich(root: &Path) {
             assert!(out.status.success(), "git {args:?}");
         }
     }
+    // File.last_touched is the on-disk mtime at one-second resolution, so
+    // files written either side of a second boundary (slow CI runner) order
+    // differently. Pin every mtime so the recency queries are deterministic.
+    let pinned = std::time::UNIX_EPOCH + std::time::Duration::from_secs(1_700_000_000);
+    for e in walkdir::WalkDir::new(root)
+        .into_iter()
+        .filter_entry(|e| e.file_name() != ".git")
+        .filter_map(Result::ok)
+        .filter(|e| e.file_type().is_file())
+    {
+        std::fs::File::options()
+            .write(true)
+            .open(e.path())
+            .and_then(|f| f.set_modified(pinned))
+            .unwrap();
+    }
 }
 
 /// Regression snapshot of many named results (replaces the Kuzu-versus-SQLite
