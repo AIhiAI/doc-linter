@@ -238,7 +238,7 @@ Coverage history: one row per past `doc-linter check` (docs, entities, functions
 
 Emit the assembled ontology — every axis + value + entity + the migration history. Cold-start endpoint for AI agents discovering the vocabulary they should author docs against.
 
-Subcommands: `propose` groups the code graph into named candidate concepts with no API key and writes `.doc-lint/proposals.json`; `accept <name>` turns one proposal into an ontology entity plus a narrative doc built from the real code. There is no `accept --all`.
+Subcommands: `propose` groups the code graph into named candidate concepts with no API key and writes `proposals.json` in `.doc-lint`; `accept <name>` turns one proposal into an ontology entity plus a narrative doc built from the real code. There is no `accept --all`.
 
 ## `doc-linter ontology propose`
 
@@ -250,7 +250,7 @@ Propose named candidate concepts from the code graph (needs a prior `check`). Lo
 | `--min-members <MIN_MEMBERS>` | `3` | Smallest community that becomes a candidate |
 | `--algorithm <ALGORITHM>` | `leiden` | Community detection: lpa, louvain or leiden |
 | `--json` |  | Print the proposals as JSON instead of a table |
-| `--out <OUT>` | `.doc-lint/proposals.json` | Proposals file `accept` reads |
+| `--out <OUT>` | `proposals.json` in `.doc-lint` | Proposals file `accept` reads |
 
 ## `doc-linter ontology accept`
 
@@ -261,7 +261,7 @@ Write an entity and its narrative doc for each named proposal. Refuses (writing 
 | `<NAME>` |  | Proposal names to accept (at least one; there is no --all) |
 | `--rename <OLD=NEW>` |  | Accept under another name: `--rename old=new`. Repeatable |
 | `--dry-run` |  | Show what would be written and write nothing |
-| `--from <FROM>` | `.doc-lint/proposals.json` | Proposals file written by `propose` |
+| `--from <FROM>` | `proposals.json` in `.doc-lint` | Proposals file written by `propose` |
 
 ## `doc-linter export`
 
@@ -365,7 +365,7 @@ Roadmap issue #14 (v0.3.0): cluster the code graph and emit candidate entity stu
 | `--min-members <MIN_MEMBERS>` | `2` | Roadmap issue #14 v7: minimum community size to surface in the report. 2 is the historical default — singletons always drop. Bumping to 5+ filters noise on big repos when an operator only cares about candidates that represent real architectural units |
 | `--seed-symbol <SCIP_SYMBOL>` |  | Roadmap issue #14 v8: when set, return only the community containing this Function symbol. Answers the "who's in the same cluster as X?" query without scanning the full top-N report. Empty when no such symbol exists |
 | `--top-members <TOP_MEMBERS>` | `5` | Roadmap issue #14 v9: how many representative member symbols to include in each candidate's `top_members` preview list. 5 (default) is enough to eyeball most clusters; reviewers of larger communities can raise it to 10-20 for richer signal |
-| `--output <DIR>` | `docs/ontology/entities/candidates` | Roadmap issue #14 v11: destination directory (repo- relative) for `--write`. Defaults to `docs/ontology/entities/candidates`, the convention the issue spec proposed and the directory the validator already recognises for `status: candidate` docs. Override to a staging dir (e.g. `.tmp/candidates`) when iterating on cluster tunings without polluting the vault. Ignored without `--write` |
+| `--output <DIR>` | `candidates` in `docs/ontology/entities` | Roadmap issue #14 v11: destination directory (repo- relative) for `--write`. Defaults to `docs/ontology/entities/candidates`, the convention the issue spec proposed and the directory the validator already recognises for `status: candidate` docs. Override to a staging dir (e.g. `.tmp/candidates`) when iterating on cluster tunings without polluting the vault. Ignored without `--write` |
 | `--promote <ID>` |  | Roadmap issue #14 v11 (v0.4.0): promote a reviewed candidate to a stable entity. Reads `<output>/<id>.md`, flips `status: candidate` to `status: stable`, drops the "(candidate)" title suffix, and moves the file to `docs/ontology/entities/<id>.md`. Short-circuits the clustering pass — `<id>` is the `suggested_id` printed by the report (also the file stem under `<output>`) |
 | `--resolution <GAMMA>` | `1` | Modularity resolution parameter γ (Leiden only). Scales the expected-edge penalty in the modularity-gain formula. γ = 1.0 (default) is standard modularity. γ &gt; 1 forces smaller communities — useful when the multi-level pass merges weakly-related sub-domains into giant macro- communities due to the modularity resolution limit on hub-heavy graphs. γ &lt; 1 has the opposite effect. The LPA and Louvain algorithms ignore this flag |
 

@@ -100,7 +100,7 @@ pub(crate) enum Commands {
     /// vocabulary they should author docs against.
     ///
     /// Subcommands: `propose` groups the code graph into named candidate
-    /// concepts with no API key and writes `.doc-lint/proposals.json`;
+    /// concepts with no API key and writes `proposals.json` in `.doc-lint`;
     /// `accept <name>` turns one proposal into an ontology entity plus a
     /// narrative doc built from the real code. There is no `accept --all`.
     Ontology {

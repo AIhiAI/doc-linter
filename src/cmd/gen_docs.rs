@@ -206,7 +206,16 @@ fn push_arg_table(s: &mut String, args: &[&clap::Arg]) {
         let default = if defaults.is_empty() || !takes_value {
             String::new()
         } else {
-            format!("`{}`", defaults.join(", "))
+            // A `dir/file` default would trip the linter's unlinked-path
+            // rule, and it is a runtime path, not a repo file to link.
+            defaults
+                .iter()
+                .map(|d| match d.rsplit_once('/') {
+                    Some((dir, name)) => format!("`{name}` in `{dir}`"),
+                    None => format!("`{d}`"),
+                })
+                .collect::<Vec<_>>()
+                .join(", ")
         };
         let mut help = arg
             .get_long_help()
