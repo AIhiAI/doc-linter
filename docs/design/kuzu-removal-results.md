@@ -1,6 +1,7 @@
 ---
 id: kuzu-removal-results
-role: roadmap-entry
+role: doc
+kind: explanation
 lifecycle: planning
 title: Kuzu removal measurements
 summary: Plan item B9 — what removing Kuzu changed in build time, target size, index size, query latency and vector recall, measured on 2026-10-08, with what could not be measured stated plainly.

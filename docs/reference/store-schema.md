@@ -1,7 +1,14 @@
 ---
-role: reference
+id: store-schema
+role: doc
 kind: reference
 lifecycle: stable
+covers: [doc-graph, sql]
+title: Store schema
+summary: The shape of the SQLite file that doc-linter check writes, which tables and columns are a public interface, and the version policy for changing them.
+status: stable
+updated: 2026-10-08
+tags: [reference, storage]
 ---
 
 # Store schema

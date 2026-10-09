@@ -1,6 +1,7 @@
 ---
 id: saved-query-port
-role: roadmap-entry
+role: doc
+kind: explanation
 lifecycle: planning
 title: Saved-query port to SQLite
 summary: Plan item B6 — classifies all 272 saved queries by Cypher feature and category, marks the 30 agent-facing ones, records the hand-translated SQLite SQL in src/store_sqlite/saved_sql, the embedded loader (SqliteDb run_saved_query), and the row-level parity run against Kuzu with every difference listed.
@@ -16,11 +17,11 @@ Companion to [[store-trait]]. That doc recommends typing the hot APIs first and 
 
 ## What was delivered
 
-> Outcome (2026-10-08): Kuzu is gone, so the Cypher originals, `MANIFEST.tsv` and `scripts/check_saved_sql.py` were deleted with it. The `.sql` files keep a two-line header (`name`, `params`); the catalog (`store::query::saved`) carries name, description, params and the node tables each query needs; the Rust tests `every_builtin_sql_runs_against_an_empty_graph` and `catalog_declared_params_appear_in_sql` replace the script, and the 136 semantic tests plus the goldens in `tests/golden/saved_queries_*.tsv` replace the parity run. The text below is the record of the port.
+> Outcome (2026-10-08): Kuzu is gone, so the Cypher originals, `MANIFEST.tsv` and `check_saved_sql.py` were deleted with it. The `.sql` files keep a two-line header (`name`, `params`); the catalog (`store::query::saved`) carries name, description, params and the node tables each query needs; the Rust tests `every_builtin_sql_runs_against_an_empty_graph` and `catalog_declared_params_appear_in_sql` replace the script, and the 136 semantic tests plus the goldens in `tests/golden/saved_queries_*.tsv` replace the parity run. The text below is the record of the port.
 
 - `src/store_sqlite/saved_sql/<name>.sql`: one file per catalog entry (272 of 272), each with a header (`-- params:`, `-- columns:`, `-- tier:`, `-- note:`).
 - `src/store_sqlite/saved_sql/MANIFEST.tsv`: `name`, `status` (`translated` or `needs-design`), `notes`. Today 272 translated, 0 needs-design.
-- `scripts/check_saved_sql.py`: stdlib-only validator, run in CI by the `saved-sql` job. It rebuilds the SQLite DDL by scraping `src/store_sqlite/schema.rs`, runs every file against the empty schema and compares the result column names and order with the header, which was copied from the Cypher `RETURN` aliases. It also checks that `$name` placeholders match the declared params and that the manifest matches the names in `saved.rs`.
+- `check_saved_sql.py`: stdlib-only validator, run in CI by the `saved-sql` job. It rebuilds the SQLite DDL by scraping [`src/store_sqlite/schema.rs`](../../src/store_sqlite/schema.rs), runs every file against the empty schema and compares the result column names and order with the header, which was copied from the Cypher `RETURN` aliases. It also checks that `$name` placeholders match the declared params and that the manifest matches the names in `saved.rs`.
 
 The entry count is 272, not the 271 quoted in [[store-trait]]; that count is off by one. The check script derives the list from `saved.rs`, so it stays right.
 
@@ -81,7 +82,7 @@ Shortest path and variable-length patterns do not occur in the catalog, so no re
 
 ## Agent-facing set (30)
 
-An entry is agent-facing when `src/cmd/mcp.rs` (outside its tests), `docs/reference/mcp.md` or `docs/ontology/entities/cypher.md` names it, when launch docs or integration tests lean on it, or when it backs a recipe the MCP `context_for` tool exposes. The MCP surface itself is a single generic `query_saved` tool, so every catalog entry is reachable by name; these are the ones agents are told to use.
+An entry is agent-facing when [`src/cmd/mcp.rs`](../../src/cmd/mcp.rs) (outside its tests), [`docs/reference/mcp.md`](../reference/mcp.md) or the cypher entity doc names it, when launch docs or integration tests lean on it, or when it backs a recipe the MCP `context_for` tool exposes. The MCP surface itself is a single generic `query_saved` tool, so every catalog entry is reachable by name; these are the ones agents are told to use.
 
 | Name | Why it counts | Category |
 |---|---|---|
@@ -120,7 +121,7 @@ Count: 30. That is 17 named in `mcp.md`, `cypher.md` or `mcp.rs`, 5 from launch 
 
 ## Divergences and risks
 
-The check script proves that each file parses against the real DDL and returns the declared columns; `tests/saved_query_parity.rs` proves row-level parity (see Parity results). Predicted places where parity could break, and what the run showed:
+The check script proves that each file parses against the real DDL and returns the declared columns; `saved_query_parity.rs` proves row-level parity (see Parity results). Predicted places where parity could break, and what the run showed:
 
 - **Aggregates over an empty set.** `sum` over zero rows is NULL in SQLite and the Kuzu result is unconfirmed. Where the value feeds a `CASE` comparison, the SQL uses `coalesce(sum(..), 0)` so an empty corpus classifies as empty.
 - **Zero-row quirk fixed.** `corpus-purpose-classifier`, `corpus-cold-start-summary`, `unified-corpus-diagnostic`, `corpus-entities-per-doc-ratio`, `corpus-functions-per-file-ratio` and `corpus-doc-coverage-ratio` used a non-optional `MATCH` after an aggregating `WITH`, so Kuzu returned no rows when the later set was empty. They now use `OPTIONAL MATCH` (Cypher) and no `WHERE` guard (SQL) and return one row of zeros/`EMPTY` on an empty set.
@@ -138,7 +139,7 @@ None. All 272 entries translate with the rules above. The manifest keeps the `ne
 
 ## Loader
 
-`build.rs` scans `src/store_sqlite/saved_sql/*.sql` and writes `$OUT_DIR/saved_sql_table.rs`, a static `(name, include_str!(path))` table; no dependency. `store_sqlite::saved` includes it (`builtin_sql`, a unit test asserts one entry per catalog name) and exposes `run_saved_query_with_root(db, root, name, params)`.
+`build.rs` scans `src/store_sqlite/saved_sql/*.sql` and writes `saved_sql_table.rs` in Cargo's `OUT_DIR`, a static `(name, include_str!(path))` table; no dependency. `store_sqlite::saved` includes it (`builtin_sql`, a unit test asserts one entry per catalog name) and exposes `run_saved_query_with_root(db, root, name, params)`.
 
 - Catalog, listing, `name=default` params and missing-param errors are the Kuzu ones: `kuzu_graph::query::saved::{resolve_query, fill_params}` are shared by both runners.
 - Extension: a runtime `saved-queries/*.toml` (the directory the Kuzu loader already reads under the corpus root) may carry `sql = "..."` next to `cypher`. `cypher` is now optional in the TOML, so a SQLite-only query parses; the Kuzu runner rejects it with "no cypher form". A corpus-local query with no `sql` is an error on SQLite and never falls back to the built-in of the same name.
@@ -147,7 +148,7 @@ None. All 272 entries translate with the rules above. The manifest keeps the `ne
 
 ## Parity results
 
-`tests/saved_query_parity.rs` (`cargo test --features sqlite-store --test saved_query_parity -- --test-threads=1`) ingests three corpora with the real binary under each engine (the SQLite root is a `cp -a` of the Kuzu root so mtimes and git history agree), runs every catalog query with discovered params (first entity, symbol, doc, tag and path for the first variant, then generic substrings; `name=default` params use their default once and are overridden after) and compares column lists and row multisets. `SAVED_PARITY_REPORT=<prefix>` writes the per-case report.
+`saved_query_parity.rs` (`cargo test --features sqlite-store --test saved_query_parity -- --test-threads=1`) ingests three corpora with the real binary under each engine (the SQLite root is a `cp -a` of the Kuzu root so mtimes and git history agree), runs every catalog query with discovered params (first entity, symbol, doc, tag and path for the first variant, then generic substrings; `name=default` params use their default once and are overridden after) and compares column lists and row multisets. `SAVED_PARITY_REPORT=<prefix>` writes the per-case report.
 
 | Corpus | Cases | Equal | Differing | Allowlisted | Intentional |
 |---|---|---|---|---|---|
@@ -186,7 +187,7 @@ Quirks that were suspected but did not show: "zero-row quirk preserved" matches 
 
 1. (Done: zero-row quirk fixed in both engines.) `query cypher` stays Kuzu-only until Kuzu is deleted; `query sql` is its SQLite twin and runs read-only `SELECT` / `WITH` (see [[store-trait]], "Kuzu-only paths ported").
 2. Grow the fixture so the 89 vacuous queries see rows.
-3. `query saved` and MCP `query_saved` now choose the engine from the graph file, so the catalog is runnable end to end on SQLite (`tests/sqlite_engine_cli.rs`).
+3. `query saved` and MCP `query_saved` now choose the engine from the graph file, so the catalog is runnable end to end on SQLite ([`tests/sqlite_engine_cli.rs`](../../tests/sqlite_engine_cli.rs)).
 
 ## Appendix: every entry
 

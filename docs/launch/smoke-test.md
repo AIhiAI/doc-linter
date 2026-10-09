@@ -1,7 +1,14 @@
 ---
-role: reference
+id: smoke-test
+role: doc
 kind: reference
 lifecycle: stable
+covers: [doc-graph]
+title: Smoke test of the SQLite-only build
+summary: End-to-end run of the SQLite-only build on a tiny directory and a copy of this repo, with the commands used and what each produced.
+status: draft
+updated: 2026-10-08
+tags: [launch, testing]
 ---
 
 # Smoke test
