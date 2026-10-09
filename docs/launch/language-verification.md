@@ -44,7 +44,7 @@ For a throwaway sandbox also set `DOTNET_CLI_HOME` (otherwise dotnet writes unde
 | Measure | C# | Dart |
 |---|---|---|
 | Functions | 6 | 8 |
-| Types (`Type` table) | 4 | 9 (4 classes and 5 per-file `module` rows) |
+| Types (`Type` table) | 4 | 4 (before the fix: 9, with 5 per-file `module` rows) |
 | Call edges | 4 | 5 |
 | `language` label on functions | `csharp` | `dart` |
 | Functions with a doc comment (report) | 6 of 6 | 7 of 8 (the undocumented one is the explicit `Item` constructor) |
@@ -53,16 +53,18 @@ For a throwaway sandbox also set `DOTNET_CLI_HOME` (otherwise dotnet writes unde
 - The call edges are the real ones: `Checkout.Receipt` to `Cart.Total`, `Cart.Total` to `Cart.Subtotal`, `Pricing.Discount` and `Pricing.Tax`; Dart additionally records `emptyCartTotalsZero` to `Cart.total`.
 - C# methods only: the record `Item` and the implicit constructors produce no function rows. The C# test file lives in a folder with no `.csproj`, so scip-dotnet (which indexes projects) never sees it. A test project with its own `.csproj` would be indexed.
 - Dart doc comments arrive as clean text, for example `Adds an item to the cart.`
-- C# doc comments arrive, but as the raw scip-dotnet payload: a fenced signature block followed by the XML member element (see bug 1).
+- C# doc comments arrive as the raw scip-dotnet payload (a fenced signature block followed by the XML member element); the ingest now reduces them to the summary text (bug 1).
 - `--lint-code-comments` reads the `///` comments of both languages: a deliberately unknown term (`Zorblax`) in a doc comment produced `comment vocab — term 'Zorblax' is not in the ontology vocabulary` with a file, line and column for both `.cs` and `.dart` (checked on copies after `doc-linter init`).
 - `doc-linter report` coverage, `query saved concept-work-list`, `query dead-code`, `query types` and `ontology propose` all ran on both. Before any entity exists the saved query returns zero rows and the report's work list carries the candidates. After `ontology accept shop` on the C# project the report showed 6 of 6 functions reaching the entity.
 
 ## Bugs and rough edges
 
-1. **C# doc comment is raw scip-dotnet output.** The stored `doc_comment` is a fenced `cs` signature followed by an XML `member` element wrapping the `summary`. Consequences: `dead-code` and the report show `doc_summary` as just the opening code fence; the concept work list shows the same fence as its sample; and the word `member` was proposed as a concept candidate with 9 symbols. Repro: the C# project above, `doc-linter scip-index && doc-linter check --no-vale && doc-linter report`. Fix direction: strip the leading fenced block and unwrap the XML in the ingest step for C#.
-2. **`ontology accept` without `init` writes docs that fail the lint.** After `doc-linter ontology accept shop` in a repo with no ontology, `check` goes from 2 errors to 6: the new doc uses role `doc`, kind `reference` and lifecycle `implementing` (none registered) and its id `concept-shop` does not match the filename `shop`. The README zero-config story ends at `ontology propose`; accept needs `init` first, or should say so.
-3. **Dart: missing `pub get` message does not say what to do.** The indexer's own `Unable to locate packageConfig` is printed unchanged, followed by `no SCIP index produced`. The README already says to run `dart pub get`; the error could say it too.
-4. **Dart `Type` table holds per-file `module` rows** next to the class rows, so "9 types" overstates the class count. Filter with `--kind`.
+All four were fixed after this run and re-verified on the same two projects with a locally built binary (unreleased, so the 0.3.1 numbers above are from before the fixes).
+
+1. **Fixed: C# doc comment was raw scip-dotnet output.** The stored `doc_comment` was a fenced `cs` signature followed by an XML `member` element, so `dead-code`, the report and the concept work list showed the opening code fence and `member` was proposed as a concept. Root cause: `join_doc` in [`src/scip_ingest.rs`](../../src/scip_ingest.rs) stored the documentation verbatim. It now detects the scip-dotnet shape (leading `cs` fence plus `<member`) and keeps the `<summary>` and `<remarks>` text with tags removed; every other indexer's text is untouched (unit tests cover each shape). `member` and `cs` are also on the proposer stoplist. Re-check: stored text is `Adds an item to the cart.`, and the proposer no longer offers `member`.
+2. **Fixed: `ontology accept` without `init` wrote docs that failed the lint.** Root causes: the narrative used a fixed role, and its id `concept-<name>` never matched its filename `<name>.md` (also wrong after `init`). Now the file is `docs/explanations/concept-<name>.md`, and kind and lifecycle come from the repo's registered values. With no `doc` role (no ontology), `accept` refuses with `run doc-linter init first` and writes nothing, so `check` is unchanged (integration test `accept_without_init_refuses_and_adds_no_errors`).
+3. **Fixed: Dart missing `pub get` message.** `scip-index` now prints `hint: run dart pub get (or flutter pub get) first` after the indexer's own error. The hint table in [`src/cmd/scip_index.rs`](../../src/cmd/scip_index.rs) also covers scip-dotnet (restore) and scip-typescript (install), but those two patterns are untested against real failures.
+4. **Fixed: Dart `Type` table held per-file `module` rows.** scip_dart emits one library-level module symbol per file. These are now skipped for `.dart` files, so the table holds the 4 classes. Rust, TypeScript and Python keep their module rows.
 
 ## Not verified
 
