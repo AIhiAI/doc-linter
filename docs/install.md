@@ -67,6 +67,6 @@ The graph is a single SQLite file; there is no database server to install. A `gr
 
 ## Maintainer decisions still open
 
-- PyPI name `doc-linter` is unchecked; the publish job in `.github/workflows/release.yml` is commented out.
+- PyPI name `doc-linter` is unchecked; the publish job in [`.github/workflows/release.yml`](../.github/workflows/release.yml) is commented out.
 - No signing (cosign, notarization, Authenticode) and no crates.io publish.
 - Releases are created as drafts; review and publish by hand.

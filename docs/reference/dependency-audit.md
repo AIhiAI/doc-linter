@@ -25,16 +25,16 @@ Scope: everything in the repo or fetched at build time that is not an ordinary c
 | `MIT OR Apache-2.0 OR LGPL-2.1-or-later` (2 crates) | crates.io | dual-licensed, MIT or Apache-2.0 can be chosen | OK, choose MIT/Apache |
 | bge-small-en-v1.5 quantized ONNX (about 34 MB) | Downloaded by `build.rs` from `huggingface.co/Xenova/bge-small-en-v1.5` (SHA-256 pinned). Not committed, not in the crate | Upstream BAAI/bge-small-en-v1.5 is MIT; the Xenova ONNX export is listed MIT on its model card | OK, but confirm the Xenova card at release time (human check below). Never redistributed in the repo |
 | `tokenizer.json` (same repo, SHA-256 pinned) | Downloaded by `build.rs` | MIT (same card) | OK, same check |
-| `data/english-common.txt` (74k words, `include_str!`) | Filtered from the Debian `american-english` word list (`/usr/share/dict`) | SCOWL-derived, permissive (public-domain-like) | Legal decision needed, see below. Contains no private content (grepped) |
+| [`data/english-common.txt`](../../data/english-common.txt) (74k words, `include_str!`) | Filtered from the Debian `american-english` word list (`/usr/share/dict`) | SCOWL-derived, permissive (public-domain-like) | Legal decision needed, see below. Contains no private content (grepped) |
 | `src/config_data/*.txt` | Written in-repo | Apache-2.0 (project) | OK |
 | `templates/init/**` (starter ontology) | Written in-repo | Apache-2.0 (project) | OK |
-| `examples/embed.rs`, `scripts/install.sh` | Written in-repo | Apache-2.0 (project) | OK |
-| `repository` / `homepage` URLs (`github.com/AIhiAI/doc-linter`) | `Cargo.toml`, `scripts/install.sh`, README | n/a | OK if that org is the intended public home |
+| [`examples/embed.rs`](../../examples/embed.rs), [`scripts/install.sh`](../../scripts/install.sh) | Written in-repo | Apache-2.0 (project) | OK |
+| `repository` / `homepage` URLs (`github.com/AIhiAI/doc-linter`) | `Cargo.toml`, [`scripts/install.sh`](../../scripts/install.sh), README | n/a | OK if that org is the intended public home |
 
 ## Fixed in this pass
 
-- **Packaging bug.** `Cargo.toml` `include` omitted `data/` and `src/**/*.txt`, but `src/vale.rs` and `src/config/coverage.rs` `include_str!` them. A `cargo package` / `cargo install doc-linter` from crates.io would fail to compile. Both globs are now listed.
-- **Internal names.** A doc comment and its generated twin in `docs/reference/config.md` cited a private directory name; replaced with a neutral example. A unit test used a personal home path (`/home/...`); replaced with neutral paths. A stale `crates/doc-linter/data/` path in `src/vale.rs` now says `data/`.
+- **Packaging bug.** `Cargo.toml` `include` omitted `data/` and `src/**/*.txt`, but [`src/vale.rs`](../../src/vale.rs) and [`src/config/coverage.rs`](../../src/config/coverage.rs) `include_str!` them. A `cargo package` / `cargo install doc-linter` from crates.io would fail to compile. Both globs are now listed.
+- **Internal names.** A doc comment and its generated twin in [`docs/reference/config.md`](config.md) cited a private directory name; replaced with a neutral example. A unit test used a personal home path (`/home/...`); replaced with neutral paths. A stale `crates/doc-linter/data/` path in [`src/vale.rs`](../../src/vale.rs) now says `data/`.
 - **Product names scrubbed.** Two private product names, and the lowercase corpus nicknames derived from them, no longer appear in the tree: source comments, saved-query descriptions, research docs, the migration note and the generated reference are neutral, and both names are removed from `vale_extra_accept` in `.doc-lint.toml`. A case-insensitive tree grep for them finds nothing. Repository history may still contain them.
 
 ## Needs a human or legal decision

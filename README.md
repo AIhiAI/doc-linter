@@ -39,7 +39,7 @@ What you get without an indexer, for every language above: `File` and `Module` r
 
 Other languages (Go, Kotlin, C++, and so on) have no indexer wired in, so they get no code graph. Their docs are still linted.
 
-Separately from SCIP, `check --lint-code-comments` reads doc comments directly from `.rs`, `.ts/.tsx/.js/.jsx` and `.py` (tree-sitter), and `.java .cs .dart .vue` (lighter-weight line scanners, no tree-sitter grammar).
+Separately from SCIP, `check --lint-code-comments` reads doc comments directly from `.rs`, TypeScript and JavaScript files (`.ts`, `.tsx`, `.js`, `.jsx`) and `.py` (tree-sitter), and `.java .cs .dart .vue` (lighter-weight line scanners, no tree-sitter grammar).
 
 ---
 
@@ -560,7 +560,7 @@ diagnostics programmatically.
 ## No telemetry
 
 doc-linter sends nothing anywhere at runtime. The only network
-touchpoints are: the opt-in `llm` feature (`src/llm/anthropic.rs`, calls
+touchpoints are: the opt-in `llm` feature ([`src/llm/anthropic.rs`](src/llm/anthropic.rs), calls
 the Anthropic API only when you enable it and supply a key), and
 `build.rs` fetching the pinned embedding model from Hugging Face at
 build time (skippable with `DOC_LINTER_SKIP_MODEL_DOWNLOAD=1`). Local

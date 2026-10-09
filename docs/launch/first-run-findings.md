@@ -25,10 +25,10 @@ doc-linter query coverage-report            # JSON to stdout
 doc-linter query coverage-report --write    # also writes docs/coverage-report.md
 ```
 
-Code: `src/coverage.rs` (`build_report`, `render_markdown_body`), CLI args in
-`docs/reference/cli.md` (`## doc-linter query coverage-report`). Per-entity
+Code: [`src/coverage.rs`](../../src/coverage.rs) (`build_report`, `render_markdown_body`), CLI args in
+[`docs/reference/cli.md`](../reference/cli.md) (`## doc-linter query coverage-report`). Per-entity
 rows carry `doc_count`, `func_count`, `ratio`, `verdict`, `god_node`. The
-`check`-time lint (`src/cmd/check/coverage.rs`, `GraphRead` in `store_sqlite`)
+`check`-time lint ([`src/cmd/check/coverage.rs`](../../src/cmd/check/coverage.rs), `GraphRead` in `store_sqlite`)
 emits `dark-public-function`, `dark-endpoint`, entity gaps and
 `coverage-below-min` (`--coverage-min-global`). Related saved queries:
 `coverage-by-entity` (functions per entity, no doc side), `endpoint-darkness`.
@@ -57,7 +57,7 @@ Today's path on a fresh repo:
 
 1. `doc-linter init` (writes `.doc-lint.toml`, starter `docs/ontology/`).
 2. `doc-linter check` (builds `.doc-lint/graph.sqlite`). `doc-linter query ...`
-   also ingests on demand when the DB is absent (`src/cmd/query.rs`), so
+   also ingests on demand when the DB is absent ([`src/cmd/query.rs`](../../src/cmd/query.rs)), so
    step 2 can be skipped for queries.
 3. Optional `doc-linter scip-index` for the code graph. Without SCIP there
    are no Functions, so coverage table and work list are empty (expected).
@@ -92,7 +92,7 @@ classification thresholds.
 `doc-linter report` now exists: it refreshes the graph without needing
 `init` or an ontology, then prints the coverage table, the stale docs and
 the concept work list, plus candidate concepts mined from the code by the
-local proposer (`doc-linter ontology propose`). Code: `src/cmd/report.rs`.
+local proposer (`doc-linter ontology propose`). Code: [`src/cmd/report.rs`](../../src/cmd/report.rs).
 
 Original note, kept for the record. Minimal change for a no-ontology first run: the above filter widening, plus
 (optional) a `doc-linter report` wrapper that runs coverage-report, the
@@ -104,12 +104,12 @@ one line each.
 
 Registration today: a hand-written `.mcp.json` at the workspace root
 (`command: ./doc-linter/target/release/doc-linter`, `args: ["mcp","--root",...]`),
-and README "MCP setup" / `docs/quickstart/mcp.md` show the JSON for Claude
-Desktop, Claude Code and Cursor. `docs/reference/mcp.md` is the generated
+and README "MCP setup" / [`docs/quickstart/mcp.md`](../quickstart/mcp.md) show the JSON for Claude
+Desktop, Claude Code and Cursor. [`docs/reference/mcp.md`](../reference/mcp.md) is the generated
 tool catalog.
 
 Implemented (not compiled, not run): `doc-linter mcp-install --client
-claude-code|cursor` in `src/cmd/mcp_install.rs`, wired in `src/cmd/mod.rs`.
+claude-code|cursor` in [`src/cmd/mcp_install.rs`](../../src/cmd/mcp_install.rs), wired in [`src/cmd/mod.rs`](../../src/cmd/mod.rs).
 It was named `mcp-install` rather than `mcp install` to avoid turning the
 existing unit `Mcp` command into a subcommand group (would risk breaking
 `doc-linter mcp`).
@@ -121,7 +121,7 @@ existing unit `Mcp` command into a subcommand group (would risk breaking
 
 Merges into an existing file and preserves other servers; invalid JSON
 errors out rather than overwriting. One unit test in the module. Claude
-Desktop (global `claude_desktop_config.json`) is not covered. A `docs/reference/cli.md`
+Desktop (global `claude_desktop_config.json`) is not covered. A [`docs/reference/cli.md`](../reference/cli.md)
 regen (`doc-linter gen-docs`) is needed after the first build.
 
 ## C8. Network and telemetry audit
@@ -129,14 +129,14 @@ regen (`doc-linter gen-docs`) is needed after the first build.
 grep for `reqwest|ureq|TcpStream|hyper|curl|https?://` over `src/`,
 `Cargo.toml` and `build.rs`:
 
-- `src/llm/anthropic.rs`: only `reqwest` user; `reqwest` is behind the
+- [`src/llm/anthropic.rs`](../../src/llm/anthropic.rs): only `reqwest` user; `reqwest` is behind the
   optional `llm` feature (`Cargo.toml`: `llm = ["dep:reqwest"]`). Opt-in.
 - `build.rs`: downloads the pinned bge-small model and tokenizer from
   Hugging Face via system `curl` (SHA-256 verified); skippable with
   `DOC_LINTER_SKIP_MODEL_DOWNLOAD=1`.
 - Local `git` subprocesses (`scaffold.rs`, `scip_ingest.rs`,
-  `coupling_ingest.rs`, `cmd/homepage.rs`, `endpoint_markers_migrate.rs`):
+  `coupling_ingest.rs`, [`src/cmd/homepage.rs`](../../src/cmd/homepage.rs), `endpoint_markers_migrate.rs`):
   no network by themselves.
-- `src/embeddings.rs` and `saved.rs` matches were comments/query text only.
+- [`src/embeddings.rs`](../../src/embeddings.rs) and `saved.rs` matches were comments/query text only.
 
 No telemetry found. Added a "No telemetry" section to `README.md`.
