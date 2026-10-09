@@ -74,12 +74,6 @@ protobuf = "3"
 # (`tower_lsp::lsp_types`) so the version pin is automatic.
 tower-lsp = "0.20"
 tokio = { version = "1", features = ["full"] }
-# Safe POSIX wrappers — used by lsp.rs to redirect stderr into a log
-# file at boot without an `unsafe` block (LSP speaks over stdio, so
-# stray stderr writes corrupt the protocol). Already pulled in
-# transitively by `which`; the direct entry just enables the `stdio`
-# feature for `rustix::stdio::dup2_stderr`.
-rustix = { version = "0.38", features = ["stdio"] }
 # v0.4.0 issue #33: SHA-256 over the SCIP bytes feeds the ingest cache
 # alongside mtime+len so a same-second, same-length edit still invalidates
 # the cache (the corner case the mtime-only cache acknowledged in v0.3.0).
@@ -122,6 +116,13 @@ llm = ["dep:reqwest"]
 # without it the store falls back to an exact brute-force index.
 vector-usearch = ["dep:usearch"]
 
+# Safe POSIX wrappers — used by lsp.rs to redirect stderr into a log
+# file at boot without an `unsafe` block (LSP speaks over stdio, so
+# stray stderr writes corrupt the protocol). rustix::stdio is cfg(not(windows)),
+# so the dependency and its one call site are unix-only.
+[target.'cfg(unix)'.dependencies]
+rustix = { version = "0.38", features = ["stdio"] }
+
 [dependencies.rusqlite]
 version = "0.32"
 features = ["bundled", "functions"] # bundled SQLite has FTS5; `functions` registers regexp()
@@ -129,7 +130,13 @@ features = ["bundled", "functions"] # bundled SQLite has FTS5; `functions` regis
 [dependencies.usearch]
 version = "2"
 optional = true
-# Default features: bundled simsimd (SIMD distance kernels) and fp16lib.
+# ponytail: portable distance kernels only (fp16lib, no bundled simsimd). The
+# default `simsimd` feature compiles AVX-512 FP16 kernels that GCC on the
+# hosted ubuntu runners rejects (__m512h undeclared), and it risks the same
+# on other toolchains. Ceiling: no SIMD-accelerated distance; revisit once
+# usearch/simsimd builds cleanly on every release target.
+default-features = false
+features = ["fp16lib"]
 
 [dependencies.reqwest]
 version = "0.12"
