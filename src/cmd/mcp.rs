@@ -3066,7 +3066,20 @@ impl Server {
         clippy::unused_self,
         reason = "dispatched like every other tool method"
     )]
+    #[cfg_attr(not(unix), allow(unreachable_code, unused_variables))]
     fn tool_reload_self(&self) -> std::result::Result<Value, McpError> {
+        // ponytail: exec() is unix-only; on Windows the tool reports that
+        // instead of swapping the binary. Ceiling: no hot-reload on Windows,
+        // restart the MCP server after a rebuild.
+        #[cfg(not(unix))]
+        {
+            return Err(McpError::from_anyhow(
+                "reload_self",
+                anyhow::anyhow!(
+                    "reload_self needs exec(), which is unix-only; restart the MCP server instead"
+                ),
+            ));
+        }
         // Resolve the binary path BEFORE spawning the exec thread so a
         // missing /proc/self/exe (rare) errors here, not silently in
         // the background.
@@ -3097,11 +3110,16 @@ impl Server {
         // response (returned from this fn below) flushes first.
         std::thread::spawn(move || {
             std::thread::sleep(std::time::Duration::from_millis(100));
-            use std::os::unix::process::CommandExt;
-            let err = std::process::Command::new(&exe).args(&argv[1..]).exec();
-            // `exec` only returns on failure. The old image is still
-            // valid, so keep serving rather than dropping the connection.
-            eprintln!("doc-linter: reload_self exec failed, still serving the old binary: {err}");
+            #[cfg(unix)]
+            {
+                use std::os::unix::process::CommandExt;
+                let err = std::process::Command::new(&exe).args(&argv[1..]).exec();
+                // `exec` only returns on failure. The old image is still
+                // valid, so keep serving rather than dropping the connection.
+                eprintln!(
+                    "doc-linter: reload_self exec failed, still serving the old binary: {err}"
+                );
+            }
         });
 
         Ok(tool_text_result(&json!({
