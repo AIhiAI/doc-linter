@@ -840,8 +840,8 @@ exit 0
   "by_endpoint_class": [
     {
       "kind": "axum",
-      "total": 2,
-      "reach_entity": 2,
+      "total": 3,
+      "reach_entity": 3,
       "reach_pct": 100.0
     },
     {
@@ -886,6 +886,18 @@ exit 0
 ### ["query", "endpoints"]
 exit 0
 [
+  {
+    "id": "axum:GET:/items",
+    "kind": "axum",
+    "method": "GET",
+    "path": "/items",
+    "handler_symbol": "rust-analyzer cargo b 0.1.0 list_items().",
+    "entities": [
+      "checkout"
+    ],
+    "source_file": "crates/b/src/lib.rs",
+    "source_line": 7
+  },
   {
     "id": "axum:GET:/totals",
     "kind": "axum",
@@ -942,6 +954,12 @@ exit 0
     }
   ],
   "nearby_endpoints": [
+    {
+      "id": "axum:GET:/items",
+      "kind": "axum",
+      "method": "GET",
+      "path": "/items"
+    },
     {
       "id": "axum:POST:/items",
       "kind": "axum",

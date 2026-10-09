@@ -394,9 +394,13 @@ rust-analyzer scip . --output .doc-lint/code.scip   # manual
 
 The next `check` re-ingests automatically. Set `scip_required = true` to make absent SCIP a hard failure.
 
+### Generated code and freshness
+
+Generated code stays out of the graph, the file table, the endpoint scan, the code-comment lint and coverage. A file counts as generated when it matches `coverage_codegen_exclude`, carries a header such as `DO NOT EDIT` or `Code generated`, sits under a `generated` or `__generated__` directory, is named `*.gen.*`, sits in a Gradle `build/` directory next to its build script, or is ignored by git (`.gitignore`). Set `include_generated = true` to index it anyway; extend `coverage_codegen_exclude` for anything else. A doc without frontmatter, and every File row, takes its date from the last git commit that touched it, so a fresh clone shows real ages; outside git, or in a shallow clone, it falls back to the file's mtime.
+
 ## Endpoint coverage
 
-Phase 2 of roadmap-43 adds an `Endpoint` node populated on every `check` from three sources: axum `.route()` / `.nest()` calls, clap `Subcommand` derive enums (in crates listed under `clap_crates`), and `McpTool { name: ... }` literals in MCP-namespaced files. Each endpoint links to its handler via `ENDPOINT_HANDLED_BY` (SCIP-symbol resolution) and inherits the handler's entity mentions as `ENDPOINT_TOUCHES_ENTITY` edges.
+Phase 2 of roadmap-43 adds an `Endpoint` node populated on every `check` from three sources: axum `.route()` / `.nest()` calls, clap `Subcommand` derive enums (in crates listed under `clap_crates`), and `McpTool { name: ... }` literals in MCP-namespaced files. Java JAX-RS resources (`@Path` on the class, `@GET`/`@POST`/... plus an optional method `@Path`, `javax.ws.rs` or `jakarta.ws.rs`) are read too. The syntactic extractors run unless `endpoint_marker_exclusive = true`. Each endpoint links to its handler via `ENDPOINT_HANDLED_BY` (SCIP-symbol resolution) and inherits the handler's entity mentions as `ENDPOINT_TOUCHES_ENTITY` edges.
 
 `query endpoints --dark` lists every API surface with no entity coverage — the precise input to the `dark-endpoint` lint.
 

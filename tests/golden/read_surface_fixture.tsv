@@ -1,8 +1,8 @@
-cli-graph-summary edges	d98e5fe8fcf9be02e4ba0e34a55b60d0542a994a0692c7ee01d5d4fcda0c1b45	[{"count":4,"label":"DEFINED_IN_FILE"},{"count":4,"label":"FUNCTION_BE
-cli-graph-summary nodes	83c78dfddf23bd99d393e12e7a71f82d5512d629c39ad988c1898465fc332197	[{"count":8,"label":"Doc"},{"count":5,"label":"File"},{"count":4,"labe
-cli-graph-summary totals	c6f3ac57944a531490cd39902d0f777715fd005efac9a30622d5f5205e7f6894	33
-cli-schema edges	fbe2859bfd786d71731ba75ba64d098568f5646ba000cd9901447cad454ba9dd	[{"columns":[{"name":"dispatch"},{"name":"source_file"},{"name":"sourc
-cli-schema nodes	d9026a1b088148e06579397f94c3746a3bbc64525027530640448b8f2f44e8ea	[{"columns":[{"name":"attributes"},{"name":"bounded_context"},{"name":
+cli-graph-summary edges	b588e87495e71ef5424a833cab3a79cb1631101d9bd98faa927d9e646bf3baa2	[{"count":4,"label":"DEFINED_IN_FILE"},{"count":4,"label":"FUNCTION_BE
+cli-graph-summary nodes	38ecc50973db3980fb2aaaaa6afbe3662ee619494bb0458501e988b8251a0e32	[{"count":8,"label":"Doc"},{"count":5,"label":"File"},{"count":4,"labe
+cli-graph-summary totals	9f14025af0065b30e47e23ebb3b491d39ae8ed17d33739e5ff3827ffb3634953	35
+cli-schema edges	ebd6aabcd601ff3e4dca7e498521194f7b9fab0d9bf71638fc19a4a7346e59d8	[{"columns":[{"name":"dispatch"},{"name":"source_file"},{"name":"sourc
+cli-schema nodes	c68929e8dfd549203ed79bc5849ee3e702e838cb487e7c0d2d59a1fcf1e16c38	[{"columns":[{"name":"attributes"},{"name":"bounded_context"},{"name":
 cli-similar ["query", "similar", "cache", "--type", "all", "--min-score", "0.5"]	94c0311cedd2297e3afaf1e78a68d72ac7a9019e7553c80a1ed308181f4b4e47	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 cli-similar ["query", "similar", "cache", "--type", "all", "--top", "2"]	94c0311cedd2297e3afaf1e78a68d72ac7a9019e7553c80a1ed308181f4b4e47	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 cli-similar ["query", "similar", "cache", "--type", "all"]	94c0311cedd2297e3afaf1e78a68d72ac7a9019e7553c80a1ed308181f4b4e47	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
@@ -397,7 +397,7 @@ mcp-query_entity_neighbors {"by":"co-cover","id":"checkout"}	f8442c4a73d80105181
 mcp-query_entity_neighbors {"by":"co-cover","id":"pricing"}	d2ef31ea78ab045a97960622f0fba3f22fe9ec4ff5b2a9cdbe5a8027df5aad55	{"by":"co-cover","neighbors":[{"display":"checkout","id":"checkout","s
 mcp-query_entity_neighbors {"by":"related","id":"checkout"}	170989bcf3752d02d5b6b90581b71bfba9e3011cdf7fffe1e78c1080182434d3	{"by":"related","neighbors":[],"target_id":"checkout","total":0}
 mcp-query_entity_neighbors {"by":"related","id":"pricing"}	d8743b09a742120497a794b1d802b9acffc9f99457b583478a975485075ffd1a	{"by":"related","neighbors":[],"target_id":"pricing","total":0}
-mcp-query_schema {}	45f4529b905384e17a3bdd840e3ad248527dde89a9b884b7f2b972de8da78420	{"freshness":{"hint":"compare max_file_touched against the current git
+mcp-query_schema {}	03d56cee00d03d3b9b8fd66f718967c9faf9549e70ef49d7304c2c6409f445a5	{"freshness":{"hint":"compare max_file_touched against the current git
 mcp-query_similar {"source_repo":"corpus","text":"pricing","type":"doc"}	8c42c1b5d01aceaa5452035d038eadb7780b70072c877b0c96ca505a77b1cc37	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 mcp-query_similar {"text":"cache","top":4,"type":"all"}	94c0311cedd2297e3afaf1e78a68d72ac7a9019e7553c80a1ed308181f4b4e47	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 mcp-query_similar {"text":"cache","top":4,"type":"doc"}	67e04fb5c8b943367ae3211735b74c49cd9cafefdd680c9fb64a9ca676766511	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":

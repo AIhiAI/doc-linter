@@ -90,6 +90,16 @@ pub struct CoverageConfig {
     #[serde(default = "default_coverage_codegen_exclude")]
     pub coverage_codegen_exclude: Vec<String>,
 
+    /// Also index generated code the globs above and the file-header
+    /// sniff miss: files git ignores (`build/generated/`, `dist/`, ...),
+    /// files under a `generated`/`__generated__` directory, build-output
+    /// directories next to a build script, and `*.gen.*` files. `false`
+    /// (default) keeps all of that out of the graph, so coverage, `report`
+    /// and the concept work list count authored code only. To exclude
+    /// more, extend `coverage_codegen_exclude`.
+    #[serde(default)]
+    pub include_generated: bool,
+
     /// Phase 5c of roadmap-43: regex patterns matched against a SCIP
     /// symbol's bare function name (the trailing `name()` after the
     /// last `/`) for functions that should NOT count toward the
@@ -151,15 +161,14 @@ pub struct CoverageConfig {
     #[serde(default = "default_orphan_entity_severity")]
     pub orphan_entity_severity: String,
 
-    /// Roadmap-49: when true (the default), endpoint discovery uses
+    /// Roadmap-49: when true, endpoint discovery uses
     /// the `@endpoint <METHOD> <path>` doc-comment markers
     /// exclusively; the syntactic axum / clap / mcp parsers are
-    /// skipped. Phase 3 flipped this default to `true` once the
-    /// migration tool's run + hand-stamping landed and every handler
-    /// in this repo carried a marker. Drop-in repos that haven't run
-    /// the migration tool yet should set this to `false` in their
-    /// `.doc-lint.toml` to keep the fallback regex extractor alive
-    /// while they backfill markers.
+    /// skipped. Defaults to `false`: a repo without markers (any
+    /// Java/JAX-RS, FastAPI or Express code base) gets its endpoints
+    /// from the syntactic extractors. Set `true` once the migration
+    /// tool's run + hand-stamping landed and every handler carries a
+    /// marker.
     #[serde(default = "default_endpoint_marker_exclusive")]
     pub endpoint_marker_exclusive: bool,
 
@@ -187,6 +196,7 @@ impl Default for CoverageConfig {
             coverage_min_per_entity_doc_ratio: default_per_entity_doc_ratio(),
             coverage_entity_exempt: Vec::new(),
             coverage_codegen_exclude: default_coverage_codegen_exclude(),
+            include_generated: false,
             coverage_function_exempt: default_coverage_function_exempt(),
             clap_crates: default_clap_crates(),
             coverage_codegen_exclude_set: None,
@@ -244,12 +254,10 @@ fn default_orphan_entity_severity() -> String {
 }
 
 /// Roadmap-49 phase 3: default for the [[entity-doc-graph]]
-/// `endpoint_marker_exclusive` knob. `true` — the migration tool +
-/// hand-stamping batch covered every handler in this repo, so the
-/// regex extractor isn't needed. Repos that haven't run the migration
-/// yet should override per-config to `false`.
+/// `endpoint_marker_exclusive` knob. `false`: the syntactic extractors
+/// run unless a repo that has stamped every handler opts out.
 fn default_endpoint_marker_exclusive() -> bool {
-    true
+    false
 }
 
 /// Embedded default `coverage_function_exempt` patterns for the
@@ -331,5 +339,19 @@ mod default_data_tests {
                 "missing default pattern: {expected}"
             );
         }
+    }
+}
+
+#[cfg(test)]
+mod default_tests {
+    use super::CoverageConfig;
+
+    /// A repo with no `@endpoint` markers (JAX-RS, FastAPI, Express) must
+    /// get its endpoints from the syntactic extractors out of the box.
+    #[test]
+    fn defaults_run_extractors_and_exclude_generated() {
+        let c = CoverageConfig::default();
+        assert!(!c.endpoint_marker_exclusive);
+        assert!(!c.include_generated);
     }
 }

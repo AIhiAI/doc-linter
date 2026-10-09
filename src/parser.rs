@@ -284,10 +284,17 @@ pub fn synthesized_frontmatter(path: &Path, body: &str) -> Frontmatter {
         .filter(|t| !t.is_empty())
         .unwrap_or(stem)
         .to_string();
-    let updated = fs::metadata(path).and_then(|m| m.modified()).map_or_else(
-        |_| chrono::Utc::now().date_naive(),
-        |t| chrono::DateTime::<chrono::Utc>::from(t).date_naive(),
-    );
+    // Last git commit date (a fresh clone has "today" mtimes everywhere),
+    // else the file mtime, else today.
+    let from_git = crate::gitdate::last_commit_secs(path)
+        .and_then(|s| chrono::DateTime::<chrono::Utc>::from_timestamp(s, 0))
+        .map(|d| d.date_naive());
+    let updated = from_git.unwrap_or_else(|| {
+        fs::metadata(path).and_then(|m| m.modified()).map_or_else(
+            |_| chrono::Utc::now().date_naive(),
+            |t| chrono::DateTime::<chrono::Utc>::from(t).date_naive(),
+        )
+    });
     Frontmatter {
         id,
         role: Some("doc".to_string()),

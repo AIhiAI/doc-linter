@@ -119,14 +119,17 @@ pub(crate) fn method_parent_prefix(symbol: &str) -> Option<String> {
 /// True when code in `file` (repo-relative) stays out of the graph: it
 /// sits in a skip dir (a nested submodule or vendored tree is another
 /// repo's, even when a C# indexer reaches it through project
-/// references), or it matches `coverage_codegen_exclude`.
+/// references), it matches `coverage_codegen_exclude`, or it is generated
+/// output (see [`is_generated_path`]) unless `include_generated` is set.
 pub(crate) fn is_excluded_code_file(config: &LintConfig, root: &Path, file: &str) -> bool {
     let rel = Path::new(file);
     let in_skip_dir = rel.parent().is_some_and(|p| {
         p.components()
             .any(|c| config.skip_dirs.iter().any(|d| c.as_os_str() == d.as_str()))
     });
-    in_skip_dir || config.is_codegen_excluded_with_header(rel, &root.join(rel))
+    in_skip_dir
+        || config.is_codegen_excluded_with_header(rel, &root.join(rel))
+        || config.is_generated_path(root, file)
 }
 
 /// Accumulate every (function, entity) mention pair the three Phase-1
@@ -346,6 +349,36 @@ pub(crate) fn classify_god_nodes(rows: &[(String, i64, String)]) -> Vec<(String,
 )]
 mod tests {
     use super::{classify_god_nodes, method_parent_prefix};
+
+    /// Gitignored output, `generated/` dirs and `*.gen.*` files stay out of
+    /// the graph; `include_generated = true` brings them back.
+    #[test]
+    fn generated_and_gitignored_paths_are_excluded() {
+        let root = std::env::temp_dir().join(format!("dl-genpath-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&root);
+        std::fs::create_dir_all(root.join("m/out")).unwrap();
+        std::fs::create_dir_all(root.join("m/src")).unwrap();
+        std::fs::write(root.join("m/src/Api.java"), "class A {}").unwrap();
+        std::fs::write(root.join(".gitignore"), "out/\n").unwrap();
+        let init = std::process::Command::new("git")
+            .args(["init", "-q"])
+            .current_dir(&root)
+            .status()
+            .unwrap();
+        assert!(init.success());
+        let mut cfg = crate::config::LintConfig::default();
+        for (f, want) in [
+            ("m/out/Api.java", true),
+            ("m/generated/Api.java", true),
+            ("m/Api.gen.ts", true),
+            ("m/src/Api.java", false),
+        ] {
+            assert_eq!(super::is_excluded_code_file(&cfg, &root, f), want, "{f}");
+        }
+        cfg.coverage.include_generated = true;
+        assert!(!super::is_excluded_code_file(&cfg, &root, "m/out/Api.java"));
+        let _ = std::fs::remove_dir_all(&root);
+    }
 
     fn row(id: &str, count: i64, class: &str) -> (String, i64, String) {
         (id.to_string(), count, class.to_string())

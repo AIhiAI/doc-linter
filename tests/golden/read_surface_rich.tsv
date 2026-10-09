@@ -1,8 +1,8 @@
-cli-graph-summary edges	53d99d643e980802da64d12c1e58397aec627ebbfbaaa897eba4171dc99d7b77	[{"count":12,"label":"WIKILINK"},{"count":9,"label":"SECTION_OF"},{"co
-cli-graph-summary nodes	2624a0b39c9bfc50afdf87016a5ab409b62f55d9c5ee6ed4f3f6e0fc348d7069	[{"count":13,"label":"Doc"},{"count":11,"label":"File"},{"count":9,"la
-cli-graph-summary totals	3e1e967e9b793e908f8eae83c74dba9bcccce6a5535b4b462bd9994537bfe15c	59
-cli-schema edges	381782c31cead3aa67313d033c9116a05e34a08ee2ad99c3f948371c06daaf8a	[{"columns":[{"name":"dispatch"},{"name":"source_file"},{"name":"sourc
-cli-schema nodes	689485e3a1ae87e1204c788824ce50095e3442fe1fa3f94620c06c26b8c259fc	[{"columns":[{"name":"attributes"},{"name":"bounded_context"},{"name":
+cli-graph-summary edges	55ad22742e18df6bc24de0a89fc5e769acaa71287097702bc1fd391fc97225c6	[{"count":12,"label":"WIKILINK"},{"count":9,"label":"SECTION_OF"},{"co
+cli-graph-summary nodes	0a16b2476c8d763beddb22e5cc5e9a29b1308ab6ac51af806a1aa284b5d9bbef	[{"count":13,"label":"Doc"},{"count":11,"label":"File"},{"count":9,"la
+cli-graph-summary totals	d029fa3a95e174a19934857f535eb9427d967218a36ea014b70ad704bc6c8d1c	61
+cli-schema edges	0f5623f69283b9238019413b06bb7dc6a255912c9bac1800cc0d06a4ab7e8f39	[{"columns":[{"name":"dispatch"},{"name":"source_file"},{"name":"sourc
+cli-schema nodes	fedbdb416f3fb301ff3fd55c9e92a5999d25446c58c95a1aad90dbc4347ecd50	[{"columns":[{"name":"attributes"},{"name":"bounded_context"},{"name":
 cli-similar ["query", "similar", "cache", "--type", "all", "--min-score", "0.5"]	ef44ef7db77a9876cb7b8f8041e6f2e4cce388bb672944635cfffb6082f6b9e7	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 cli-similar ["query", "similar", "cache", "--type", "all", "--top", "2"]	ef44ef7db77a9876cb7b8f8041e6f2e4cce388bb672944635cfffb6082f6b9e7	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 cli-similar ["query", "similar", "cache", "--type", "all"]	ef44ef7db77a9876cb7b8f8041e6f2e4cce388bb672944635cfffb6082f6b9e7	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
@@ -415,7 +415,7 @@ mcp-query_entity_neighbors {"by":"co-cover","id":"checkout"}	f8442c4a73d80105181
 mcp-query_entity_neighbors {"by":"co-cover","id":"pricing"}	d2ef31ea78ab045a97960622f0fba3f22fe9ec4ff5b2a9cdbe5a8027df5aad55	{"by":"co-cover","neighbors":[{"display":"checkout","id":"checkout","s
 mcp-query_entity_neighbors {"by":"related","id":"checkout"}	170989bcf3752d02d5b6b90581b71bfba9e3011cdf7fffe1e78c1080182434d3	{"by":"related","neighbors":[],"target_id":"checkout","total":0}
 mcp-query_entity_neighbors {"by":"related","id":"pricing"}	d8743b09a742120497a794b1d802b9acffc9f99457b583478a975485075ffd1a	{"by":"related","neighbors":[],"target_id":"pricing","total":0}
-mcp-query_schema {}	50f44073c2c44104ec41d556cb56d282907528a3a5a1af5cad04c7012930ea70	{"freshness":{"hint":"compare max_file_touched against the current git
+mcp-query_schema {}	73a84214f76699a7bd1cf7f108bdede6fb69c5c1c7aac224b51d9637251161f7	{"freshness":{"hint":"compare max_file_touched against the current git
 mcp-query_similar {"source_repo":"corpus","text":"pricing","type":"doc"}	8c42c1b5d01aceaa5452035d038eadb7780b70072c877b0c96ca505a77b1cc37	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 mcp-query_similar {"text":"cache","top":4,"type":"all"}	ef44ef7db77a9876cb7b8f8041e6f2e4cce388bb672944635cfffb6082f6b9e7	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 mcp-query_similar {"text":"cache","top":4,"type":"doc"}	5743128d3439e5e34697ee827681e87176e782f1d0b16a50331080280f6ec5e1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":

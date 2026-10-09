@@ -46,4 +46,4 @@ Line numbers refer to the tree at the commit that added this page; re-check afte
 
 C# and Dart were run end to end by hand on small real projects; see [language-verification](language-verification.md). That run changes two matrix cells in practice: the C# doc comment on a graph function is raw scip-dotnet markup (a signature fence plus an XML member element), not clean text; Dart doc comments are clean. Neither is exercised by this repository's tests or CI, which still use only synthetic SCIP documents.
 
-No Java repository has been run: the test machine had no JDK. Plan item C6 remains open for Java.
+Java was run end to end on Apache Fineract (about 16,000 source files, Gradle): see the Fineract notes in the first-run findings. That run found JAX-RS endpoint extraction silent because `endpoint_marker_exclusive` defaulted to `true`; it now defaults to `false`, and 965 endpoints were extracted.

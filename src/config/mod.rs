@@ -26,9 +26,9 @@ use anyhow::{anyhow, Context, Result};
 use globset::{Glob, GlobSet, GlobSetBuilder};
 use regex::Regex;
 use serde::{Deserialize, Serialize};
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 use std::fs;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
 /// On-disk `.doc-lint.toml` schema for the [[entity-doc-graph]] linter.
 /// Five flattened sub-structs group the 60+ knobs by concern; the
@@ -426,6 +426,7 @@ impl LintConfig {
                 .as_ref()
                 .is_none_or(|g| g.is_match(rel));
         include
+            && !self.is_generated_path(root, &rel.to_string_lossy().replace('\\', "/"))
             && !self
                 .vale
                 .code_comment_exclude_set
@@ -476,6 +477,11 @@ impl LintConfig {
     }
 
     pub fn is_exempt(&self, path: &Path, root: &Path) -> bool {
+        if let Ok(rel) = path.strip_prefix(root) {
+            if !self.coverage.include_generated && is_git_ignored(root, &rel.to_string_lossy()) {
+                return true;
+            }
+        }
         let Some(globs) = self.exempt_set.as_ref() else {
             return false;
         };
@@ -492,6 +498,33 @@ impl LintConfig {
             }
         }
         false
+    }
+
+    /// Path-based generated-code test (false when `include_generated`), tool-agnostic: a `generated` /
+    /// `__generated__` directory, a `*.gen.*` file name, a build-output dir
+    /// next to its build script (`config.should_skip_dir`), or a path git
+    /// ignores (the repo's own statement that it is not source).
+    pub fn is_generated_path(&self, root: &Path, file: &str) -> bool {
+        if self.coverage.include_generated {
+            return false;
+        }
+        let config = self;
+        let rel = Path::new(file);
+        let name = rel.file_name().and_then(|n| n.to_str()).unwrap_or("");
+        if name.contains(".gen.") {
+            return true;
+        }
+        let mut dir = PathBuf::new();
+        for c in rel.parent().into_iter().flat_map(Path::components) {
+            dir.push(c);
+            let seg = c.as_os_str().to_str().unwrap_or("");
+            if matches!(seg, "generated" | "__generated__")
+                || config.should_skip_dir(&root.join(&dir), root)
+            {
+                return true;
+            }
+        }
+        is_git_ignored(root, file)
     }
 
     /// True when `path` matches a `skip_dirs` entry, pruning the directory
@@ -568,6 +601,47 @@ impl LintConfig {
         }
         false
     }
+}
+
+/// Whether git ignores `file` (repo-relative). One
+/// `git ls-files --ignored --directory` per root, cached; `false`
+/// outside a git checkout.
+fn is_git_ignored(root: &Path, file: &str) -> bool {
+    use std::sync::{Mutex, OnceLock};
+    static CACHE: OnceLock<Mutex<HashMap<PathBuf, std::sync::Arc<Vec<String>>>>> = OnceLock::new();
+    let ignored = {
+        let Ok(mut cache) = CACHE.get_or_init(Mutex::default).lock() else {
+            return false;
+        };
+        cache
+            .entry(root.to_path_buf())
+            .or_insert_with(|| {
+                let out = std::process::Command::new("git")
+                    .args([
+                        "-c",
+                        "core.quotepath=off",
+                        "ls-files",
+                        "--others",
+                        "--ignored",
+                        "--exclude-standard",
+                        "--directory",
+                    ])
+                    .current_dir(root)
+                    .output()
+                    .ok()
+                    .filter(|o| o.status.success());
+                let text = out.map(|o| String::from_utf8_lossy(&o.stdout).into_owned());
+                std::sync::Arc::new(text.unwrap_or_default().lines().map(String::from).collect())
+            })
+            .clone()
+    };
+    ignored.iter().any(|p| {
+        if p.ends_with('/') {
+            file.starts_with(p.as_str())
+        } else {
+            file == p
+        }
+    })
 }
 
 /// Compiles `patterns` into a [`GlobSet`], wrapping each parse error

@@ -246,6 +246,9 @@ scip_required = false
 # actionable. Remove this entry once the resolver lands a fix.
 coverage_endpoint_exempt = ["clap:cli:check"]
 
+# Every handler here carries an `@endpoint` marker; skip the syntactic parsers.
+endpoint_marker_exclusive = true
+
 # Per-context path inference for the `bounded-context` axis. Keys are
 # context ids; values are repo-relative path prefixes. A doc's effective
 # context falls out of the longest matching prefix when no explicit

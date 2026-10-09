@@ -46,21 +46,219 @@ const CLIQUE_MAX: usize = 10;
 /// layout vocabulary). Single domain nouns such as `user` are NOT here:
 /// a one-word name is allowed, this list only rejects the generic ones.
 const GENERIC: &[&str] = &[
-    "get", "set", "new", "impl", "handle", "handler", "helper", "helpers", "util", "utils", "test",
-    "tests", "mod", "main", "lib", "src", "common", "base", "default", "data", "info", "item",
-    "items", "list", "type", "types", "error", "errors", "result", "results", "value", "values",
-    "config", "manager", "service", "create", "update", "delete", "remove", "add", "make", "build",
-    "init", "run", "exec", "execute", "process", "read", "write", "load", "save", "open", "close",
-    "start", "stop", "find", "check", "parse", "format", "convert", "display", "debug", "clone",
-    "drop", "from", "into", "with", "the", "and", "for", "that", "this", "not", "are", "was",
-    "use", "used", "uses", "using", "can", "will", "has", "have", "its", "all", "any", "one",
-    "two", "when", "then", "else", "also", "each", "only", "more", "some", "such", "than", "them",
-    "they", "their", "there", "which", "what", "who", "how", "why", "where", "while", "must",
-    "should", "would", "could", "may", "might", "return", "returns", "returned", "self", "mut",
-    "pub", "crate", "fixture", "internal", "private", "public", "object", "string", "bool", "true",
-    "false", "none", "some", "text", "name", "names", "key", "keys", "path", "file", "files",
-    "line", "lines", "member", "cs",
+    "get",
+    "set",
+    "new",
+    "impl",
+    "handle",
+    "handler",
+    "helper",
+    "helpers",
+    "util",
+    "utils",
+    "test",
+    "tests",
+    "mod",
+    "main",
+    "lib",
+    "src",
+    "common",
+    "base",
+    "default",
+    "data",
+    "info",
+    "item",
+    "items",
+    "list",
+    "type",
+    "types",
+    "error",
+    "errors",
+    "result",
+    "results",
+    "value",
+    "values",
+    "config",
+    "manager",
+    "service",
+    "create",
+    "update",
+    "delete",
+    "remove",
+    "add",
+    "make",
+    "build",
+    "init",
+    "run",
+    "exec",
+    "execute",
+    "process",
+    "read",
+    "write",
+    "load",
+    "save",
+    "open",
+    "close",
+    "start",
+    "stop",
+    "find",
+    "check",
+    "parse",
+    "format",
+    "convert",
+    "display",
+    "debug",
+    "clone",
+    "drop",
+    "from",
+    "into",
+    "with",
+    "the",
+    "and",
+    "for",
+    "that",
+    "this",
+    "not",
+    "are",
+    "was",
+    "use",
+    "used",
+    "uses",
+    "using",
+    "can",
+    "will",
+    "has",
+    "have",
+    "its",
+    "all",
+    "any",
+    "one",
+    "two",
+    "when",
+    "then",
+    "else",
+    "also",
+    "each",
+    "only",
+    "more",
+    "some",
+    "such",
+    "than",
+    "them",
+    "they",
+    "their",
+    "there",
+    "which",
+    "what",
+    "who",
+    "how",
+    "why",
+    "where",
+    "while",
+    "must",
+    "should",
+    "would",
+    "could",
+    "may",
+    "might",
+    "return",
+    "returns",
+    "returned",
+    "self",
+    "mut",
+    "pub",
+    "crate",
+    "fixture",
+    "internal",
+    "private",
+    "public",
+    "object",
+    "string",
+    "bool",
+    "true",
+    "false",
+    "none",
+    "some",
+    "text",
+    "name",
+    "names",
+    "key",
+    "keys",
+    "path",
+    "file",
+    "files",
+    "line",
+    "lines",
+    "member",
+    "cs",
+    "retrieve",
+    "fetch",
+    "lookup",
+    "apply",
+    "validate",
+    "render",
+    "builder",
+    "put",
+    "post",
+    "patch",
+    "count",
+    "search",
+    "register",
+    "resolve",
+    "invoke",
+    "perform",
+    "wrapper",
+    "factory",
+    "exception",
+    "exceptions",
+    "resource",
+    "resources",
+    "request",
+    "response",
+    "command",
+    "dto",
+    "mapper",
+    "repository",
+    "serializer",
+    "validator",
+    "abstract",
+    "domain",
+    "listener",
+    "event",
+    "events",
+    "service",
+    "services",
+    "provider",
 ];
+
+/// A word in at least this share of the distinct directories is layout
+/// vocabulary (`core`, `provider`, `portfolio`, `domain`), not a concept.
+const COMMON_DIR_SHARE: f64 = 0.08;
+/// Below this many distinct directories the share is meaningless.
+const COMMON_DIR_MIN_DIRS: usize = 25;
+
+/// Words that appear in the path of many distinct directories.
+fn common_dir_words(symbols: &[ConceptSymbol]) -> HashSet<String> {
+    let dirs: BTreeSet<&str> = symbols
+        .iter()
+        .map(|s| s.file.rsplit_once('/').map_or("", |(d, _)| d))
+        .collect();
+    if dirs.len() < COMMON_DIR_MIN_DIRS {
+        return HashSet::new();
+    }
+    let mut count: HashMap<String, usize> = HashMap::new();
+    for d in &dirs {
+        let words: BTreeSet<String> = split_words(d).into_iter().collect();
+        for w in words {
+            *count.entry(w).or_insert(0) += 1;
+        }
+    }
+    let min = (dirs.len() as f64 * COMMON_DIR_SHARE).ceil() as usize;
+    count
+        .into_iter()
+        .filter_map(|(w, n)| (n >= min).then_some(w))
+        .collect()
+}
 
 fn stop_list(config: &LintConfig) -> HashSet<String> {
     let mut s: HashSet<String> = GENERIC.iter().map(|w| (*w).to_string()).collect();
@@ -435,6 +633,9 @@ fn build_proposals(
     namer: Option<&str>,
     args: &ProposeArgs,
 ) -> Result<Vec<Proposal>> {
+    let mut stops = stops.clone();
+    stops.extend(common_dir_words(&symbols));
+    let stops = &stops;
     let infos: Vec<Info> = symbols.into_iter().map(|s| Info::new(s, stops)).collect();
     let total = infos.len();
     let index: HashMap<&str, usize> = infos
@@ -1236,5 +1437,47 @@ mod tests {
             &ont,
         );
         assert!(r.is_err());
+    }
+
+    /// Layout words shared by many directories never name a concept, and
+    /// generic API verbs (`retrieve`) lose to the domain noun.
+    #[test]
+    fn path_words_common_to_many_dirs_and_api_verbs_never_win() {
+        let mut syms = Vec::new();
+        for i in 0..30 {
+            // 30 distinct dirs all under `core/provider/`.
+            let file = format!("src/core/provider/pkg{i}/Thing{i}.java");
+            syms.push(sym(
+                &pkg(&format!("core/provider/pkg{i}/Thing{i}#retrieve().")),
+                &file,
+                "void retrieve()",
+                "",
+                false,
+            ));
+        }
+        for f in [
+            "retrieveLoanTerms",
+            "retrieveLoanSchedule",
+            "retrieveLoanStatus",
+        ] {
+            syms.push(sym(
+                &pkg(&format!("core/provider/loans/LoanApi#{f}().")),
+                "src/core/provider/loans/LoanApi.java",
+                &format!("void {f}()"),
+                "",
+                false,
+            ));
+        }
+        let common = common_dir_words(&syms);
+        assert!(common.contains("core") && common.contains("provider"));
+        let stops = stop_list(&LintConfig::default());
+        let out = build_proposals(syms, &[], &[], &stops, &HashSet::new(), None, &args()).unwrap();
+        for p in &out {
+            assert!(
+                !["core", "provider", "retrieve"].contains(&p.name.as_str()),
+                "generic name proposed: {}",
+                p.name
+            );
+        }
     }
 }

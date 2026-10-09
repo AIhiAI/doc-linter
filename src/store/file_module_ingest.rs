@@ -207,6 +207,9 @@ pub(crate) fn collect_files(root: &Path, config: &LintConfig) -> Vec<FileRow> {
             continue;
         };
         let rel_str = rel.to_string_lossy().replace('\\', "/");
+        if super::code_ingest::is_excluded_code_file(config, root, &rel_str) {
+            continue;
+        }
         // Cheap LOC count — read the file and count newlines.
         // Skipping files that fail to read entirely keeps the ingest
         // resilient against transient I/O races.
@@ -214,10 +217,10 @@ pub(crate) fn collect_files(root: &Path, config: &LintConfig) -> Vec<FileRow> {
             Ok(b) => count_newlines(&b),
             Err(_) => 0,
         };
-        let last_touched = path
-            .metadata()
-            .ok()
-            .and_then(|m| m.modified().ok())
+        let last_touched = crate::gitdate::last_commit_secs(path)
+            .and_then(|s| u64::try_from(s).ok())
+            .map(|s| std::time::UNIX_EPOCH + std::time::Duration::from_secs(s))
+            .or_else(|| path.metadata().ok().and_then(|m| m.modified().ok()))
             .map(format_mtime)
             .unwrap_or_default();
         out.push(FileRow {

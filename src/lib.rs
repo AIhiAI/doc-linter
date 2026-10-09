@@ -41,6 +41,7 @@ pub mod embeddings;
 pub mod endpoint_extract;
 pub mod endpoint_markers_migrate;
 pub mod explain;
+pub mod gitdate;
 pub mod graph;
 pub mod graph_read;
 pub mod homepage;
