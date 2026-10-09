@@ -99,8 +99,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          # Files only: the wheel directory (artifacts/dist) cannot be uploaded as one asset.
+          mapfile -t files < <(find artifacts -type f | sort)
           gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" \
-            --draft --generate-notes artifacts/*
+            --draft --generate-notes "${files[@]}"
       # Signing (cosign / GPG / Apple notarization / Authenticode) is not set up; see docs/install.md.
 
   # Manual, deliberately disabled. Uncomment once the PyPI name is decided
