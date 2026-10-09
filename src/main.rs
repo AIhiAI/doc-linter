@@ -22,7 +22,7 @@ use cmd::{CheckArgs, Commands, OutputFormat};
 /// Top-level clap CLI for the [[entity-doc-graph]] linter — root path,
 /// config override, output format, and the `Commands` subcommand enum.
 #[derive(Parser)]
-#[command(name = "doc-linter")]
+#[command(name = "doc-linter", version)]
 #[command(about = "Validates and queries project documentation")]
 struct Cli {
     /// Repo root (defaults to current working directory)
