@@ -355,7 +355,7 @@ pub fn validate_doc(
     //   spec/plan/tasks/research — Speckit's convention: each feature dir
     //     under `.specify/specs/<feature-id>/` contains spec.md, plan.md,
     //     tasks.md, research.md. The frontmatter `id` is feature-scoped
-    //     (e.g., `spec-fa-rate-limit-sync-jobs`), the filename is generic.
+    //     (e.g., `spec-billing-rate-limit-sync-jobs`), the filename is generic.
     // Also exempt: anything under docs/ontology/ (ids are axis-prefixed:
     // axis-role, value-role-doc, entity-outlet, etc.), anything under
     // .specify/specs/ (Speckit-managed feature dirs), and anything under

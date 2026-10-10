@@ -407,7 +407,7 @@ pub fn exempt_dark_breakdown(
     // derive / trait impls (e.g. `std::io::Write::write` lands a long
     // doc on every `impl Write for FooWriter` member), so a
     // bare-name-exempt fn can have a non-empty `doc_comment` that
-    // doesn't link any FA entity. The previous filter
+    // doesn't link any entity. The previous filter
     // `(f.doc_comment IS NULL OR f.doc_comment = '')` excluded those
     // from the exempt sweep and over-counted them as dark. The
     // `NOT EXISTS FUNCTION_MENTIONS` predicate already establishes

@@ -152,11 +152,13 @@ fn vale_config_tree_is_generated() {
         "Vocabulary rule missing"
     );
     assert!(
-        vale_root.join("styles/FA/AmbiguousBare.yml").exists(),
+        vale_root
+            .join("styles/DocLinter/AmbiguousBare.yml")
+            .exists(),
         "AmbiguousBare rule missing"
     );
     let accept =
-        std::fs::read_to_string(vale_root.join("styles/config/vocabularies/FA/accept.txt"))
+        std::fs::read_to_string(vale_root.join("styles/config/vocabularies/DocLinter/accept.txt"))
             .expect("read accept.txt");
     assert!(
         accept.contains("Pricing Rule"),
@@ -401,13 +403,22 @@ fn dangling_symlink_under_root_does_not_blind_vale() {
     );
 }
 
-/// AsciiDoc without frontmatter joins the corpus without frontmatter
-/// errors. Without `asciidoctor` it is left out of Vale with one
-/// `asciidoctor-missing` warning, and markdown alerts still land.
-/// Skipped unless `vale` is installed and `asciidoctor` is not.
+/// `PATH` for a child process with every directory holding `asciidoctor`
+/// removed, so the test proves the Ruby tool is not needed.
+fn path_without_asciidoctor() -> std::ffi::OsString {
+    let path = std::env::var_os("PATH").unwrap_or_default();
+    let dirs = std::env::split_paths(&path)
+        .filter(|d| !d.join("asciidoctor").exists() && !d.join("asciidoctor.bat").exists());
+    std::env::join_paths(dirs).unwrap()
+}
+
+/// AsciiDoc is linted by Vale through the built-in prose extractor, with no
+/// `asciidoctor` on PATH: a vocabulary violation in prose is reported at its
+/// original line, while the same word in a source block, an inline-code span,
+/// a comment or the header is not. Skipped unless `vale` is installed.
 #[test]
-fn adoc_without_asciidoctor_is_skipped_by_vale_with_a_warning() {
-    if which::which("vale").is_err() || which::which("asciidoctor").is_ok() {
+fn adoc_is_linted_through_builtin_extractor_with_original_line_numbers() {
+    if which::which("vale").is_err() {
         return;
     }
     let tmp = tempdir();
@@ -420,7 +431,22 @@ fn adoc_without_asciidoctor_is_skipped_by_vale_with_a_warning() {
     assert!(init.status.success(), "init failed");
     write(
         &tmp.join("guide/index.adoc"),
-        "= Loan Guide\n\n== Approve\nPress the Blorptastic button.\n\n[[an-anchor]]\nText.\n",
+        "= Loan Guide\n\
+         Jane Doe <jane@example.org>\n\
+         :toc:\n\
+         \n\
+         // Zorptastic in a comment\n\
+         == Approve\n\
+         \n\
+         [source,java]\n\
+         ----\n\
+         class Qwertyzorb {}\n\
+         ----\n\
+         \n\
+         Call `Flimflamtastic` first.\n\
+         \n\
+         * a list item\n\
+         * Press the Blorptastic button.\n",
     );
     write(
         &tmp.join("docs/note.md"),
@@ -428,6 +454,7 @@ fn adoc_without_asciidoctor_is_skipped_by_vale_with_a_warning() {
          status: stable\nupdated: 2026-01-01\n---\n\nThe Qwertyzorb widget.\n",
     );
     let out = Command::new(doc_linter_bin())
+        .env("PATH", path_without_asciidoctor())
         .arg("--root")
         .arg(&tmp)
         .args(["check", "--format", "json"])
@@ -435,53 +462,41 @@ fn adoc_without_asciidoctor_is_skipped_by_vale_with_a_warning() {
         .expect("run doc-linter check");
     let report: serde_json::Value =
         serde_json::from_slice(&out.stdout).expect("check --format json");
-    let codes = |suffix: &str| -> Vec<String> {
+    let entry = |suffix: &str| {
         report["report"]
             .as_array()
             .unwrap()
             .iter()
-            .filter(|e| e["file"].as_str().unwrap().ends_with(suffix))
-            .flat_map(|e| e["codes"].as_array().unwrap().clone())
-            .map(|c| c.as_str().unwrap().to_string())
-            .collect()
+            .find(|e| e["file"].as_str().unwrap().ends_with(suffix))
+            .unwrap_or_else(|| panic!("no report entry for {suffix}: {report}"))
+            .clone()
     };
-    assert_eq!(codes("guide/index.adoc"), ["asciidoctor-missing"]);
+    let adoc = entry("guide/index.adoc");
+    let issues: Vec<String> = adoc["issues"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|i| i.as_str().unwrap().to_string())
+        .collect();
+    let all = issues.join("\n");
     assert!(
-        codes("docs/note.md").contains(&"vale-vocabulary-vocabulary".to_string()),
-        "markdown Vale alerts lost: {report}"
+        issues
+            .iter()
+            .any(|i| i.contains("Blorptastic") && i.contains("line 16")),
+        "no Blorptastic finding at original line 16:\n{all}"
     );
-}
-
-/// With `asciidoctor` on PATH, `.adoc` bodies get vocab-closure too,
-/// including docs with `:toc:` (which used to hide every alert).
-/// Skipped unless both `vale` and `asciidoctor` are installed.
-#[test]
-fn adoc_is_linted_when_asciidoctor_is_installed() {
-    if which::which("vale").is_err() || which::which("asciidoctor").is_err() {
-        return;
+    for hidden in ["Qwertyzorb", "Flimflamtastic", "Zorptastic"] {
+        assert!(!all.contains(hidden), "{hidden} must be masked:\n{all}");
     }
-    let tmp = tempdir();
-    let init = Command::new(doc_linter_bin())
-        .arg("--root")
-        .arg(&tmp)
-        .arg("init")
-        .output()
-        .expect("run doc-linter init");
-    assert!(init.status.success(), "init failed");
-    write(
-        &tmp.join("guide/index.adoc"),
-        "= Loan Guide\n:toc:\n\n== Approve\nPress the Blorptastic button.\n",
-    );
-    let out = Command::new(doc_linter_bin())
-        .arg("--root")
-        .arg(&tmp)
-        .arg("check")
-        .output()
-        .expect("run doc-linter check");
-    let stderr = String::from_utf8_lossy(&out.stderr);
+    assert!(!all.contains("asciidoctor"), "{all}");
+    // Markdown still goes through Vale in the same run.
     assert!(
-        stderr.contains("Blorptastic"),
-        "Vale did not lint the AsciiDoc body:\n{stderr}"
+        entry("docs/note.md")["codes"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|c| c == "vale-vocabulary-vocabulary"),
+        "markdown Vale alerts lost: {report}"
     );
 }
 

@@ -890,12 +890,12 @@ mod tests {
             dart,
             &[
                 PathBuf::from("pubspec.yaml"),
-                PathBuf::from("apps/fa/pubspec.yaml"),
+                PathBuf::from("apps/mobile/pubspec.yaml"),
             ],
         );
         assert_eq!(
             runs,
-            [Some(PathBuf::from(".")), Some(PathBuf::from("apps/fa"))]
+            [Some(PathBuf::from(".")), Some(PathBuf::from("apps/mobile"))]
         );
         let rust = INDEXERS.iter().find(|i| i.lang == "rust").unwrap();
         assert_eq!(project_runs(rust, &[PathBuf::from("Cargo.toml")]), [None]);

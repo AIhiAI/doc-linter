@@ -84,6 +84,7 @@ sha2 = "0.10"
 # encode_batch; the direct entry just makes the `par_chunks` import
 # explicit.
 rayon = "1"
+asciidoc-parser = "0.31.2"
 
 # Roadmap issue #28 (v0.4.0): semantic-search backend. **On by
 # default** — every install gets working semantic search via the

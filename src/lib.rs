@@ -28,6 +28,7 @@
 //!   [`homepage`], [`explain`], [`vale`].
 //! - **Agent / editor surface:** [`lsp`].
 
+pub mod adoc;
 pub mod code_comments;
 mod code_comments_java;
 pub mod code_comments_py;

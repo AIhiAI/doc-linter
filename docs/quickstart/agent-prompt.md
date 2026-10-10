@@ -33,7 +33,7 @@ Work through the steps in order. Where a step says STOP, report what happened an
        CARGO_NET_GIT_FETCH_WITH_CLI=true cargo install --locked --git https://github.com/AIhiAI/doc-linter
      The repo is private: if the clone fails on auth, STOP and ask me for GitHub access (gh auth login or an SSH key).
    - Vale: if `command -v vale` fails, install it (brew install vale, or the release binary from
-     https://github.com/errata-ai/vale/releases into ~/.local/bin). With .adoc docs, also check `asciidoctor`.
+     https://github.com/errata-ai/vale/releases into ~/.local/bin).
    - SCIP indexers, only for languages from step 1: rust-analyzer (rustup component add rust-analyzer),
      scip-typescript / scip-python (npm i -g @sourcegraph/scip-typescript @sourcegraph/scip-python),
      scip-java, scip-dotnet, scip_dart. Install what you can without sudo; list what's missing.

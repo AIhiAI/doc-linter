@@ -687,7 +687,7 @@ fn migrate_unresolved_endpoints_go_to_manual_report() {
     // McpTool inside a vec! macro — extract_mcp can find the name
     // (via the regex fallback) but no handler symbol resolves.
     write(
-        &root.join("crates/fa-mcp/src/lib.rs"),
+        &root.join("crates/api-mcp/src/lib.rs"),
         r#"
             fn tools() -> Vec<McpTool> {
                 vec![

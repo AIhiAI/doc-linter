@@ -70,7 +70,7 @@ allowed_visibility = ["public", "internal", "private"]
 # --no-vale) to turn it off.
 vale_enabled = true
 
-# Bare ambiguous English nouns the Vale `FA.AmbiguousBare` rule flags.
+# Bare ambiguous English nouns the Vale `DocLinter.AmbiguousBare` rule flags.
 # Authors must qualify these (e.g. "pricing rule" not "rule") so the term
 # resolves to a single ontology entity; a word that resolves to an entity
 # in another bounded context is reported as `cross-context-reference`.

@@ -575,7 +575,7 @@ fn locate_fn_line(
 /// True when `git status --porcelain` returns no output (working tree
 /// clean) or when `root` is not inside a git repo at all (treat
 /// non-git checkouts as "clean enough" — the safety check is meant
-/// for FA's actual workspace, not test fixtures).
+/// for a real workspace, not test fixtures).
 fn is_working_tree_clean(root: &Path) -> Result<bool> {
     let output = std::process::Command::new("git")
         .arg("-C")

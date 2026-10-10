@@ -157,7 +157,7 @@ A handful of fixes that are policy-level rather than mechanical:
   unknown-role errors and wastes a round-trip.
 - **Do not edit `.doc-lint.toml`'s rules without explaining why.**
   Configuration drift to silence inconvenient lints is a smell.
-- **Do not assume FA-specific conventions.** This prompt is the
+- **Do not assume project-specific conventions.** This prompt is the
   generic doc-linter contract. Repo-specific facts come from
   `doc-linter ontology` + `.doc-lint.toml` at runtime.
 

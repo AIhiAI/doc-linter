@@ -602,7 +602,6 @@ fn issue_to_diagnostic(issue: Issue) -> Diagnostic {
         | Issue::UnlinkedPath { .. }
         | Issue::OrphanDoc
         | Issue::ValeNotInstalled
-        | Issue::AsciidoctorMissing
         | Issue::ValeAlert { .. }
         | Issue::CrossContextReference { .. }
         | Issue::CommentVocabViolation { .. }

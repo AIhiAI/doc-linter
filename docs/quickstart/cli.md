@@ -27,8 +27,8 @@ CARGO_NET_GIT_FETCH_WITH_CLI=true cargo install --locked \
 ```
 
 The build needs a C and a C++ compiler (no cmake). Also install
-[Vale](https://vale.sh) (vocabulary checks, on by default) and, for
-`.adoc` files, `asciidoctor`.
+[Vale](https://vale.sh) (vocabulary checks, on by default). `.adoc` files
+need nothing extra: doc-linter extracts their prose itself.
 
 ## 2. Set up a repo
 

@@ -35,7 +35,7 @@ pub(crate) fn run_vale_pipeline(
     // Pre-build the lowercase set of vale_ambiguous_words for quick
     // O(1) lookup in the alert loop. Used by the duplicate-alert
     // filter (task #12): a Vocabulary.Vocabulary alert on a term
-    // that's also an ambiguous word duplicates the FA.AmbiguousBare
+    // that's also an ambiguous word duplicates the DocLinter.AmbiguousBare
     // path, which the post-processor handles via cross-context-
     // reference. Drop the closure-rule duplicate.
     let ambiguous_lower: HashSet<String> = config
@@ -60,17 +60,24 @@ pub(crate) fn run_vale_pipeline(
         return Ok(vec![(attach_to, validator::Issue::ValeNotInstalled)]);
     };
 
-    // Vale shells out to `asciidoctor` for `.adoc` and fails the whole run
-    // without it, so leave AsciiDoc out (with one warning) when it's
-    // missing rather than lose the markdown alerts too.
+    // Vale never reads `.adoc` itself: doc-linter extracts the prose into
+    // line-preserving `.txt` mirrors and maps findings back to the original.
     let mut issues: Vec<(PathBuf, validator::Issue)> = Vec::new();
-    let mut vale_files: Vec<PathBuf> = target_files.to_vec();
-    if let Some(first_adoc) = target_files.iter().find(|p| doc_linter::parser::is_adoc(p)) {
-        if which::which("asciidoctor").is_err() {
-            issues.push((first_adoc.clone(), validator::Issue::AsciidoctorMissing));
-            vale_files.retain(|p| !doc_linter::parser::is_adoc(p));
-        }
-    }
+    let adoc_files: Vec<&PathBuf> = target_files
+        .iter()
+        .filter(|p| doc_linter::parser::is_adoc(p))
+        .collect();
+    let mirrors = vale::write_adoc_mirrors(root, &adoc_files).context("write adoc mirrors")?;
+    let mut vale_files: Vec<PathBuf> = target_files
+        .iter()
+        .filter(|p| !doc_linter::parser::is_adoc(p))
+        .cloned()
+        .collect();
+    vale_files.extend(mirrors.iter().map(|m| m.mirror.clone()));
+    let mirror_by_canon: HashMap<PathBuf, &vale::AdocMirror> = mirrors
+        .iter()
+        .map(|m| (m.mirror.canonicalize().unwrap_or(m.mirror.clone()), m))
+        .collect();
 
     // 3. Run Vale. A failure here (runtime error, parse error) becomes a
     //    single diagnostic so we don't silently lose vocab-closure coverage.
@@ -98,7 +105,11 @@ pub(crate) fn run_vale_pipeline(
     let mut out = issues;
     for (file_str, alerts) in &vale_output {
         let file_path = PathBuf::from(file_str);
-        let canon = file_path.canonicalize().unwrap_or(file_path.clone());
+        let mut canon = file_path.canonicalize().unwrap_or(file_path.clone());
+        let mirror = mirror_by_canon.get(&canon);
+        if let Some(m) = mirror {
+            canon = m.original.clone();
+        }
         // Vale only sees `target_files`; the check guards against it
         // reporting a path in a different spelling.
         if !target_set.contains(&canon) {
@@ -133,7 +144,12 @@ pub(crate) fn run_vale_pipeline(
         // sentence (`When the sky is blue` → flags `When`). The body
         // read is cheap (already on disk) and amortised over every
         // alert in the file.
-        let body = std::fs::read_to_string(&canon).unwrap_or_default();
+        // For AsciiDoc this is the extracted prose: same layout as the
+        // source, with markup and inline code already masked out.
+        let body = match mirror {
+            Some(m) => m.text.clone(),
+            None => std::fs::read_to_string(&canon).unwrap_or_default(),
+        };
         // Frontmatter is metadata doc-linter validates itself. Vale lints
         // its string values (title, summary) as prose and no BlockIgnores
         // reaches them, so alerts above the body are dropped here.
@@ -145,7 +161,7 @@ pub(crate) fn run_vale_pipeline(
             }
             // Closure rule (`Vocabulary.Vocabulary`): drop the alert
             // when it sits at a sentence-start position. Bare-ambiguous
-            // alerts (`FA.AmbiguousBare`) keep their original behaviour
+            // alerts (`DocLinter.AmbiguousBare`) keep their original behaviour
             // — those words are case-insensitive prose nouns where
             // sentence-start doesn't excuse the lack of qualifier.
             if alert.check == "Vocabulary.Vocabulary"
@@ -156,7 +172,7 @@ pub(crate) fn run_vale_pipeline(
             // Task #12: drop closure-rule alerts that duplicate the
             // bare-ambiguous-noun path. When `vale_ambiguous_words`
             // contains the prose token (case-insensitive), the
-            // FA.AmbiguousBare rule already fires on the same prose,
+            // DocLinter.AmbiguousBare rule already fires on the same prose,
             // and the post-processor below resolves it via
             // cross-context-reference. Letting the Vocabulary rule
             // also fire would emit a duplicate "Term not in vocab"

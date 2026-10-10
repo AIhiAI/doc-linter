@@ -2,7 +2,7 @@
 //!
 //! Vale's primitives (`existence`, `substitution`, ...) match isolated
 //! tokens — they can't natively check "is this term acceptable given the
-//! doc's bounded context?". So Vale fires a coarse `FA.AmbiguousBare`
+//! doc's bounded context?". So Vale fires a coarse `DocLinter.AmbiguousBare`
 //! alert on every occurrence, and this module decides per-alert whether
 //! to:
 //!
@@ -179,7 +179,7 @@ fn depluralise(term: &str) -> Option<String> {
 }
 
 /// Decide what to do with one Vale alert given the doc's effective
-/// bounded context. Only `FA.AmbiguousBare` alerts (and any other rule
+/// bounded context. Only `DocLinter.AmbiguousBare` alerts (and any other rule
 /// the caller flags as a vocab-closure check) are run through this
 /// path — caller filters by check name before invoking.
 pub fn resolve_alert(
@@ -236,11 +236,11 @@ pub fn resolve_alert(
 }
 
 /// Returns true if `check` is a Vale rule whose alerts this module knows
-/// how to post-process. Currently only `FA.AmbiguousBare`; the closure
+/// how to post-process. Currently only `DocLinter.AmbiguousBare`; the closure
 /// rule (`Vocabulary.Vocabulary`) flags unknown capitalised tokens that
 /// don't fit the bare-ambiguous-noun pattern, and we keep those as-is.
 pub fn is_vocab_closure_rule(check: &str) -> bool {
-    check == "FA.AmbiguousBare"
+    check == "DocLinter.AmbiguousBare"
 }
 
 /// Roadmap-48 Rule B: rank ontology entity ids + synonyms by token
@@ -329,7 +329,7 @@ mod tests {
 
     fn fake_alert(term: &str) -> ValeAlert {
         ValeAlert {
-            check: "FA.AmbiguousBare".to_string(),
+            check: "DocLinter.AmbiguousBare".to_string(),
             match_text: term.to_string(),
             line: 7,
             message: format!("bare {term}"),

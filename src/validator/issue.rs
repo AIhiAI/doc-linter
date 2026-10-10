@@ -147,9 +147,6 @@ pub enum Issue {
     ValeFailed {
         message: String,
     },
-    /// The corpus has `.adoc` docs but `asciidoctor` (which Vale needs to
-    /// read AsciiDoc) is not on PATH, so they were left out of the Vale run.
-    AsciidoctorMissing,
     /// A `vale_dictionaries` file can't be read. Its pack is left out of
     /// every accept list (Vale, code-comment lint, unstubbed-concept), so
     /// its terms start firing as unknown vocabulary.
@@ -158,7 +155,7 @@ pub enum Issue {
         path: std::path::PathBuf,
     },
     /// One alert from the Vale binary, mapped to a doc-linter Issue. `check`
-    /// is the Vale rule name (e.g. `FA.AmbiguousBare`); `code()` derives a
+    /// is the Vale rule name (e.g. `DocLinter.AmbiguousBare`); `code()` derives a
     /// `vale-<rule>` namespace from it.
     ValeAlert {
         check: String,
@@ -399,7 +396,6 @@ impl Issue {
             Issue::OrphanDoc => "orphan-doc",
             Issue::ValeNotInstalled => "vale-missing",
             Issue::ValeFailed { .. } => "vale-failed",
-            Issue::AsciidoctorMissing => "asciidoctor-missing",
             Issue::VocabDictionaryUnreadable { .. } => "vocab-dictionary-unreadable",
             Issue::ValeAlert { .. } => "vale-alert",
             Issue::CrossContextReference { .. } => "cross-context-reference",
@@ -451,9 +447,7 @@ impl Issue {
             Issue::UnusedBoundedContext { .. } => {
                 config.ontology.unused_bounded_context_severity == "error"
             }
-            Issue::UnauthoredCluster { .. }
-            | Issue::ValeNotInstalled
-            | Issue::AsciidoctorMissing => false,
+            Issue::UnauthoredCluster { .. } | Issue::ValeNotInstalled => false,
             _ => true,
         }
     }

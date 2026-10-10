@@ -177,7 +177,7 @@ pub(crate) fn render_json(
                 file: rel.display().to_string(),
                 issues: issue_strings,
                 // Use extended_code so Vale alerts surface as
-                // `vale-fa-ambiguousbare` etc. in JSON consumers.
+                // `vale-doclinter-ambiguousbare` etc. in JSON consumers.
                 codes,
                 promote_stubs,
             }

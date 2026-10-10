@@ -24,7 +24,7 @@ Adds a new role value so forward-looking work items can declare themselves typed
 
 ## Why now
 
-The legacy FA monorepo carried 12 docs under `docs/roadmap/` and `docs/planning/` that need a home in this repo. None of them resolved against the v1 vocabulary because v1 only registered `doc`, `index`, `adr`, plus the meta-roles. Bumping to v2 lets the forward-looking subset of those migrations land as first-class typed nodes rather than as ad-hoc explanation docs.
+The legacy private monorepo carried 12 docs under `docs/roadmap/` and `docs/planning/` that need a home in this repo. None of them resolved against the v1 vocabulary because v1 only registered `doc`, `index`, `adr`, plus the meta-roles. Bumping to v2 lets the forward-looking subset of those migrations land as first-class typed nodes rather than as ad-hoc explanation docs.
 
 ## Effect on existing docs
 

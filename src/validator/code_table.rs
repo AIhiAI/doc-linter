@@ -167,11 +167,6 @@ pub const ERROR_CODE_TABLE: &[ErrorCodeEntry] = &[
         fix: "Fix the path in `.doc-lint.toml` (it's relative to the repo root) or remove the entry.",
     },
     ErrorCodeEntry {
-        code: "asciidoctor-missing",
-        meaning: "The corpus has `.adoc` docs but `asciidoctor` isn't on PATH; Vale needs it to read AsciiDoc, so those docs skipped vocab-closure.",
-        fix: "Install Asciidoctor (`gem install asciidoctor` / `brew install asciidoctor`), or pass --no-vale.",
-    },
-    ErrorCodeEntry {
         code: "vale-failed",
         meaning: "`vale` is installed but exited with a runtime error, so vocab-closure did not run.",
         fix: "Run the `vale` command from the message by hand and fix what it reports (bad style, unreadable file), or pass --no-vale.",

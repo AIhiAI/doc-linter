@@ -3,7 +3,7 @@ id: 4-cross-language-coverage
 role: roadmap-entry
 lifecycle: planning
 title: 4 — Cross-language coverage (TypeScript SCIP + frontend↔backend drift detection)
-summary: Extends the Function / Endpoint coverage pipeline beyond Rust by ingesting a SCIP index for TypeScript, adding a new `FRONTEND_CALL` rel that links frontend `fetch('/api/...')` sites to backend `Endpoint` nodes, and shipping a `dark-frontend-call` lint so a renamed backend route surfaces as a CI failure on the frontend's next build. JSDoc/TSDoc vocabulary closure (the Phase 1 piece of the original FA roadmap-45) already shipped; this entry covers the remaining four phases.
+summary: Extends the Function / Endpoint coverage pipeline beyond Rust by ingesting a SCIP index for TypeScript, adding a new `FRONTEND_CALL` rel that links frontend `fetch('/api/...')` sites to backend `Endpoint` nodes, and shipping a `dark-frontend-call` lint so a renamed backend route surfaces as a CI failure on the frontend's next build. JSDoc/TSDoc vocabulary closure (the Phase 1 piece of the original private-monorepo roadmap-45) already shipped; this entry covers the remaining four phases.
 status: draft
 updated: 2026-05-30
 covers: [doc-graph, roadmap]
@@ -26,7 +26,7 @@ This is the kind of guarantee a monorepo with a strict graph wants. It's *more* 
 
 ## What this is
 
-Four phases, each shippable. Phase numbering preserves the original FA roadmap-45 mapping (Phase 1 was the JSDoc/TSDoc comment lint and shipped; this entry covers 2–5).
+Four phases, each shippable. Phase numbering preserves the original private-monorepo roadmap-45 mapping (Phase 1 was the JSDoc/TSDoc comment lint and shipped; this entry covers 2–5).
 
 ### Phase 2 — scip-typescript ingest
 

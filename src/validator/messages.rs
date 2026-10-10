@@ -151,11 +151,6 @@ impl fmt::Display for Issue {
                  missing from every vocabulary accept list. Fix the path or remove the entry.",
                 path.display()
             ),
-            Issue::AsciidoctorMissing => write!(
-                f,
-                "asciidoctor not on PATH — .adoc docs were left out of the Vale vocabulary-closure check. \
-                 Install: https://docs.asciidoctor.org/asciidoctor/latest/install/"
-            ),
             Issue::ValeFailed { message } => write!(
                 f,
                 "vale ran but failed — vocabulary-closure check did not run: {message}"

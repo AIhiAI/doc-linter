@@ -175,7 +175,7 @@ pub struct CoverageConfig {
     /// Roadmap-49 phase 3: list of `<kind>:<METHOD>:<path>` endpoint
     /// ids that should NOT count toward the dark-endpoint metric.
     /// Use for endpoints whose handler is a third-party type with no
-    /// FA-authored doc-comment we can stamp (e.g. `axum::Router::nest`
+    /// first-party doc-comment we can stamp (e.g. `axum::Router::nest`
     /// onto `poem_openapi::OpenApiService` or `swagger_ui`). Each
     /// entry is matched verbatim against the `EndpointFact.id` field.
     /// Exempt endpoints are filtered BEFORE creating the Endpoint

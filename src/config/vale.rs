@@ -24,15 +24,20 @@ pub struct ValeConfig {
     /// ontology and shells out to `vale`. If the binary isn't installed the
     /// check emits one `vale-missing` diagnostic and continues. Disable
     /// per-repo with `vale_enabled = false` or per-invocation with `--no-vale`.
+    /// `.adoc` docs are checked too, through a built-in prose extractor
+    /// (no `asciidoctor` needed).
     #[serde(default = "default_vale_enabled")]
     pub vale_enabled: bool,
 
-    /// Bare ambiguous English nouns flagged by the Vale `FA.AmbiguousBare`
+    /// Bare ambiguous English nouns flagged by the Vale `DocLinter.AmbiguousBare`
     /// rule. Authors must qualify these (e.g. "pricing rule" not "rule") so
     /// the term resolves to a single ontology entity. Round 2A's bounded-
     /// context post-processor decides which Vale alerts to suppress vs.
     /// downgrade based on the doc's effective context — extending this list
-    /// just feeds more candidate terms into that pipeline.
+    /// just feeds more candidate terms into that pipeline. Migration: this
+    /// rule was named `FA.AmbiguousBare` before v0.3.4; JSON consumers that
+    /// matched the code `vale-fa-ambiguousbare` must now match
+    /// `vale-doclinter-ambiguousbare`.
     #[serde(default = "default_vale_ambiguous_words")]
     pub vale_ambiguous_words: Vec<String>,
 
@@ -60,7 +65,7 @@ pub struct ValeConfig {
     /// `.doc-lint/vale/styles/config/vocabularies/<name>/accept.txt`.
     /// Vale consults all listed packs case-insensitively. Keeping
     /// dictionaries in separate packs (instead of merging them into the
-    /// ontology-derived FA accept-list) means refreshing a cspell dict
+    /// ontology-derived accept-list) means refreshing a cspell dict
     /// is a one-shot file replace.
     ///
     /// ```toml

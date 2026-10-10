@@ -225,5 +225,5 @@ Standalone repos (no cross-repo doc-sharing) are unaffected. `cross_repo_roots` 
 
 ## Related
 
-- [[2-release-pipeline]] — sibling entry covering the combined release model, lockfile shape, publish pipeline, update flow, and semver discipline rules (planned for migration from FA #188)
+- [[2-release-pipeline]] — sibling entry covering the combined release model, lockfile shape, publish pipeline, update flow, and semver discipline rules (planned for migration from the private monorepo, #188)
 - [[using-doc-linter]] — current operator's guide; will gain an `extends:` and bundle-cache section once this lands

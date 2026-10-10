@@ -23,7 +23,7 @@
 //! preceded by an ontology-vocab qualifier, is an error" — `existence` /
 //! `substitution` look at single tokens, not lookbehind-conditional ones.
 //! Rather than wrestle Vale into doing context-sensitive matching, we use
-//! the simpler approach: the `FA.AmbiguousBare` rule fires on every
+//! the simpler approach: the `DocLinter.AmbiguousBare` rule fires on every
 //! occurrence of an ambiguous English noun, and the Rust post-processor
 //! decides per-alert whether the surrounding context excused it. The
 //! generated `Vocabulary/Vocabulary.yml` rule covers the closure side —
@@ -106,9 +106,9 @@ pub fn vale_dir(root: &Path) -> PathBuf {
 ///   .vale.ini
 ///   styles/
 ///     Vocabulary/Vocabulary.yml
-///     config/vocabularies/FA/accept.txt
-///     config/vocabularies/FA/reject.txt
-///     FA/AmbiguousBare.yml
+///     config/vocabularies/DocLinter/accept.txt
+///     config/vocabularies/DocLinter/reject.txt
+///     DocLinter/AmbiguousBare.yml
 /// ```
 pub fn generate_config(root: &Path, ontology: &Ontology, config: &LintConfig) -> Result<()> {
     let base = vale_dir(root);
@@ -116,13 +116,13 @@ pub fn generate_config(root: &Path, ontology: &Ontology, config: &LintConfig) ->
 
     // Phase 3-extension: external dictionaries (cspell-style .txt files,
     // one term per line) get their own Vocab pack each. Vale natively
-    // supports multiple Vocab names in `.vale.ini` — `Vocab = FA, AWS,
+    // supports multiple Vocab names in `.vale.ini` — `Vocab = DocLinter, AWS,
     // SoftwareTerms`. Each name maps to a sibling dir under
     // `styles/config/vocabularies/`. Keeping them in separate packs
-    // means the ontology-derived FA list stays small and pure; updates
+    // means the ontology-derived DocLinter list stays small and pure; updates
     // to the cspell dicts are one-shot file refreshes.
     let packs = accept_packs(root, ontology, config);
-    // Every pack after `FA` joins the `Vocab =` line; Vale unions them.
+    // Every pack after `DocLinter` joins the `Vocab =` line; Vale unions them.
     let extra_vocab_names: Vec<String> = packs.iter().skip(1).map(|(n, _)| n.clone()).collect();
     write_idempotent(&base.join(".vale.ini"), &build_vale_ini(&extra_vocab_names))?;
 
@@ -137,9 +137,13 @@ pub fn generate_config(root: &Path, ontology: &Ontology, config: &LintConfig) ->
         write_idempotent(&pack_dir.join("reject.txt"), "")?;
     }
 
-    let fa_rules_dir = base.join("styles/FA");
-    fs::create_dir_all(&fa_rules_dir)?;
-    let ambiguous_path = fa_rules_dir.join("AmbiguousBare.yml");
+    // Pre-rename (`FA`) rules and vocab dirs: inert now, but confusing.
+    for stale in ["styles/FA", "styles/config/vocabularies/FA"] {
+        let _ = fs::remove_dir_all(base.join(stale));
+    }
+    let rules_dir = base.join("styles/DocLinter");
+    fs::create_dir_all(&rules_dir)?;
+    let ambiguous_path = rules_dir.join("AmbiguousBare.yml");
     if config.vale.vale_ambiguous_words.is_empty() {
         // Empty list means the repo doesn't want the bare-ambiguous-noun
         // rule. Vale's `existence` check with an empty `tokens:` list
@@ -162,7 +166,7 @@ pub fn generate_config(root: &Path, ontology: &Ontology, config: &LintConfig) ->
 }
 
 /// The accept-list packs Vale reads, as `(pack name, accept.txt body)`:
-/// the ontology-derived `FA` pack first, then the baked-in
+/// the ontology-derived `DocLinter` pack first, then the baked-in
 /// `EnglishCommon` baseline, then one pack per `vale_dictionaries` entry.
 /// Single source for both the generated Vale tree and the in-process
 /// code-comment lint ([`accept_terms`]), so a term accepted in markdown
@@ -170,7 +174,7 @@ pub fn generate_config(root: &Path, ontology: &Ontology, config: &LintConfig) ->
 ///
 /// `vale_ambiguous_words` are excluded from every pack: Vale's accept
 /// list outranks rule firing, so an ambiguous word left in any pack would
-/// silently suppress `FA.AmbiguousBare`.
+/// silently suppress `DocLinter.AmbiguousBare`.
 pub fn accept_packs(
     root: &Path,
     ontology: &Ontology,
@@ -179,7 +183,7 @@ pub fn accept_packs(
     let ambiguous = &config.vale.vale_ambiguous_words;
     let mut packs = vec![
         (
-            "FA".to_string(),
+            "DocLinter".to_string(),
             build_accept(
                 ontology,
                 &config.vale.vale_extra_accept,
@@ -232,11 +236,11 @@ pub fn accept_terms(
 }
 
 /// Builds the `.vale.ini` content. The `Vocab = ...` line lists every
-/// vocabulary pack Vale should consult: the ontology-derived `FA` pack
+/// vocabulary pack Vale should consult: the ontology-derived `DocLinter` pack
 /// always plus any extra packs from `vale_dictionaries`. Order matters
 /// only for human readability — Vale's accept-list lookup is unordered.
 fn build_vale_ini(extra_vocabs: &[String]) -> String {
-    let mut vocab_names = vec!["FA".to_string()];
+    let mut vocab_names = vec!["DocLinter".to_string()];
     vocab_names.extend(extra_vocabs.iter().cloned());
     let vocab_line = vocab_names.join(", ");
     format!(
@@ -246,21 +250,17 @@ fn build_vale_ini(extra_vocabs: &[String]) -> String {
          MinAlertLevel = warning\n\
          Vocab = {vocab_line}\n\
          \n\
-         # Vale renders AsciiDoc with `asciidoctor`. A rendered `:toc:` repeats\n\
-         # the headings and Vale then drops every alert in the file.\n\
-         [asciidoctor]\n\
-         toc = NO\n\
-         \n\
          [*.md]\n\
          # Phase 1 (Fix B): skip H1-H6 markdown headers wholesale. Header words\n\
          # like `Related`, `Status`, `How`, `Why` aren't prose — they're section\n\
          # labels and don't need to resolve to an ontology entity.\n\
          BlockIgnores = (?m)^#+\\s.*$\n\
-         BasedOnStyles = Vocabulary, FA\n\
+         BasedOnStyles = Vocabulary, DocLinter\n\
          \n\
-         # AsciiDoc: Vale renders it with `asciidoctor` (must be on PATH).\n\
-         [*.adoc]\n\
-         BasedOnStyles = Vocabulary, FA\n",
+         # AsciiDoc is not read by Vale directly: doc-linter extracts the prose\n\
+         # (`adoc::extract_prose`, line-preserving) into `adoc/*.txt` mirrors.\n\
+         [*.txt]\n\
+         BasedOnStyles = Vocabulary, DocLinter\n",
     )
 }
 
@@ -309,6 +309,43 @@ pub fn run(root: &Path, vale_bin: &Path, files: &[PathBuf]) -> Result<ValeOutput
         all.extend(parsed);
     }
     Ok(all)
+}
+
+/// A line-preserving prose mirror of one `.adoc` file (see [`crate::adoc`]).
+pub struct AdocMirror {
+    /// The `.adoc` file as `check` knows it; findings are reported here.
+    pub original: PathBuf,
+    /// The `.txt` file handed to Vale in place of `original`.
+    pub mirror: PathBuf,
+    /// The extracted prose (same line/column layout as `original`).
+    pub text: String,
+}
+
+/// Writes one extracted-prose `.txt` mirror per `.adoc` file under
+/// `<root>/.doc-lint/vale/adoc/` (recreated on every run). Unreadable
+/// files are skipped; the rest of the check carries on.
+pub fn write_adoc_mirrors(root: &Path, files: &[&PathBuf]) -> Result<Vec<AdocMirror>> {
+    let dir = vale_dir(root).join("adoc");
+    let _ = fs::remove_dir_all(&dir);
+    if files.is_empty() {
+        return Ok(Vec::new());
+    }
+    fs::create_dir_all(&dir).with_context(|| format!("create {}", dir.display()))?;
+    let mut out = Vec::new();
+    for (i, original) in files.iter().enumerate() {
+        let Ok(src) = fs::read_to_string(original) else {
+            continue;
+        };
+        let text = crate::adoc::extract_prose(&src);
+        let mirror = dir.join(format!("{i}.txt"));
+        fs::write(&mirror, &text).with_context(|| format!("write {}", mirror.display()))?;
+        out.push(AdocMirror {
+            original: (*original).clone(),
+            mirror,
+            text,
+        });
+    }
+    Ok(out)
 }
 
 /// Files per `vale` invocation in [`run`].
@@ -519,7 +556,7 @@ tokens:
   - '\\b[A-Z][A-Za-z]+\\b'
 ";
 
-/// Builds `FA/AmbiguousBare.yml` from the configured ambiguous-words list.
+/// Builds `DocLinter/AmbiguousBare.yml` from the configured ambiguous-words list.
 /// Vale's `existence` rule fires on every occurrence of any of the listed
 /// tokens as an isolated word (case-insensitive). Bounded-context-aware
 /// suppression happens AFTER Vale runs — see `crate::disambiguation`. We
@@ -555,7 +592,7 @@ fn build_ambiguous_rule(words: &[String]) -> String {
     )
 }
 
-/// Builds the FA accept-list. Includes, for every ontology entity:
+/// Builds the DocLinter accept-list. Includes, for every ontology entity:
 ///   - `entity.id`
 ///   - `entity.display`
 ///   - every entry of `entity.synonyms`
@@ -568,7 +605,7 @@ fn build_ambiguous_rule(words: &[String]) -> String {
 /// terms that aren't ontology entities — populated from `.doc-lint.toml`.
 ///
 /// `ambiguous_words` (G1 followup) holds terms that the
-/// `FA.AmbiguousBare` Vale rule fires on — these get EXCLUDED from
+/// `DocLinter.AmbiguousBare` Vale rule fires on — these get EXCLUDED from
 /// accept.txt so Vale's accept-list precedence doesn't silently
 /// suppress them. The bounded-context post-processor then resolves
 /// each alert per-doc-context. Exclusion is per-case-variant on the
@@ -613,7 +650,7 @@ fn build_accept(
     }
 
     // Build the exclusion set from ambiguous_words — every bare-term
-    // case variant gets dropped so Vale's FA.AmbiguousBare rule can
+    // case variant gets dropped so Vale's DocLinter.AmbiguousBare rule can
     // tokenize the term. The plural forms stay (Vale's `\b<word>\b`
     // doesn't match "<word>s").
     if !ambiguous_words.is_empty() {
@@ -655,7 +692,7 @@ fn build_accept(
 /// G1 followup: `ambiguous_words` are excluded — same reason as
 /// build_accept. Vale's accept-list is consulted across ALL Vocab
 /// packs, so an ambiguous term sitting in any dict's accept.txt
-/// silently suppresses FA.AmbiguousBare just like it would in FA's
+/// silently suppresses DocLinter.AmbiguousBare just like it would in DocLinter's
 /// own accept.txt. Apply the same exclusion here.
 fn expand_dict_variants(body: &str, ambiguous_words: &[String]) -> String {
     let mut set: BTreeSet<String> = BTreeSet::new();
@@ -957,7 +994,7 @@ mod tests {
     }
 
     /// G1 followup: `vale_ambiguous_words` terms get EXCLUDED from
-    /// accept.txt so Vale's `FA.AmbiguousBare` rule can tokenize them
+    /// accept.txt so Vale's `DocLinter.AmbiguousBare` rule can tokenize them
     /// instead of being silently suppressed by accept-list precedence.
     /// The exclusion drops every case variant of the bare term (rule,
     /// Rule, RULE) but leaves the plurals (rules, Rules, RULES) — Vale's
