@@ -312,17 +312,29 @@ pub fn seed_fixture(root: &Path) {
     write(&root.join("math.py"), "def add():\n    pass\n");
     write_rich_scip(&root.join(".doc-lint/code.scip"));
     // Four commits touching both crates, so COUPLED_WITH has pairs.
+    // Pinned commit dates: last_touched comes from git, so wall-clock
+    // timestamps would make the recency goldens depend on second boundaries.
+    let day = std::cell::Cell::new(1);
     let vcs = |args: &[&str]| {
         let out = Command::new("git")
             .args(["-c", "user.name=t", "-c", "user.email=t@t"])
             .args(args)
             .current_dir(root)
+            .env(
+                "GIT_AUTHOR_DATE",
+                format!("2026-01-{:02}T00:00:00Z", day.get()),
+            )
+            .env(
+                "GIT_COMMITTER_DATE",
+                format!("2026-01-{:02}T00:00:00Z", day.get()),
+            )
             .output()
             .unwrap();
         assert!(out.status.success(), "vcs {args:?}");
     };
     vcs(&["init", "-q"]);
     for i in 0..4 {
+        day.set(i + 1);
         write(
             &root.join("crates/a/src/lib.rs"),
             &format!("{src_a}// rev {i}\n"),

@@ -1,7 +1,7 @@
-cli-graph-summary edges	b588e87495e71ef5424a833cab3a79cb1631101d9bd98faa927d9e646bf3baa2	[{"count":4,"label":"DEFINED_IN_FILE"},{"count":4,"label":"FUNCTION_BE
+cli-graph-summary edges	03fd690adaae59b9313cfcc32b337e1b5773671ee7967ed505461fb658d7ab96	[{"count":4,"label":"DEFINED_IN_FILE"},{"count":4,"label":"FUNCTION_BE
 cli-graph-summary nodes	38ecc50973db3980fb2aaaaa6afbe3662ee619494bb0458501e988b8251a0e32	[{"count":8,"label":"Doc"},{"count":5,"label":"File"},{"count":4,"labe
-cli-graph-summary totals	9f14025af0065b30e47e23ebb3b491d39ae8ed17d33739e5ff3827ffb3634953	35
-cli-schema edges	ebd6aabcd601ff3e4dca7e498521194f7b9fab0d9bf71638fc19a4a7346e59d8	[{"columns":[{"name":"dispatch"},{"name":"source_file"},{"name":"sourc
+cli-graph-summary totals	86e50149658661312a9e0b35558d84f6c6d3da797f552a9657fe0558ca40cdef	34
+cli-schema edges	ec38db8e937fd565c0adcf082f7f710a3590d07109d3cfe5de3c620f072b048e	[{"columns":[{"name":"dispatch"},{"name":"source_file"},{"name":"sourc
 cli-schema nodes	c68929e8dfd549203ed79bc5849ee3e702e838cb487e7c0d2d59a1fcf1e16c38	[{"columns":[{"name":"attributes"},{"name":"bounded_context"},{"name":
 cli-similar ["query", "similar", "cache", "--type", "all", "--min-score", "0.5"]	94c0311cedd2297e3afaf1e78a68d72ac7a9019e7553c80a1ed308181f4b4e47	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 cli-similar ["query", "similar", "cache", "--type", "all", "--top", "2"]	94c0311cedd2297e3afaf1e78a68d72ac7a9019e7553c80a1ed308181f4b4e47	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
@@ -332,10 +332,10 @@ mcp-audit_doc_region {"against":"corpus","doc_path":"docs/ontology/values/role/d
 mcp-audit_doc_region {"against":"corpus","doc_path":"no/such.md"}	317049e73c43f9bec729afdcf83b0b034fdc1a5fd8c1e36b0aeb322079c95b78	{"error":"audit_doc_region: no Doc found with path or id `no/such.md`.
 mcp-audit_doc_region {"against":"no-such-repo","doc_path":"docs/a.md"}	acff41c611b985b439d5ea09fce27be161f18775cddee0343311692a926b22f5	{"error":"audit_doc_region: unknown `against` repo identifier `no-such
 mcp-classify_file_coupling {"path":".doc-lint.toml"}	7c0fc42d1f2da59323b7dbccf73688f6d739045634bbac17f230bd7ffda89bd6	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
-mcp-classify_file_coupling {"path":"crates/a/src/lib.rs"}	db9769622208866a98d3b86d542d793f0c2d7427ec8928238568b21114114364	{"explanation":"Partial coupling — between the minimal and heavy tiers
-mcp-classify_file_coupling {"path":"crates/a/src/lib.rs"} #2	db9769622208866a98d3b86d542d793f0c2d7427ec8928238568b21114114364	{"explanation":"Partial coupling — between the minimal and heavy tiers
-mcp-classify_file_coupling {"path":"crates/b/src/lib.rs"}	389227e68e98e29f4c4eaf11b8bbf43dc33938dafb2bf05ca294f21e6ab58568	{"explanation":"Partial coupling — between the minimal and heavy tiers
-mcp-classify_file_coupling {"path":"crates/b/src/lib.rs"} #2	389227e68e98e29f4c4eaf11b8bbf43dc33938dafb2bf05ca294f21e6ab58568	{"explanation":"Partial coupling — between the minimal and heavy tiers
+mcp-classify_file_coupling {"path":"crates/a/src/lib.rs"}	173d895ee4f9281f911d10665e71527498e52e09edbbabce52b3fe7fccebda5b	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
+mcp-classify_file_coupling {"path":"crates/a/src/lib.rs"} #2	173d895ee4f9281f911d10665e71527498e52e09edbbabce52b3fe7fccebda5b	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
+mcp-classify_file_coupling {"path":"crates/b/src/lib.rs"}	d322c38cceecfc2dadbbd9546d17a219250a23dd6334dadf97b50f00e3be8feb	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
+mcp-classify_file_coupling {"path":"crates/b/src/lib.rs"} #2	d322c38cceecfc2dadbbd9546d17a219250a23dd6334dadf97b50f00e3be8feb	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
 mcp-classify_file_coupling {"path":"math.py"}	acc6af2b9ce7df7ecc261ef87782717253629b13e69598872d41e2e8b8e7b936	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
 mcp-classify_file_coupling {"path":"no/such.rs"}	33d85260441f36bd52a4af4ee61bf542b0cd7a9a0ab2a6707aa3ec3694a158f6	{"error":"classify_file_coupling: unknown path `no/such.rs` — not foun
 mcp-classify_file_coupling {"path":"tests/test_math.py"}	5706a56f48d671d29d0547b4fed9068c27e572bf1dd746e9912c331f915c7d4c	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
@@ -397,7 +397,7 @@ mcp-query_entity_neighbors {"by":"co-cover","id":"checkout"}	f8442c4a73d80105181
 mcp-query_entity_neighbors {"by":"co-cover","id":"pricing"}	d2ef31ea78ab045a97960622f0fba3f22fe9ec4ff5b2a9cdbe5a8027df5aad55	{"by":"co-cover","neighbors":[{"display":"checkout","id":"checkout","s
 mcp-query_entity_neighbors {"by":"related","id":"checkout"}	170989bcf3752d02d5b6b90581b71bfba9e3011cdf7fffe1e78c1080182434d3	{"by":"related","neighbors":[],"target_id":"checkout","total":0}
 mcp-query_entity_neighbors {"by":"related","id":"pricing"}	d8743b09a742120497a794b1d802b9acffc9f99457b583478a975485075ffd1a	{"by":"related","neighbors":[],"target_id":"pricing","total":0}
-mcp-query_schema {}	03d56cee00d03d3b9b8fd66f718967c9faf9549e70ef49d7304c2c6409f445a5	{"freshness":{"hint":"compare max_file_touched against the current git
+mcp-query_schema {}	d7d0c2e0a0a5ce78d8648235c11f149b24bd7cdf69e8e17a6fb1072989c929b2	{"freshness":{"hint":"compare max_file_touched against the current git
 mcp-query_similar {"source_repo":"corpus","text":"pricing","type":"doc"}	8c42c1b5d01aceaa5452035d038eadb7780b70072c877b0c96ca505a77b1cc37	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 mcp-query_similar {"text":"cache","top":4,"type":"all"}	94c0311cedd2297e3afaf1e78a68d72ac7a9019e7553c80a1ed308181f4b4e47	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 mcp-query_similar {"text":"cache","top":4,"type":"doc"}	67e04fb5c8b943367ae3211735b74c49cd9cafefdd680c9fb64a9ca676766511	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":

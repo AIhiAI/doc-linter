@@ -1,7 +1,7 @@
-cli-graph-summary edges	55ad22742e18df6bc24de0a89fc5e769acaa71287097702bc1fd391fc97225c6	[{"count":12,"label":"WIKILINK"},{"count":9,"label":"SECTION_OF"},{"co
+cli-graph-summary edges	f77a7e16c9d25fdd54f27fbf0396ca965866904d9668dbaf5cf3ae4fe4c47f20	[{"count":12,"label":"WIKILINK"},{"count":9,"label":"SECTION_OF"},{"co
 cli-graph-summary nodes	0a16b2476c8d763beddb22e5cc5e9a29b1308ab6ac51af806a1aa284b5d9bbef	[{"count":13,"label":"Doc"},{"count":11,"label":"File"},{"count":9,"la
-cli-graph-summary totals	d029fa3a95e174a19934857f535eb9427d967218a36ea014b70ad704bc6c8d1c	61
-cli-schema edges	0f5623f69283b9238019413b06bb7dc6a255912c9bac1800cc0d06a4ab7e8f39	[{"columns":[{"name":"dispatch"},{"name":"source_file"},{"name":"sourc
+cli-graph-summary totals	39fa9ec190eee7b6f4dff1100d6343e10918d044c75eac8f9e9a2596173f80c9	60
+cli-schema edges	38224a1cc0af7efcbfeb2f494d388f28f2425eaf56443e09839003aebb44bc63	[{"columns":[{"name":"dispatch"},{"name":"source_file"},{"name":"sourc
 cli-schema nodes	fedbdb416f3fb301ff3fd55c9e92a5999d25446c58c95a1aad90dbc4347ecd50	[{"columns":[{"name":"attributes"},{"name":"bounded_context"},{"name":
 cli-similar ["query", "similar", "cache", "--type", "all", "--min-score", "0.5"]	ef44ef7db77a9876cb7b8f8041e6f2e4cce388bb672944635cfffb6082f6b9e7	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 cli-similar ["query", "similar", "cache", "--type", "all", "--top", "2"]	ef44ef7db77a9876cb7b8f8041e6f2e4cce388bb672944635cfffb6082f6b9e7	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
@@ -332,17 +332,17 @@ mcp-audit_doc_region {"against":"corpus","doc_path":"docs/research/r2.md"}	8b8bb
 mcp-audit_doc_region {"against":"corpus","doc_path":"no/such.md"}	317049e73c43f9bec729afdcf83b0b034fdc1a5fd8c1e36b0aeb322079c95b78	{"error":"audit_doc_region: no Doc found with path or id `no/such.md`.
 mcp-audit_doc_region {"against":"no-such-repo","doc_path":"docs/a.md"}	acff41c611b985b439d5ea09fce27be161f18775cddee0343311692a926b22f5	{"error":"audit_doc_region: unknown `against` repo identifier `no-such
 mcp-classify_file_coupling {"path":".doc-lint.toml"}	7c0fc42d1f2da59323b7dbccf73688f6d739045634bbac17f230bd7ffda89bd6	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
-mcp-classify_file_coupling {"path":"crates/a/src/lib.rs"}	d31cf595c02bc49322b563219d26500d01cd3af1667b5598aba1fd9af5456d0d	{"explanation":"Partial coupling — between the minimal and heavy tiers
-mcp-classify_file_coupling {"path":"crates/a/src/lib.rs"} #2	d31cf595c02bc49322b563219d26500d01cd3af1667b5598aba1fd9af5456d0d	{"explanation":"Partial coupling — between the minimal and heavy tiers
+mcp-classify_file_coupling {"path":"crates/a/src/lib.rs"}	39caf78438dcd25131f9c7318c77ab69439d4bfc646d73e92617769c3c5d1ef8	{"explanation":"Partial coupling — between the minimal and heavy tiers
+mcp-classify_file_coupling {"path":"crates/a/src/lib.rs"} #2	39caf78438dcd25131f9c7318c77ab69439d4bfc646d73e92617769c3c5d1ef8	{"explanation":"Partial coupling — between the minimal and heavy tiers
 mcp-classify_file_coupling {"path":"crates/a/tests/it.rs"}	e8b8021b64322f3a4e603d2aeebf29f7eceaead1f55547b2a7ba9402fa3534e0	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
-mcp-classify_file_coupling {"path":"crates/b/src/lib.rs"}	3a5f98de7d7c74ff705c9ac84a2ba62a8ee9f6bb7c8f9bf74810a7fd0b1a3bbc	{"explanation":"Partial coupling — between the minimal and heavy tiers
+mcp-classify_file_coupling {"path":"crates/b/src/lib.rs"}	d322c38cceecfc2dadbbd9546d17a219250a23dd6334dadf97b50f00e3be8feb	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
 mcp-classify_file_coupling {"path":"math.py"}	acc6af2b9ce7df7ecc261ef87782717253629b13e69598872d41e2e8b8e7b936	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
 mcp-classify_file_coupling {"path":"no/such.rs"}	33d85260441f36bd52a4af4ee61bf542b0cd7a9a0ab2a6707aa3ec3694a158f6	{"error":"classify_file_coupling: unknown path `no/such.rs` — not foun
 mcp-classify_file_coupling {"path":"src/app/models/items.py"}	fe8e976fd3c5f03f1a9aac1d06c81f879755d4cae3700fbb72e144436b0c1feb	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
 mcp-classify_file_coupling {"path":"src/app/routes/items.py"}	262f982958315b9b2416e8c00122c3d6037da89261c836ffa44d3e468fc994f8	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
-mcp-classify_file_coupling {"path":"tests/test_widget.py"}	82b7e435bd3a728508fce5562dc2da33284d355654a5af312dd43e5cb2ca3ad1	{"explanation":"Partial coupling — between the minimal and heavy tiers
+mcp-classify_file_coupling {"path":"tests/test_widget.py"}	41c6f5bb6aa0f5d697679ac5344a4b7e18c5c635bb3055fe79c090ef0ecf2e84	{"explanation":"Partial coupling — between the minimal and heavy tiers
 mcp-classify_file_coupling {"path":"web/src/components/Items.tsx"}	1ee19d5bb0ca315fc7e5e31cdbe6dba17dfbf8aa932915ec5aab02b9deabec18	{"explanation":"Well-encapsulated leaf module. Refactors won't ripple;
-mcp-classify_file_coupling {"path":"widget.py"}	b507a8ee6adead8910b80aaad24840f7eb4e3aec806c3e3a316c58298e15cd04	{"explanation":"Partial coupling — between the minimal and heavy tiers
+mcp-classify_file_coupling {"path":"widget.py"}	7c57d0549de5cb14caa1cdafdc8735e8c8ce18b42ef78ccb126ce9264520766e	{"explanation":"Partial coupling — between the minimal and heavy tiers
 mcp-context_for {"id":"axis-role"}	e50a654d643ed0801043ed452b4ea87f723acf8ba4530752a30a503487b32afd	{"centre":{"doc_kind":"","id":"axis-role","kind":"doc","path":"docs/on
 mcp-context_for {"id":"checkout"}	755c6374a01a7af50d35b32500340fcba80a569d5b65f1634eab95b3b7408a9e	{"centre":{"entity_class":"","id":"checkout","kind":"entity","summary"
 mcp-context_for {"id":"doc-a"}	8008797f33805cb6852bd2310a56c00f65106fd767d75913d0a3aa9611a117f8	{"centre":{"doc_kind":"","id":"doc-a","kind":"doc","path":"docs/a.md",
@@ -415,7 +415,7 @@ mcp-query_entity_neighbors {"by":"co-cover","id":"checkout"}	f8442c4a73d80105181
 mcp-query_entity_neighbors {"by":"co-cover","id":"pricing"}	d2ef31ea78ab045a97960622f0fba3f22fe9ec4ff5b2a9cdbe5a8027df5aad55	{"by":"co-cover","neighbors":[{"display":"checkout","id":"checkout","s
 mcp-query_entity_neighbors {"by":"related","id":"checkout"}	170989bcf3752d02d5b6b90581b71bfba9e3011cdf7fffe1e78c1080182434d3	{"by":"related","neighbors":[],"target_id":"checkout","total":0}
 mcp-query_entity_neighbors {"by":"related","id":"pricing"}	d8743b09a742120497a794b1d802b9acffc9f99457b583478a975485075ffd1a	{"by":"related","neighbors":[],"target_id":"pricing","total":0}
-mcp-query_schema {}	73a84214f76699a7bd1cf7f108bdede6fb69c5c1c7aac224b51d9637251161f7	{"freshness":{"hint":"compare max_file_touched against the current git
+mcp-query_schema {}	e6b004aeea2c9b81f6530b62136a0d9f35264dad9e180d18f7865d1c1c362bb0	{"freshness":{"hint":"compare max_file_touched against the current git
 mcp-query_similar {"source_repo":"corpus","text":"pricing","type":"doc"}	8c42c1b5d01aceaa5452035d038eadb7780b70072c877b0c96ca505a77b1cc37	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 mcp-query_similar {"text":"cache","top":4,"type":"all"}	ef44ef7db77a9876cb7b8f8041e6f2e4cce388bb672944635cfffb6082f6b9e7	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":
 mcp-query_similar {"text":"cache","top":4,"type":"doc"}	5743128d3439e5e34697ee827681e87176e782f1d0b16a50331080280f6ec5e1	{"algorithm":"bm25","confidence":"low","confidence_signals":{"spread":

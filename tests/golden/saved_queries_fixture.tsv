@@ -28,7 +28,7 @@ callgraph-roots	793cf40c722d89fffb8b3db31f4edd37a88aa5ba4f2ec9d498334e6b503aa826
 cli-subcommand-pattern-entities	84ba516c79b073db4b75c4ee6b392e40e70d7cdb4e2b6a3babab5eb38fc124ce	Array [String("entity_id"), String("display"), String("mention_count")
 cli-subcommand-pattern-entities-v2	84ba516c79b073db4b75c4ee6b392e40e70d7cdb4e2b6a3babab5eb38fc124ce	Array [String("entity_id"), String("display"), String("mention_count")
 cluster-derived-entities	0825fa2b84e8dfcc1c195e6a6477d578ef87b8a9728558328721a9b9dc61892d	Array [String("entity_id"), String("mention_count"), String("descripti
-cold-start-overview	de1aa8e28a19c3060d71ef12ba979d78d80decf8049229315659fdcd21caacad	Array [String("fn_count"), String("file_count"), String("doc_count"), 
+cold-start-overview	6b1c8a94f00d96be136d8249bdacd4a257e8cf04a543d40f67ac75ae45df5430	Array [String("fn_count"), String("file_count"), String("doc_count"), 
 competitive-tools	7f2ec5a15ed7baf74b09bcdb5963af8fec1fca07e45cfb93c8604005df9953c4	Array [String("id"), String("display"), String("description"), String(
 concept-work-list	012e2dd8b3e636768ae613eade4786b34cd0240d680e5ce34d6b8e7b400bbb11	Array [String("entity"), String("functions"), String("chapters")] {cha
 corpus-axis-saturation	b8f9d10aa3c99d5e0f129c50707889778175cd384ced1ce0eaa0e0b9ebf78331	Array [String("doc_count"), String("docs_with_summary"), String("file_
@@ -41,12 +41,12 @@ corpus-entity-axis-shape	c0ee7de3c403f50dbe910f6f459a2a8aa5c2cf2b8779034e447a305
 corpus-entity-promotion-state	28a38b60ffe46647a68805d5b2cb2e8cf15d52ea8c743a08d49acead6193492a	Array [String("total_entities"), String("cluster_derived_count"), Stri
 corpus-entity-shape-summary	9a178f7c816afd2ba4cd816a123daec7267bbee4fdf61b6fde39409f6c96a1be	Array [String("total_entities"), String("cluster_derived"), String("pr
 corpus-functions-per-file-ratio	f787e20fb9e15a84343c197f795e82166449078cf8cfc68670deb466f2416c69	Array [String("total_functions"), String("total_files"), String("funct
-corpus-ingest-state-classifier	c74578e971b979a4ad3dde66b8bd4564694fb94683aff01f912a9c899ddd32c5	Array [String("fn_count"), String("file_count"), String("doc_count"), 
+corpus-ingest-state-classifier	c652294cea702725770a0b6cbb76081f30cce16e41b69fe8c4c70ead2d64f966	Array [String("fn_count"), String("file_count"), String("doc_count"), 
 corpus-narrative-doc-kinds-distribution	6730615f4b264b5176d594cc91e491dcd87d7a063ab8a03644fec9561aa16d8e	Array [String("kind"), String("narrative_doc_count")] {kind="kind-unse
 corpus-narrative-doc-lifecycles-distribution	2d55b1ce1b757a7686d27a2acfbc7dde4e6d3ba4123111c3d32959736578a944	Array [String("lifecycle"), String("narrative_doc_count")] {lifecycle=
 corpus-narrative-doc-roles-distribution	8d738a77e45c3321ee0932648119582213f0441a724c7a8fb1a9547e86bdebab	Array [String("role"), String("narrative_doc_count")] {narrative_doc_c
 corpus-purpose-classifier	963b6bda7653d30f1acfd2dab35cf6fe048898ff731c21e8882d087155d7007a	Array [String("total_docs"), String("ontology_meta_docs"), String("ont
-corpus-routing-recommendation	13fa41e045baaabe63f4565c60bd8313ef5f3df8b14e6970ad19e8719aa9202f	Array [String("fn_count"), String("file_count"), String("narrative_doc
+corpus-routing-recommendation	334fe135569518420774259211fa08d3127a3d90355a628da01231f317659c3d	Array [String("fn_count"), String("file_count"), String("narrative_doc
 corpus-shape-classifier	c71f8ee61c856063d449a596bb82359d4dc3d9d74f136e41978b334799144096	Array [String("total_docs"), String("ontology_docs"), String("narrativ
 corpus-singular-plural-pair-summary	c304f4295f7b9ad695c96042ffa7687cf06d32b99b4d202b9b22a5d1ef55d34e	Array [String("pair_count"), String("total_entities_in_pairs"), String
 corpus-tag-axis-shape	2c5ef6798b71d675df64b287cbbd00d66eebcd334a4a651dbcc61cfda3507fdd	Array [String("distinct_tag_count"), String("total_tag_mentions"), Str
@@ -56,12 +56,12 @@ corpus-top-doc-tags	faa8ff3aa32453f04391b0c08a45f8ecf4d8079c5df761c6614704fd4523
 corpus-top-entities-by-mention	252bff1e718efe6015613f570f760e8630b538297c7a34a6067d51c514ef731d	Array [String("entity_id"), String("mention_count")] {entity_id="check
 corpus-update-span	015abca8a6e3bded61ff7c52ae3f21e0511eccc159bd73e2393b9571e6245983	Array [String("oldest_doc"), String("newest_doc"), String("doc_count")
 corpus-workflow-viability-classifier	c0af48ba0078e5c83915fef050abf08238d3be5c02a7a3855cdbf6edab6b3640	Array [String("narrative_doc_count"), String("cython_file_count"), Str
-coupled-files	d18df5b325b4da2210589be8bb6a536602ec423c5881df33886916ac17a47bed	Array [String("a.path"), String("b.path"), String("r.commits"), String
-coupled-files-by-jaccard-range#0	d18df5b325b4da2210589be8bb6a536602ec423c5881df33886916ac17a47bed	Array [String("a.path"), String("b.path"), String("r.commits"), String
-coupled-files-by-jaccard-range#1	d18df5b325b4da2210589be8bb6a536602ec423c5881df33886916ac17a47bed	Array [String("a.path"), String("b.path"), String("r.commits"), String
-coupled-files-by-jaccard-range#2	d18df5b325b4da2210589be8bb6a536602ec423c5881df33886916ac17a47bed	Array [String("a.path"), String("b.path"), String("r.commits"), String
+coupled-files	0d13a00adc9aa83ba1208e639ac6e8f5c4c32b5f5790ac1ae5c13cebeb4cee9d	Array [String("a.path"), String("b.path"), String("r.commits"), String
+coupled-files-by-jaccard-range#0	0d13a00adc9aa83ba1208e639ac6e8f5c4c32b5f5790ac1ae5c13cebeb4cee9d	Array [String("a.path"), String("b.path"), String("r.commits"), String
+coupled-files-by-jaccard-range#1	0d13a00adc9aa83ba1208e639ac6e8f5c4c32b5f5790ac1ae5c13cebeb4cee9d	Array [String("a.path"), String("b.path"), String("r.commits"), String
+coupled-files-by-jaccard-range#2	0d13a00adc9aa83ba1208e639ac6e8f5c4c32b5f5790ac1ae5c13cebeb4cee9d	Array [String("a.path"), String("b.path"), String("r.commits"), String
 coupled-files-without-scaffold	0d13a00adc9aa83ba1208e639ac6e8f5c4c32b5f5790ac1ae5c13cebeb4cee9d	Array [String("a.path"), String("b.path"), String("r.commits"), String
-coupling-density-stats	e0d68810744b8d250e2f97933973d126593d815aa4225743013b92256bdfbab7	Array [String("total_couplings"), String("scaffold_count"), String("re
+coupling-density-stats	67f5f616b2a9da5fb757dc370710b0203047f390c3564e03d3f016417dda1875	Array [String("total_couplings"), String("scaffold_count"), String("re
 coverage-by-entity	7aed41394d5c314b8c8cb60355da90da8f95696df3c4d0e9e832465fe0893e8f	Array [String("e.id"), String("e.display"), String("e.is_god_node"), S
 cross-corpus-validated-patterns	1f0227ba383f18b5ab21d8714b6ea19a67f862e4319586e25cbcb32ee57b613f	Array [String("doc_id"), String("title"), String("kind"), String("tags
 cross-family-bridge-density	c17b4c651b5d213ab68f2dd8248d38267be12b547e293b7af2ae33187faa7360	Array [String("family_a"), String("family_b"), String("bridge_count")]
@@ -200,9 +200,9 @@ files-by-basename-and-path-prefix-count#2	8645972f35675f78b6833f2db08dbc200f6119
 files-by-basename-count#0	863e15ce942e167e7d6de14acc9a5e4510447aa5de580744125e4d0f8c792897	Array [String("file_count")] {file_count=2}
 files-by-basename-count#1	8645972f35675f78b6833f2db08dbc200f6119934a12049cc116c0520700070c	Array [String("file_count")] {file_count=0}
 files-by-basename-count#2	f2a9070f4695a6ce37008333962d927754cb2ab6c5b18698897aaf82bcb72f98	Array [String("file_count")] {file_count=1}
-files-by-path-pattern-with-coupling#0	4e5b8459b8d6e12ef1c9a53ff310845ec2594e521ef6e40db0c94b941d90712a	Array [String("path"), String("language"), String("loc"), String("degr
-files-by-path-pattern-with-coupling#1	f3c8e5ff30fccd658eeedbaa079b672184ff0b123ef553a7be716370d23a7f6b	Array [String("path"), String("language"), String("loc"), String("degr
-files-by-path-pattern-with-coupling#2	21ae9f546302d1e031f0e8913c3e8c1ccd6ec153970db7db8899faea1118763a	Array [String("path"), String("language"), String("loc"), String("degr
+files-by-path-pattern-with-coupling#0	2187e9ada75ed69f9b2fa104f5eab108054c7e32c96af989659c6b04c15a84c2	Array [String("path"), String("language"), String("loc"), String("degr
+files-by-path-pattern-with-coupling#1	7b0fbabc77d271751808cf14bfc6110a9b90de3fad382c27d6fcd3aa4cdef80d	Array [String("path"), String("language"), String("loc"), String("degr
+files-by-path-pattern-with-coupling#2	e25c1032b925dda47c7d1e5545dda0aafcf7ca68b34f287403d9717df00c46f2	Array [String("path"), String("language"), String("loc"), String("degr
 files-by-path-prefix#0	73fc4269144149bd98da7c72fac8de5f4d83d2cf16ac837b51c0647d702bb410	Array [String("file_path"), String("impl_count")] {file_path=".doc-lin
 files-by-path-prefix#1	adc2db25f8232d4f1474cfb32ebba7f44bc061aecd1a92d419cd2a0d7825e1b9	Array [String("file_path"), String("impl_count")] {file_path="crates/a
 files-by-path-prefix#2	fe5b92dc4bcd54a738bc74f1a71eda2dbc51284cfdf0e48997cd5b5f624df0d9	Array [String("file_path"), String("impl_count")] {file_path="crates/b
@@ -224,8 +224,8 @@ files-containing-entity-id-in-path#0	7466f1eed0f409efbb43dcbfdfb46bdabf06f030b70
 files-containing-entity-id-in-path#1	7466f1eed0f409efbb43dcbfdfb46bdabf06f030b70e660e03d808ccefdd9639	Array [String("path"), String("loc"), String("language")] 
 files-containing-entity-id-in-path#2	7466f1eed0f409efbb43dcbfdfb46bdabf06f030b70e660e03d808ccefdd9639	Array [String("path"), String("loc"), String("language")] 
 files-coupled-to#0	e2623ea933024ccf19aa49fcdd09937fa00ee03653b1fd335929a1f1654d1d59	Array [String("coupled_path"), String("language"), String("jaccard"), 
-files-coupled-to#1	a75020629a1887f9ede025efd658f0b56d0cc5e26b81045605f19bb92a6ed7cb	Array [String("coupled_path"), String("language"), String("jaccard"), 
-files-coupled-to#2	5beef7e8975df1d94271f4eb420c70883dfc5cef23421f59c99d3f01f012f65b	Array [String("coupled_path"), String("language"), String("jaccard"), 
+files-coupled-to#1	e2623ea933024ccf19aa49fcdd09937fa00ee03653b1fd335929a1f1654d1d59	Array [String("coupled_path"), String("language"), String("jaccard"), 
+files-coupled-to#2	e2623ea933024ccf19aa49fcdd09937fa00ee03653b1fd335929a1f1654d1d59	Array [String("coupled_path"), String("language"), String("jaccard"), 
 files-under-folder-path#0	dae4ca946aa8f37a218e43266b65e68bb47574cef1f6b1069c68f3744d2b60f1	Array [String("file_path"), String("loc")] {file_path=".doc-lint.toml"
 files-under-folder-path#1	90c8732329b8793a517ff4c5c8080e2f9535d105fadc686fcdc0727764319e31	Array [String("file_path"), String("loc")] {file_path="crates/a/src/li
 files-under-folder-path#2	169e31f1c1bce1b302d837411679a05a8532848a07082981383cb66de8dbd0e7	Array [String("file_path"), String("loc")] {file_path="crates/b/src/li
@@ -304,7 +304,7 @@ hub-spread-distribution	56d78705b517250b556982895020a956d6c49c86a32e3d57cca1c025
 hub-types-by-caller-breadth	f47d623ab49eece2bcc6ff246b6b73e4df958ee4f62165ce8445b2633bfe8325	Array [String("symbol"), String("kind"), String("file"), String("disti
 import-fan-out	67402f6cdc908f193a03bf1c38778698ebdd259eb93bbfb9be261a870d1837c5	Array [String("imported.path"), String("imported.language"), String("i
 imports-edge-count-by-language	c81bb091cdf12b9ed484e116262e640e0aab6b7ebf1008c812d5adfb35b34e46	Array [String("language"), String("imports_count")] 
-ingest-pass-status	455fba8f2193d3279c659c05d4aedf37ec469b4aec141deed5984092f039252c	Array [String("pass_name"), String("row_count"), String("populated")] 
+ingest-pass-status	91ce44c3849feda24eb1e02b7cba30730c3f3aad4001bd14a595d3f80f0e9a36	Array [String("pass_name"), String("row_count"), String("populated")] 
 language-distribution	16b62a9885b96a983e145454cdc4cbe9f89e410ceacaa977da50f454304bc600	Array [String("f.language"), String("count")] {count=1,f.language="tom
 language-loc-distribution	a57edb71b0658025dcbc0e2da2af8a235c5130b6da0860001f94772e99c539f1	Array [String("language"), String("file_count"), String("total_loc"), 
 latest-by-loop-process	22e57a9ab8de5947588db85cb6908f96df2a2f8cb437bd97c94ffd29b622874c	Array [String("process_class"), String("latest_doc_id"), String("lates
