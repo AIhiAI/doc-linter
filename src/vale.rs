@@ -548,7 +548,7 @@ fn build_ambiguous_rule(words: &[String]) -> String {
          # errors based on the doc's bounded context. See vale.rs for why we\n\
          # don't try to express the lookbehind in Vale's primitives directly.\n\
          extends: existence\n\
-         message: \"Bare ambiguous noun '%s' — qualify with an ontology vocab term (e.g. 'pricing rule', 'sync service')\"\n\
+         message: \"Bare ambiguous noun '%s' — qualify it with a term from the ontology vocabulary\"\n\
          ignorecase: true\n\
          level: warning\n\
          tokens:\n{tokens}"
