@@ -652,6 +652,11 @@ fn accepted_terms_and_list_starts_are_not_vocab_violations() {
         .expect("run doc-linter check");
     let stdout = String::from_utf8_lossy(&out.stdout);
     assert!(stdout.contains("Zorblat"), "Vale did not run:\n{stdout}");
+    // A qualified ambiguous noun ("Pricing Rule") is a Vale vocab exception.
+    assert!(
+        !stdout.contains("ambiguous noun 'Rule'"),
+        "qualified noun flagged:\n{stdout}"
+    );
     for ok in ["'Pricing'", "'Rule'", "'Window'", "'Each'"] {
         assert!(!stdout.contains(ok), "{ok} flagged:\n{stdout}");
     }
