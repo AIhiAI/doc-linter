@@ -455,7 +455,10 @@ const VALE_BATCH: usize = 500;
 ///   - it's the first non-whitespace token on its line (col 1 or only
 ///     whitespace before col), OR
 ///   - the token is preceded (with optional whitespace between) by one
-///     of `.`, `!`, `?`, `;`, `:`, or the `|` opening a table cell, on the same line.
+///     of `.`, `!`, `?`, `;`, `:`, or the `|` opening a table cell, on the same line
+///     (closing `*`/`_` emphasis after the punctuation is skipped), OR
+///   - only a list or block-quote marker (`-`, `*`, `+`, `>`, `1.`, `1)`)
+///     precedes it on the line.
 ///
 /// Vale's `\b[A-Z][A-Za-z]+\b` rule fires on every capitalised word,
 /// including the first word of every sentence — `When the sky is blue`
@@ -476,10 +479,22 @@ pub fn is_sentence_start(body: &str, line: usize, col: usize) -> bool {
 
     // Trim trailing whitespace; the alert's column may sit several spaces
     // after the punctuation (`.  When` → prefix is `.  `, trimmed `.`).
-    let trimmed = prefix.trim_end();
+    // Closing emphasis after the punctuation (`**Note.** When`) does not
+    // hide the boundary.
+    let trimmed = prefix.trim_end().trim_end_matches(['*', '_']);
     if trimmed.is_empty() {
         // First non-whitespace token on the line — column 1 or after
         // leading whitespace. Either way it's a sentence start.
+        return true;
+    }
+    // A list item or block quote starts a sentence: the prefix is only a
+    // marker (`-`, `*`, `+`, `>`, `1.`, `1)`), optionally nested.
+    let is_marker = |t: &str| {
+        matches!(t, "-" | "*" | "+" | ">")
+            || t.strip_suffix(['.', ')'])
+                .is_some_and(|n| !n.is_empty() && n.chars().all(|c| c.is_ascii_digit()))
+    };
+    if prefix.split_whitespace().all(is_marker) {
         return true;
     }
     // Look at the last char of the trimmed prefix.
@@ -1210,6 +1225,15 @@ mod tests {
         assert!(is_sentence_start("    When indented.\n", 1, 5));
         // Multi-line body, second line column 1.
         assert!(is_sentence_start("first line.\nWhen blue.\n", 2, 1));
+        // A list item, numbered item or block quote starts a sentence.
+        assert!(is_sentence_start("- When blue.\n", 1, 3));
+        assert!(is_sentence_start("  * When blue.\n", 1, 5));
+        assert!(is_sentence_start("12) When blue.\n", 1, 5));
+        assert!(is_sentence_start("> - When blue.\n", 1, 5));
+        // Closing emphasis after the full stop.
+        assert!(is_sentence_start("**Note.** When blue.\n", 1, 11));
+        // Emphasis without a full stop is not a boundary.
+        assert!(!is_sentence_start("a **bold** When\n", 1, 12));
         // A table cell starts a sentence.
         assert!(is_sentence_start(
             "| `key` | Repo-relative globs |\n",

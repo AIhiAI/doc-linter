@@ -100,6 +100,11 @@ pub(crate) fn run_vale_pipeline(
 
     // 4. Build the term index once for this run.
     let term_index = TermIndex::build(ontology);
+    // The accept set Vale was given. Vale silently ignores a Vocab pack
+    // past roughly 13k entries (the `EnglishCommon` baseline is ~222k),
+    // so the closure rule re-checks every alert against the same set here,
+    // as the code-comment lint does.
+    let accept = vale::accept_terms(root, ontology, config);
     let target_set: std::collections::HashSet<&PathBuf> = target_files.iter().collect();
 
     let mut out = issues;
@@ -179,6 +184,12 @@ pub(crate) fn run_vale_pipeline(
             // warning on the same character offset.
             if alert.check == "Vocabulary.Vocabulary"
                 && ambiguous_lower.contains(&alert.match_text.to_lowercase())
+            {
+                continue;
+            }
+            if alert.check == "Vocabulary.Vocabulary"
+                && (accept.contains(&alert.match_text)
+                    || !term_index.lookup(&alert.match_text).is_empty())
             {
                 continue;
             }
