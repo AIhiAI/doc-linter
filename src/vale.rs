@@ -121,7 +121,15 @@ pub fn generate_config(root: &Path, ontology: &Ontology, config: &LintConfig) ->
     // `styles/config/vocabularies/`. Keeping them in separate packs
     // means the ontology-derived DocLinter list stays small and pure; updates
     // to the cspell dicts are one-shot file refreshes.
-    let packs = accept_packs(root, ontology, config);
+    // `EnglishCommon` (~222k entries) stays out of Vale: past roughly 13k
+    // entries Vale silently ignores the whole vocabulary, which would also
+    // drop the ontology's multi-word exceptions (`client data`) to
+    // `DocLinter.AmbiguousBare`. `check` applies it to closure alerts itself.
+    let packs: Vec<(String, String)> = accept_packs(root, ontology, config)
+        .into_iter()
+        .filter(|(name, _)| name != "EnglishCommon")
+        .collect();
+    let _ = fs::remove_dir_all(base.join("styles/config/vocabularies/EnglishCommon"));
     // Every pack after `DocLinter` joins the `Vocab =` line; Vale unions them.
     let extra_vocab_names: Vec<String> = packs.iter().skip(1).map(|(n, _)| n.clone()).collect();
     let style_names = write_styles(root, &base, &config.vale.vale_styles)?;
