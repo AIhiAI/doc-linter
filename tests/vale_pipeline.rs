@@ -641,8 +641,9 @@ fn accepted_terms_and_list_starts_are_not_vocab_violations() {
         "---\nid: some-pricing-doc\nrole: doc\nkind: reference\nlifecycle: stable\n\
          bounded_context: pricing\ntitle: x\nsummary: y\nstatus: stable\n\
          updated: 2026-04-30\n---\n\n\
-         The Pricing Rule and the Window close a Zorblat.\n\n\
-         - Each list item starts a sentence.\n",
+         The Pricing Rule and the Window close a Zorblat over two APIs.\n\n\
+         - Each list item starts a sentence.\n\n\
+         See [[some-data-doc]] and `data`, then the data.\n",
     );
     let out = Command::new(doc_linter_bin())
         .arg("--root")
@@ -657,7 +658,13 @@ fn accepted_terms_and_list_starts_are_not_vocab_violations() {
         !stdout.contains("ambiguous noun 'Rule'"),
         "qualified noun flagged:\n{stdout}"
     );
-    for ok in ["'Pricing'", "'Rule'", "'Window'", "'Each'"] {
+    // A bare ambiguous noun fires once; the link target and code span do not.
+    assert_eq!(
+        stdout.matches("ambiguous noun 'data'").count(),
+        1,
+        "link or code span flagged:\n{stdout}"
+    );
+    for ok in ["'Pricing'", "'Rule'", "'Window'", "'APIs'", "'Each'"] {
         assert!(!stdout.contains(ok), "{ok} flagged:\n{stdout}");
     }
 }
