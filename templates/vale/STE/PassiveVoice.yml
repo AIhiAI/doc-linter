@@ -1,0 +1,12 @@
+# Built-in doc-linter STE style (ASD-STE100 writing rules, no dictionary).
+# Adapted from Syntaf/vale-llm-slop (MIT, (c) 2026 Grant Mercer); see NOTICE.
+# Turn on with `vale_styles = ["STE"]` in .doc-lint.toml.
+# STE: use the active voice. A "be" verb, then a past participle within
+# two words. Accuracy follows Vale's part-of-speech tagger.
+extends: sequence
+message: "STE: passive voice. Name who does the action and use the active voice."
+level: warning
+tokens:
+  - pattern: '(?i)\b(?:am|is|are|was|were|be|been|being)\b'
+  - tag: VBN
+    skip: 2

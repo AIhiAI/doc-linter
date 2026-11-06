@@ -447,6 +447,8 @@ impl Issue {
             Issue::UnusedBoundedContext { .. } => {
                 config.ontology.unused_bounded_context_severity == "error"
             }
+            // Vale's own level decides: `suggestion` is advice only.
+            Issue::ValeAlert { severity, .. } => severity != "suggestion",
             Issue::UnauthoredCluster { .. } | Issue::ValeNotInstalled => false,
             _ => true,
         }
@@ -494,5 +496,28 @@ impl Issue {
             }
             other => other.code().to_string(),
         }
+    }
+}
+
+#[cfg(test)]
+mod vale_level_tests {
+    use super::Issue;
+    use crate::config::LintConfig;
+
+    fn alert(severity: &str) -> Issue {
+        Issue::ValeAlert {
+            check: "STE.PassiveVoice".into(),
+            message: "m".into(),
+            line: 1,
+            severity: severity.into(),
+        }
+    }
+
+    #[test]
+    fn vale_suggestion_is_advice_and_other_levels_gate() {
+        let cfg = LintConfig::default();
+        assert!(!alert("suggestion").is_error(&cfg));
+        assert!(alert("warning").is_error(&cfg));
+        assert!(alert("error").is_error(&cfg));
     }
 }

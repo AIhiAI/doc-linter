@@ -1,0 +1,14 @@
+# Built-in doc-linter STE style (ASD-STE100 writing rules, no dictionary).
+# Adapted from Syntaf/vale-llm-slop (MIT, (c) 2026 Grant Mercer); see NOTICE.
+# Turn on with `vale_styles = ["STE"]` in .doc-lint.toml.
+# STE: "must" for a requirement, "can" for a possibility.
+extends: substitution
+message: "STE: use '%s', not '%s'."
+level: warning
+ignorecase: true
+swap:
+  shall: must
+  should: must
+  ought to: must
+  may: can
+  might: can

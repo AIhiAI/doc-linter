@@ -1,0 +1,13 @@
+# Built-in doc-linter STE style (ASD-STE100 writing rules, no dictionary).
+# Adapted from Syntaf/vale-llm-slop (MIT, (c) 2026 Grant Mercer); see NOTICE.
+# Turn on with `vale_styles = ["STE"]` in .doc-lint.toml.
+# STE: do not use contractions.
+extends: existence
+message: "STE: write the contraction '%s' in full."
+level: error
+ignorecase: true
+nonword: true
+tokens:
+  - '\b\w+n[''’]t\b'
+  - '\b(?:it|that|there|here|what|who|he|she|let)[''’]s\b'
+  - '\b(?:I|you|we|they)[''’](?:m|re|ve|ll|d)\b'

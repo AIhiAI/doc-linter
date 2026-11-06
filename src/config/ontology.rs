@@ -148,8 +148,8 @@ pub struct OntologyConfig {
 
     /// Graph-density rule: when true, every entity listed in a
     /// `role: doc`'s `covers:` frontmatter must also appear as a
-    /// `[[entity-<id>]]` wikilink somewhere in the doc body. The
-    /// covers-frontmatter declares semantic intent ("this doc
+    /// `[[entity-<id>]]` (or aliased `[[entity-<id>|...]]`) wikilink
+    /// somewhere in the doc body. The covers-frontmatter declares semantic intent ("this doc
     /// explains X"); the body wikilink provides the navigational
     /// affordance ("the reader can click X to learn more"). Both
     /// matter for AI-agent discoverability and Obsidian's

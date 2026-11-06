@@ -77,6 +77,22 @@ pub struct ValeConfig {
     #[serde(default)]
     pub vale_dictionaries: BTreeMap<String, PathBuf>,
 
+    /// Extra Vale styles to run next to the vocabulary-closure rules.
+    /// Each entry is either the name of a style that ships with
+    /// doc-linter (`"STE"`: the ASD-STE100 writing rules, without the
+    /// STE dictionary) or a directory of Vale rule files relative to the
+    /// repo root (the directory name becomes the style name). Every
+    /// style is copied into the generated `.doc-lint/vale/styles/` tree
+    /// and added to `BasedOnStyles`. Alerts come back as `vale-<style>-<rule>`
+    /// codes; `error` and `warning` levels gate the build, `suggestion`
+    /// is reported only.
+    ///
+    /// ```toml
+    /// vale_styles = ["STE", "docs/vale/House"]
+    /// ```
+    #[serde(default)]
+    pub vale_styles: Vec<String>,
+
     /// Round 3A: opt-in lint pass that extracts doc comments from `.rs`
     /// files (using tree-sitter) and runs them through the same
     /// vocab-closure resolution as markdown docs. Off by default — turn
@@ -123,6 +139,7 @@ impl Default for ValeConfig {
             vale_extra_accept: Vec::new(),
             proper_nouns: Vec::new(),
             vale_dictionaries: BTreeMap::new(),
+            vale_styles: Vec::new(),
             lint_code_comments: false,
             code_comment_includes: default_code_comment_includes(),
             code_comment_excludes: default_code_comment_excludes(),
