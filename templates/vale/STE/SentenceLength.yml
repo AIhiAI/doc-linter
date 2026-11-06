@@ -1,0 +1,10 @@
+# Built-in doc-linter STE style (ASD-STE100 writing rules, no dictionary).
+# Adapted from Syntaf/vale-llm-slop (MIT, (c) 2026 Grant Mercer); see NOTICE.
+# Turn on with `vale_styles = ["STE"]` in .doc-lint.toml.
+# STE: a descriptive sentence has 25 words or fewer.
+extends: occurrence
+message: "STE: the sentence has %d words. Use 25 words or fewer."
+level: warning
+scope: sentence
+max: 25
+token: '[\w''’-]+'

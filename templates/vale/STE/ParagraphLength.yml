@@ -1,0 +1,11 @@
+# Built-in doc-linter STE style (ASD-STE100 writing rules, no dictionary).
+# Adapted from Syntaf/vale-llm-slop (MIT, (c) 2026 Grant Mercer); see NOTICE.
+# Turn on with `vale_styles = ["STE"]` in .doc-lint.toml.
+# STE: a paragraph has six sentences or fewer. This is the only lint
+# stand-in for "one topic in each paragraph".
+extends: occurrence
+message: "STE: the paragraph has %d sentences. Use six or fewer."
+level: warning
+scope: paragraph
+max: 6
+token: '[.!?]["''’\)\]]*(?:\s|$)'

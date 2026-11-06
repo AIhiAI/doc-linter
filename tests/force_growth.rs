@@ -898,6 +898,36 @@ fn missing_body_wikilink_clears_when_all_cited() {
     );
 }
 
+/// An aliased `[[entity-foo|Foo]]` wikilink satisfies the rule.
+#[test]
+fn missing_body_wikilink_clears_for_aliased_link() {
+    let root = unique_tmpdir("body-wikilink-aliased");
+    write_config(&root, "require_body_wikilink_per_cover = true\n");
+    seed_ontology(&root, &["foo"]);
+    write(
+        &root.join("docs/how-to/cites-foo-aliased.md"),
+        "---\n\
+         id: cites-foo-aliased\n\
+         role: doc\n\
+         title: cites foo aliased\n\
+         summary: A doc that cites its covered entity with an alias.\n\
+         status: stable\n\
+         updated: 2026-04-30\n\
+         covers: [foo]\n\
+         ---\n\n\
+         # body\n\n\
+         See [[entity-foo|Foo]].\n",
+    );
+
+    let out = run_doc_linter(&root, &["check", "--no-vale", "--format", "json"]);
+    let stdout = String::from_utf8_lossy(&out.stdout).to_string();
+    let codes = diagnostic_codes(&stdout);
+    assert!(
+        !codes.iter().any(|c| c == "missing-body-wikilink"),
+        "aliased body wikilink present — rule must clear; codes={codes:?}"
+    );
+}
+
 /// Default (rule disabled) — silent even when a doc has covers
 /// without body wikilinks.
 #[test]

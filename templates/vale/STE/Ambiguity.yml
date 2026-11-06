@@ -1,0 +1,21 @@
+# Built-in doc-linter STE style (ASD-STE100 writing rules, no dictionary).
+# Adapted from Syntaf/vale-llm-slop (MIT, (c) 2026 Grant Mercer); see NOTICE.
+# Turn on with `vale_styles = ["STE"]` in .doc-lint.toml.
+# STE: write alternatives in full. No slashes, open lists or Latin
+# abbreviations.
+extends: existence
+message: "STE: '%s' is ambiguous. Write the words in full."
+level: error
+ignorecase: true
+nonword: true
+tokens:
+  - '\band\s*/\s*or\b'
+  - '\betc\.?'
+  - '\be\.g\.'
+  - '\bi\.e\.'
+  - '\band\s+so\s+(?:on|forth)\b'
+  - '\bas\s+(?:required|necessary|applicable)\b'
+  - '\bif\s+(?:required|necessary|applicable)\b'
+  # A slash for "and" or "or". Lowercase pairs only, so that names
+  # such as TCP/IP and I/O pass.
+  - '\b[a-z]{3,}/[a-z]{3,}\b'

@@ -529,6 +529,89 @@ fn unreadable_vale_dictionary_is_reported() {
     assert!(!out.status.success());
 }
 
+/// Append a top-level line to the seeded `.doc-lint.toml`.
+fn add_config(root: &Path, line: &str) {
+    let cfg = root.join(".doc-lint.toml");
+    let text = std::fs::read_to_string(&cfg).unwrap();
+    std::fs::write(&cfg, format!("{line}\n{text}")).unwrap();
+}
+
+/// `vale_styles` copies the built-in STE style and a repo-owned style
+/// directory into the generated tree and lists both in `BasedOnStyles`.
+#[test]
+fn vale_styles_are_generated_and_listed() {
+    let tmp = tempdir();
+    seed(&tmp);
+    write(
+        &tmp.join("docs/vale/House/NoFoo.yml"),
+        "extends: existence\nmessage: \"no foo\"\nlevel: suggestion\ntokens:\n  - foo\n",
+    );
+    add_config(&tmp, "vale_styles = [\"STE\", \"docs/vale/House\"]");
+    let _ = Command::new(doc_linter_bin())
+        .arg("--root")
+        .arg(&tmp)
+        .arg("check")
+        .output()
+        .expect("run doc-linter");
+    let vale_root = tmp.join(".doc-lint/vale");
+    assert!(vale_root.join("styles/STE/SentenceLength.yml").exists());
+    assert!(vale_root.join("styles/House/NoFoo.yml").exists());
+    let ini = std::fs::read_to_string(vale_root.join(".vale.ini")).unwrap();
+    assert!(
+        ini.contains("BasedOnStyles = Vocabulary, DocLinter, STE, House"),
+        "styles not listed:\n{ini}"
+    );
+}
+
+/// A built-in STE rule and a repo rule at `suggestion` level both come
+/// back as `vale-<style>-<rule>` codes. (Which levels gate the build is
+/// unit-tested next to `Issue::is_error`.)
+#[test]
+fn ste_and_repo_style_alerts_are_reported() {
+    if which::which("vale").is_err() {
+        return; // needs the Vale binary
+    }
+    let body = "---\nid: some-pricing-doc\nrole: doc\nkind: reference\nlifecycle: stable\n\
+                bounded_context: pricing\ntitle: x\nsummary: y\nstatus: stable\n\
+                updated: 2026-04-30\n---\n\n";
+    let run = |root: &Path| {
+        Command::new(doc_linter_bin())
+            .arg("--root")
+            .arg(root)
+            .args(["check", "--format", "json"])
+            .output()
+            .expect("run doc-linter check")
+    };
+
+    let tmp = tempdir();
+    seed(&tmp);
+    add_config(&tmp, "vale_styles = [\"STE\"]");
+    write(
+        &tmp.join("docs/some-pricing-doc.md"),
+        &format!("{body}The pricing rule doesn't change.\n"),
+    );
+    let out = run(&tmp);
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    assert!(
+        stdout.contains("vale-ste-contractions"),
+        "no STE alert:\n{stdout}"
+    );
+
+    let tmp = tempdir();
+    seed(&tmp);
+    write(
+        &tmp.join("docs/vale/House/NoQuick.yml"),
+        "extends: existence\nmessage: \"no quick\"\nlevel: suggestion\ntokens:\n  - quickly\n",
+    );
+    add_config(&tmp, "vale_styles = [\"docs/vale/House\"]");
+    let out = run(&tmp);
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    assert!(
+        stdout.contains("vale-house-noquick"),
+        "suggestion not reported:\n{stdout}"
+    );
+}
+
 fn tempdir() -> std::path::PathBuf {
     use std::sync::atomic::{AtomicU64, Ordering};
     static N: AtomicU64 = AtomicU64::new(0);

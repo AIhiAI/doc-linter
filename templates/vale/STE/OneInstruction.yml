@@ -1,0 +1,16 @@
+# Built-in doc-linter STE style (ASD-STE100 writing rules, no dictionary).
+# Adapted from Syntaf/vale-llm-slop (MIT, (c) 2026 Grant Mercer); see NOTICE.
+# Turn on with `vale_styles = ["STE"]` in .doc-lint.toml.
+# STE: one instruction in each sentence. Checked in all prose, not only
+# in list items (the upstream rule looked at list items only).
+extends: existence
+message: "STE: '%s' joins two instructions. Write each one as its own sentence."
+level: warning
+scope: sentence
+ignorecase: true
+nonword: true
+tokens:
+  - '\band\s+then\b'
+  - ',\s+then\b'
+  - '\bafter\s+(?:that|which)\b'
+  - '\bat\s+the\s+same\s+time\b'

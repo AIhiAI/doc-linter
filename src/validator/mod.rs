@@ -415,8 +415,10 @@ pub fn validate_doc(
         // orphan-entity rule, and the body is held in memory.
         if config.ontology.require_body_wikilink_per_cover && !meta.covers.is_empty() {
             for entity in &meta.covers {
-                let needle = format!("[[entity-{entity}]]");
-                if !doc.body.contains(&needle) {
+                // An aliased `[[entity-<id>|Display]]` link counts too.
+                let plain = format!("[[entity-{entity}]]");
+                let aliased = format!("[[entity-{entity}|");
+                if !doc.body.contains(&plain) && !doc.body.contains(&aliased) {
                     issues.push(Issue::MissingBodyWikilink {
                         entity: entity.clone(),
                     });
