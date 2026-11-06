@@ -624,3 +624,35 @@ fn tempdir() -> std::path::PathBuf {
     std::fs::create_dir_all(&p).unwrap();
     p
 }
+
+/// Vale drops a Vocab pack past ~13k entries, and the `EnglishCommon`
+/// baseline is far bigger, so Vale alone flags every capitalised word.
+/// The post-processor must still accept ontology terms and common English
+/// mid-sentence, and treat a list item's first word as a sentence start.
+#[test]
+fn accepted_terms_and_list_starts_are_not_vocab_violations() {
+    if which::which("vale").is_err() {
+        return; // needs the Vale binary
+    }
+    let tmp = tempdir();
+    seed(&tmp);
+    write(
+        &tmp.join("docs/some-pricing-doc.md"),
+        "---\nid: some-pricing-doc\nrole: doc\nkind: reference\nlifecycle: stable\n\
+         bounded_context: pricing\ntitle: x\nsummary: y\nstatus: stable\n\
+         updated: 2026-04-30\n---\n\n\
+         The Pricing Rule and the Window close a Zorblat.\n\n\
+         - Each list item starts a sentence.\n",
+    );
+    let out = Command::new(doc_linter_bin())
+        .arg("--root")
+        .arg(&tmp)
+        .args(["check", "--format", "json"])
+        .output()
+        .expect("run doc-linter check");
+    let stdout = String::from_utf8_lossy(&out.stdout);
+    assert!(stdout.contains("Zorblat"), "Vale did not run:\n{stdout}");
+    for ok in ["'Pricing'", "'Rule'", "'Window'", "'Each'"] {
+        assert!(!stdout.contains(ok), "{ok} flagged:\n{stdout}");
+    }
+}
