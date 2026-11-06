@@ -924,7 +924,13 @@ fn insert_with_plural(set: &mut BTreeSet<String>, term: &str) {
     if trimmed.is_empty() {
         return;
     }
-    for variant in case_variants(trimmed) {
+    let mut variants = case_variants(trimmed);
+    // A multi-word display ("Client data") also appears mid-sentence in
+    // lower case ("the client data"); Vale matches vocab case-sensitively.
+    if trimmed.contains(' ') {
+        variants.push(trimmed.to_lowercase());
+    }
+    for variant in variants {
         let pl = naive_plural(&variant);
         set.insert(variant);
         set.insert(pl);
@@ -1053,6 +1059,7 @@ mod tests {
         let accept = build_accept(&ont, &[], &[], &[]);
         assert!(accept.contains("Pricing Rule\n"));
         assert!(accept.contains("Pricing Rules\n"));
+        assert!(accept.contains("pricing rule\n"));
         assert!(accept.contains("rule\n"));
         assert!(accept.contains("rules\n"));
         assert!(accept.contains("pricing-rule\n"));
