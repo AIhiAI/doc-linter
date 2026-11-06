@@ -189,6 +189,11 @@ pub(crate) fn run_vale_pipeline(
             }
             if alert.check == "Vocabulary.Vocabulary"
                 && (accept.contains(&alert.match_text)
+                    // Plural of an accepted word (`APIs`, `URLs`).
+                    || alert
+                        .match_text
+                        .strip_suffix('s')
+                        .is_some_and(|stem| accept.contains(stem))
                     || !term_index.lookup(&alert.match_text).is_empty())
             {
                 continue;
@@ -201,7 +206,9 @@ pub(crate) fn run_vale_pipeline(
             // downgrades but applies them at alert-routing time so
             // code-literal references like `MockEmitter` don't surface
             // as Vale warnings on every check.
-            if alert.check == "Vocabulary.Vocabulary" {
+            // The same holds for a bare ambiguous noun inside a link target
+            // (`[[adr-0005-data-platform]]`) or a code span.
+            if alert.check == "Vocabulary.Vocabulary" || is_vocab_closure_rule(&alert.check) {
                 let col = alert.span[0];
                 if vale::alert_inside_wikilink(&body, alert.line, col)
                     || vale::alert_inside_inline_code(&body, alert.line, col)
