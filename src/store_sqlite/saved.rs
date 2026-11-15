@@ -150,7 +150,7 @@ fn run_sql_values(
             st.raw_bind_parameter(i, super::to_sql(v))?;
         }
     }
-    let cols: Vec<String> = st.column_names().iter().map(|c| (*c).to_string()).collect();
+    let cols: Vec<String> = st.column_names().map(str::to_string).collect();
     // ponytail: list columns come back as JSON text; parse them only when
     // the statement builds JSON, so plain strings starting with `[` survive.
     let json_ok = sql.contains("json_group_array")

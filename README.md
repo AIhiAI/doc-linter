@@ -118,7 +118,7 @@ curl -fsSL https://raw.githubusercontent.com/AIhiAI/doc-linter/main/scripts/inst
 # Python tooling (wheel carries the same binary; not on PyPI yet)
 uv tool install doc-linter      # or: pipx install doc-linter
 
-# From source (needs a C and a C++ compiler, Rust 1.88; no cmake)
+# From source (needs a C and a C++ compiler, Rust 1.89; no cmake)
 CARGO_NET_GIT_FETCH_WITH_CLI=true cargo install --locked --git https://github.com/AIhiAI/doc-linter
 ```
 

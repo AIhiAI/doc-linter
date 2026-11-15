@@ -505,7 +505,9 @@ impl Embedder for BagOfWords {
         }
         let n = v.iter().map(|x| x * x).sum::<f32>().sqrt();
         if n > 0.0 {
-            v.iter_mut().for_each(|x| *x /= n);
+            for x in &mut v {
+                *x /= n;
+            }
         }
         Ok(v)
     }

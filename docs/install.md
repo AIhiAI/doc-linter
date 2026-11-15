@@ -20,7 +20,7 @@ Status key: **untested** means the path is wired up but no tagged release exists
 | [Prebuilt binary](#prebuilt-binary) | `tar`, `curl` or `gh` | untested until first tagged release |
 | [`install.sh`](#install-script) | same as above, falls back to source | untested (binary path); source fallback works |
 | [`uv tool` / `pipx`](#python-wheel) | Python 3.8+ | untested, and not on PyPI yet |
-| [Build from source](#build-from-source) | Rust 1.88, a C and a C++ compiler | works |
+| [Build from source](#build-from-source) | Rust 1.89, a C and a C++ compiler | works |
 
 Release binaries target Linux x86_64 and aarch64 (glibc), macOS x86_64 and arm64, and Windows x86_64. They include the default `embeddings` feature. They are unsigned.
 
@@ -58,7 +58,7 @@ The wheel only carries the same Rust binary (maturin `bindings = "bin"`, see `py
 CARGO_NET_GIT_FETCH_WITH_CLI=true cargo install --locked --git https://github.com/AIhiAI/doc-linter
 ```
 
-Requirements: Rust 1.88, a C compiler (bundled SQLite, tree-sitter grammars), a C++ compiler (the usearch vector index, built by the `cc` crate) and `curl` for the bundled embedding model download on first build. cmake is not needed. Variants:
+Requirements: Rust 1.89, a C compiler (bundled SQLite, tree-sitter grammars), a C++ compiler (the usearch vector index, built by the `cc` crate) and `curl` for the bundled embedding model download on first build. cmake is not needed. Variants:
 
 - BM25 only, no semantic search: add `--no-default-features`. That also drops the vector index, so no C++ compiler is needed either.
 - Air-gapped: set `DOC_LINTER_SKIP_MODEL_DOWNLOAD=1` and supply `DOC_LINTER_EMBED_MODEL` and `DOC_LINTER_EMBED_TOKENIZER` at runtime.

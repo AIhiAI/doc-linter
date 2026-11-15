@@ -2,7 +2,7 @@
 name = "doc-linter"
 version = "0.3.6"
 edition = "2021"
-rust-version = "1.88"
+rust-version = "1.89"
 license = "Apache-2.0"
 repository = "https://github.com/AIhiAI/doc-linter"
 description = "Lint, validate, and graph-query your docs + code as a unified knowledge base"
@@ -35,7 +35,9 @@ anyhow = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = { version = "1.0", features = ["arbitrary_precision"] }
 chrono = { version = "0.4", features = ["serde"] }
-serde_yaml = "0.9"
+# serde_yaml is deprecated and its unsafe-libyaml is unmaintained (RUSTSEC-2024-0449);
+# serde_norway is the maintained fork with the same 0.9 API.
+serde_yaml = { package = "serde_norway", version = "0.9" }
 toml = "0.8"
 walkdir = "2.5"
 globset = "0.4"
@@ -125,7 +127,7 @@ vector-usearch = ["dep:usearch"]
 rustix = { version = "0.38", features = ["stdio"] }
 
 [dependencies.rusqlite]
-version = "0.32"
+version = "0.41"
 features = ["bundled", "functions"] # bundled SQLite has FTS5; `functions` registers regexp()
 
 [dependencies.usearch]
