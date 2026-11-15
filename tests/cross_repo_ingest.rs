@@ -52,3 +52,25 @@ fn cross_repo_docs_are_ingested_with_their_repo_id() {
         "{v}"
     );
 }
+
+#[test]
+fn missing_cross_repo_root_fails_with_one_error() {
+    let vault = unique_tmpdir("xrepo-missing");
+    write_config(&vault, "cross_repo_roots = [\"../sibling/docs\"]\n");
+    seed_ontology(&vault, &[]);
+
+    let check = run_doc_linter(&vault, &["check", "--no-vale"]);
+    assert!(!check.status.success());
+    let stderr = String::from_utf8_lossy(&check.stderr);
+    assert!(
+        stderr.contains("cross_repo_roots entry \"../sibling/docs\"")
+            && stderr.contains(".doc-lint.toml")
+            && stderr.contains("not a directory"),
+        "{stderr}"
+    );
+    assert!(
+        check.stdout.is_empty(),
+        "lint ran anyway: {}",
+        String::from_utf8_lossy(&check.stdout)
+    );
+}

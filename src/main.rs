@@ -147,6 +147,21 @@ fn run() -> Result<ExitCode> {
     let config_path = cli.config.unwrap_or_else(|| root.join(".doc-lint.toml"));
     let config = LintConfig::load(&config_path).context("load config")?;
 
+    // A missing cross root would otherwise be skipped, and every `covers`
+    // entry and wikilink into it reported as broken.
+    if matches!(cli.command, None | Some(Commands::Check)) {
+        for rel in &config.cross_repo_roots {
+            let path = root.join(rel);
+            if !path.is_dir() {
+                anyhow::bail!(
+                    "cross_repo_roots entry {rel:?} in {} resolves to {}, which is not a directory",
+                    config_path.display(),
+                    path.display()
+                );
+            }
+        }
+    }
+
     // The repo itself plus any cross_repo_roots (indexed, not validated).
     let all_files = cmd::util::discover_corpus(&root, &config)?;
 
