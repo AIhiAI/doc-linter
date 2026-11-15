@@ -65,7 +65,9 @@ impl VectorIndex for ExactIndex {
         let mut out = Vec::with_capacity(self.rows.len() * (8 + 4 * self.dim));
         for (key, v) in &self.rows {
             out.extend(key.to_le_bytes());
-            v.iter().for_each(|x| out.extend(x.to_le_bytes()));
+            for x in v {
+                out.extend(x.to_le_bytes());
+            }
         }
         Ok(std::fs::write(path, out)?)
     }

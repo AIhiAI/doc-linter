@@ -160,9 +160,9 @@ pub fn build_and_swap<T>(root: &Path, build: impl FnOnce(&SqliteDb) -> Result<T>
     let sidecars = |p: &Path| ["-wal", "-shm", "-journal"].map(|s| format!("{}{s}", p.display()));
     let cleanup = |p: &Path| {
         let _ = std::fs::remove_file(p);
-        sidecars(p)
-            .iter()
-            .for_each(|s| drop(std::fs::remove_file(s)));
+        for s in sidecars(p) {
+            drop(std::fs::remove_file(s));
+        }
     };
     cleanup(&staging);
     // A graph of another schema version is not copied: `check` starts empty.
@@ -216,9 +216,9 @@ pub fn build_and_swap<T>(root: &Path, build: impl FnOnce(&SqliteDb) -> Result<T>
         }
     };
     // Stale WAL/SHM of the replaced file must not be seen by the new one.
-    sidecars(&live)
-        .iter()
-        .for_each(|s| drop(std::fs::remove_file(s)));
+    for s in sidecars(&live) {
+        drop(std::fs::remove_file(s));
+    }
     std::fs::rename(&staging, &live)
         .with_context(|| format!("swap {} into {}", staging.display(), live.display()))?;
     // Readers that already loaded the old index hold it in memory.

@@ -18,7 +18,7 @@ own change, and the licence terms for contributions.
 
 ## Build
 
-Rust 1.88 (pinned by `rust-toolchain.toml`) and a C and C++ compiler are
+Rust 1.89 (pinned by `rust-toolchain.toml`) and a C and C++ compiler are
 needed, because SQLite and the vector index are compiled from source. No cmake.
 
 ```bash
